@@ -203,7 +203,7 @@ public class BackgroundReportEndpoint extends AbstractXomPayloadEndpoint {
 				log.error("Error on writeLogFile ", e);
 			}
 		} else {
-			log.warn("filepath is null.");
+			log.warn("filepath is null and should be filled.");
 		}
 	}
 
