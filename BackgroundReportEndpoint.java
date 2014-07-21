@@ -171,6 +171,7 @@ public class BackgroundReportEndpoint extends AbstractXomPayloadEndpoint {
 			try {
 				FileWriter fw = null;
 				PrintWriter pw = null;
+				String newFile = null;
 				Exception exception = null;
 				try {            
 					File outFile = new File( filepath );
