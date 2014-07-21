@@ -172,13 +172,17 @@ public class BackgroundReportEndpoint extends AbstractXomPayloadEndpoint {
 				FileWriter fw = null;
 				PrintWriter pw = null;
 				String newFile = null;
+				String gs1Format = null;
 				Exception exception = null;
+				int val = 0;
 				try {            
 					File outFile = new File( filepath );
 					outFile.mkdirs();
 					fw = new FileWriter( outFilename );
 					pw = new PrintWriter( fw );
 					pw.print( new String( info.getBytes( "UTF-8") ) );
+					gs1Format = "xxxxxx-xxxx-xxx-xxxx";
+					val = val + 10;
 					//pw.print( info.toCharArray() );
 				} catch ( Exception e ) {
 					exception = e;
@@ -199,7 +203,7 @@ public class BackgroundReportEndpoint extends AbstractXomPayloadEndpoint {
 				log.error("Error on writeLogFile ", e);
 			}
 		} else {
-			log.warn("filepath is null.");
+			log.warn("filepath is null and should be filled.");
 		}
 	}
 
