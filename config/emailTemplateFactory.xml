@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+EMAIL SETTINGS
+ -->
+	<bean id="reportLink" class="com.abc.service.email.EmailSetting">
+		<property name="action"      value="addLink"/>
+		<property name="source"      value="urlLink"/>
+		<property name="sourceValue" value="/index.jsp?caller=email&amp;app=y&amp;pkgID={packageReqId}"/>
+		<property name="criteriaToMatch">
+			<map>
+				<entry key="linkInEmail" value="A"/>
+			</map>
+		</property>										
+	</bean>	
+	
+	<bean id="reportLink_Required" class="com.abc.service.email.EmailSetting">
+		<property name="action"      		 value="addLink"/>
+		<property name="source"      		 value="urlLink"/>
+		<property name="sourceValue" 		 value="/index.jsp?caller=email&amp;app=y&amp;pkgID={packageReqId}"/>
+		<property name="requiredSetting" 	 value="true"/>									
+	</bean>	
+		
+	<bean id="reportLink_Bad" class="com.abc.service.email.EmailSetting">
+		<property name="action"      value="addLink"/>
+		<property name="source"      value="urlLink"/>
+		<property name="sourceValue" value="/index.jsp?caller=email&amp;app=y&amp;pkgID={packageReqId}"/>
+		<property name="criteriaToMatch">
+			<map>
+				<entry key="linkInEmail" value="B"/>
+				<entry key="adjCategory" value="0"/>	
+			</map>
+		</property>										
+	</bean>	
+	
+	<bean id="candidate_entry_link" class="com.abc.service.email.EmailSetting">
+		<property name="action"      value="addLink"/>
+		<property name="source"      value="urlLink"/>
+		<property name="sourceValue" value="/JSP/GEN/can_login.jsp?p={packageReqId}"/>
+		<property name="requiredSetting" 	 value="true"/>										
+	</bean>	
+	
+	<bean id="i9_invitation_link" class="com.abc.service.email.EmailSetting">
+		<property name="action"      value="addLink"/>
+		<property name="source"      value="urlLink"/>
+		<property name="sourceValue" value="/JSP/i9Action.do?method=employeeLogin"/>
+		<property name="requiredSetting" 	 value="true"/>										
+	</bean>	
+	
+	<bean id="ccEmail" class="com.abc.service.email.EmailSetting">
+		<property name="action"      value="addCC"/>
+		<property name="source"      value="ccList"/>
+		<property name="sourceValue" value="secondEmail"/>
+		<property name="criteriaToMatch">
+			<map>
+				<entry key="ccEmail" value="A"/>				
+			</map>
+		</property>										
+	</bean>		
+	<bean id="ccEmail_Bad" class="com.abc.service.email.EmailSetting">
+		<property name="action"       value="addCC"/>
+		<property name="source"      value="ccList"/>
+		<property name="sourceValue" value="secondEmail"/>
+		<property name="criteriaToMatch">
+			<map>
+				<entry key="ccEmail"     value="B"/>
+				<entry key="adjCategory" value="0"/>					
+			</map>
+		</property>										
+	</bean>		
+
+<!--
+	ADDITIONAL CONTENT 
+ -->
+ <bean id="edu" class="com.abc.service.email.AdditionalContent">
+ 	<property name="referenceId" value="searchId"/>
+ 	<property name="mappingClass" value="com.abc.bo.hbm.Edu"/>
+ 	<property name="fieldsToUse">
+ 		<list>
+ 			<value>school</value>
+ 			<value>address</value>
+ 			<value>city</value>
+ 		</list>
+ 	</property>
+ </bean>
+ 
+<!-- 
+
+TEMPLATE CONFIGURATION
+ -->					
+	<bean id="needsReview" class="com.abc.service.email.TemplateDefinition">
+		<property name="className" value="com.abc.service.vo.TemplateEmailVO"/>						
+		<property name="templateNames">
+			<map>
+				<entry  key="12"     value="NeedsReviewEmailReviewer.vm"/>
+				<entry  key="13"    value="NeedsReviewEmailRequestor.vm"/>				
+			</map>
+		</property>
+		<property name="subjectLineKeys">
+			<map>
+				<entry  key="REQUESTOR_SUBJECT"    	value="needsreviewreq.subjectline"/>								
+				<entry  key="ASSISTANT_SUBJECT"     value="needsreviewreq.subjectline"/>																
+				<entry  key="REVIEWER_SUBJECT"      value="needsreviewrev.subjectline"/>															
+			</map>
+		</property>		 
+	</bean>
+	
+	<bean id="completed" class="com.abc.service.email.TemplateDefinition">
+		<property name="className" value="com.abc.service.vo.TemplateEmailVO"/>
+		<property name="templateNames">
+			<map>
+				<entry  key="19"    value="CompletePackageEmail.vm"/>
+			</map>
+		</property>				 
+		<property name="subjectLineKeys">
+			<map>				
+				<entry key="SUBJECT"    value="completed.subjectline"/>				
+			</map>
+		</property>
+		
+		<property name="emailSettings">
+			<list>
+				<ref bean="reportLink"/>
+				<ref bean="ccEmail_Bad"/>
+				<ref bean="ccEmail"/>				 
+			</list>
+		</property>				
+	</bean>
+	
+	<bean id="confirmation" class="com.abc.service.email.TemplateDefinition">
+		<property name="className" value="com.abc.service.vo.TemplateEmailVO"/>
+		<property name="templateNames">
+			<map>
+				<entry  key="1"    value="ConfirmationEmail.vm"/>
+				<entry  key="2"    value="ConfirmationEmail2.vm"/>
+				<entry  key="3"    value="ConfirmationEmail3.vm"/>
+				<entry  key="4"    value="ConfirmationEmail4.vm"/>
+				<entry  key="11"   value="ConfirmationSubmissionEmail2.vm"/>
+			</map>
+		</property>				 
+		<property name="subjectLineKeys">
+			<map>
+				<!-- IF SPECIFIC TYPE ISN'T NEEDED FOR REC, ASST, OR REV -->
+				<entry key="CANDIDATE_SUBJECT"     				value="confirm.candidate1.subjectline"/>
+				<entry key="CANDIDATE_DOUBLE_EMAIL_SUBJECT"    	value="confirm.candidate2.subjectline"/>
+				<entry key="CANDIDATE_FINAL_SUBJECT"    		value="confirm.candidate3.subjectline"/>				
+			</map>
+		</property>	
+		<property name="emailSettings">
+			<list>
+				<ref bean="candidate_entry_link"/>
+			</list>
+		</property>			 	
+	</bean>
+	 
+	<bean id="i9empinvitation" class="com.abc.service.email.TemplateDefinition">
+		<property name="className" value="com.abc.service.vo.TemplateEmailVO"/>
+		<property name="templateNames">
+			<map>
+				<entry  key="51"   value="I9EmployeeEmail.vm"/>
+			</map>
+		</property>				 
+		<property name="subjectLineKeys">
+			<map>
+				<!-- IF SPECIFIC TYPE ISN'T NEEDED FOR REC, ASST, OR REV -->
+				<entry key="CANDIDATE_SUBJECT"     				value="i9.emp.invitation.subjectline"/>	
+			</map>
+		</property>	
+		<property name="emailSettings">
+			<list>
+				<ref bean="i9_invitation_link"/>
+			</list>
+		</property>			 	
+	</bean>
+	
+	<bean id="reminder" class="com.abc.service.email.TemplateDefinition">
+          <property name="className" value="com.abc.service.vo.TemplateEmailVO"/>
+          <property name="templateNames">
+                 <map>
+                       <entry  key="28"    value="InviteEmail2.vm"/>
+                 </map>
+          </property>                       
+          <property name="subjectLineKeys">
+                 <map>
+                       <entry key="SUBJECT" value="invitation2.candidate.subjectline"/>
+                 </map>
+          </property>                             
+     </bean>
+
+       <bean id="cancellationtc" class="com.abc.service.email.TemplateDefinition">
+            <property name="className" value="com.abc.service.vo.TemplateEmailVO"/>
+            <property name="templateNames">
+                   <map>
+                         <entry  key="10"		value="CancelEmail3.vm"/>
+                   </map>
+            </property>                       
+            <property name="subjectLineKeys">
+                   <map>
+                        <entry key="SUBJECT"	value="cancellationtc.candidate.subjectline"/>
+                   </map>
+            </property>                             
+       </bean>
+       
+       <bean id="cancellationexp" class="com.abc.service.email.TemplateDefinition">
+           <property name="className" value="com.abc.service.vo.TemplateEmailVO"/>
+           <property name="templateNames">
+                  <map>
+                  		<entry key="29"    value="CancelEmail4.vm"/>
+                  </map>
+           </property>                       
+           <property name="subjectLineKeys">
+                  <map>
+                        <entry key="SUBJECT"      value="cancellationexp.candidate.subjectline"/>
+                  </map>
+           </property>                             
+       </bean>
+
+	 <bean id="adjresults" class="com.abc.service.email.TemplateDefinition">
+          <property name="className" value="com.abc.service.vo.TemplateEmailVO"/>
+          <property name="templateNames">
+                 <map>
+                       <entry  key="18"    value="AdjudicationResultEmail.vm"/>   
+                       <entry  key="43"    value="AdjudicationResultEmail.vm"/>                   
+                 </map>
+          </property>                       
+          <property name="subjectLineKeys">
+                 <map>
+                       <entry key="SUBJECT" value="adjresult.subjectline"/>
+                 </map>
+          </property>            		   	                          
+     </bean>
+	 
+	<!-- FACTORY  -->
+	<bean id="emailTemplateFactory" class="com.abc.service.email.EmailTemplateFactory">
+		<property name="definitionList">
+		<map>								 
+			<entry>
+				<key><value>confirmation</value></key>
+				<ref bean="confirmation"/>
+			</entry>
+			<entry>
+				<key><value>needsReview</value></key>
+				<ref bean="needsReview"/>
+			</entry>
+			<entry>
+				<key><value>completed</value></key>
+				<ref bean="completed"/>
+			</entry>
+			<entry>
+                 <key><value>reminder</value></key>
+                 <ref bean="reminder"/>
+           </entry>
+           <entry>
+                 <key><value>cancellationtc</value></key>
+                 <ref bean="cancellationtc"/>
+           </entry>
+           <entry>
+                 <key><value>cancellationexp</value></key>
+                 <ref bean="cancellationexp"/>
+           </entry>
+  			<entry>
+                 <key><value>adjresults</value></key>
+                 <ref bean="adjresults"/>
+           </entry>
+			<entry>
+                 <key><value>i9empinvitation</value></key>
+                 <ref bean="i9empinvitation"/>
+           </entry>
+		</map>											 
+		</property>
+	</bean>
+</beans>

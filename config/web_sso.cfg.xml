@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- ==========================================================
+         MVC2 FRAMEWORK CONFIGURATIONS     Martin Z. 01/2008
+=========================================================== -->
+
+<configuration>
+  <authorizedRequestors>
+     <requestors>
+       <property name="sso.client.key" value="95d35bde-0123-4e94-8e3f-fcef9d00e4ff"/>
+     </requestors>
+  </authorizedRequestors>
+  <jndiResources>
+     <resources>
+       <property name="sso.mbean.jndi" value="java:/CasMgrJmx"/>
+     </resources>
+  </jndiResources>
+  <actionMappings>
+    <mappings>
+       <property name="aut" value="com.abc.j2ee.ui.sso.impl.AuthenticatePrincipalAction"/>    
+       <property name="exp" value="com.abc.j2ee.ui.sso.impl.ExpireTokenAction"/>
+       <property name="ret" value="com.abc.j2ee.ui.sso.impl.AppReturnAction"/>
+       <property name="inv" value="com.abc.j2ee.ui.sso.impl.AppReturnAction"/>                     
+       <property name="sxp" value="com.abc.j2ee.ui.sso.impl.AppReturnAction"/>
+       <property name="xml" value="com.abc.j2ee.ui.sso.impl.XmlSerialization"/> <!--no view-->
+    </mappings>
+  </actionMappings>
+  <viewMappings>
+    <mappings>
+       <property name="def" value="/WEB-INF/pages/login.jsp"/>  <!-- default view -->
+       <property name="aut" value="/WEB-INF/pages/login.jsp"/>    
+       <property name="exp" value="/WEB-INF/pages/login.jsp"/>
+       <property name="ret" value="/WEB-INF/pages/login.jsp"/>
+       <property name="inv" value="/WEB-INF/pages/login.jsp"/>                     
+       <property name="sxp" value="/WEB-INF/pages/login.jsp"/>
+    </mappings>
+  </viewMappings>   
+</configuration>

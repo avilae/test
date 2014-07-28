@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd">
+
+ 
+	<!-- 
+	
+	http://localhost:8080/commonservices/services/commonServices.wsdl
+	http://nptest.ebackground.com/commonservices/services/commonServices.wsdl
+	
+	 -->
+	<bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
+		
+	<bean id="messageFactoryImpl" class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl" />
+
+	<bean id="messageFactory"  class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+  		<property name="messageFactory" ref="messageFactoryImpl" />
+	</bean>
+	 
+	<bean id="clientServiceProxy" class="com.abc.service.wsc.CommonServicesServiceProxy">
+		<property name="messageFactory" ref="messageFactory" />	
+		<property name="defaultUri"
+			value="http://atmjb7.ebackground.com/commonservices/services/common" />								
+		<property name="marshaller" ref="marshaller" />
+		<property name="unmarshaller" ref="marshaller" />
+		
+	</bean>	
+</beans>

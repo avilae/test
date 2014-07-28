@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="STATE_AL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AL"/>
+		<property name="name" value="State of Alabama"/>
+		<property name="format" value="\^\\d{1,7}\$"/>
+	</bean>
+	
+	<bean id="STATE_AK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AK"/>
+		<property name="name" value="State of Alaska"/>
+		<property name="format" value="\^\\d{1,7}\$"/>
+	</bean>
+	
+	<bean id="STATE_AS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AS"/>
+		<property name="name" value="American Samoa"/>
+	</bean>
+	
+	<bean id="STATE_AZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AZ"/>
+		<property name="name" value="State of Arizona"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{1,8}\$|\^[a-zA-Z]{2}\\d{2,5}\$|\^\\d{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_AR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AR"/>
+		<property name="name" value="State of Arkansas"/>
+		<property name="format" value="\^\\d{4,9}\$"/>
+	</bean>
+	
+	<bean id="STATE_CA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CA"/>
+		<property name="name" value="State of California"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{7}\$"/>
+	</bean>
+	
+	<bean id="STATE_CO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CO"/>
+		<property name="name" value="State of Colorado"/>
+		<property name="format" value="\^\\d{9}\$|\^[a-zA-Z]{1}\\d{3,6}\$|\^[a-zA-Z]{2}\\d{2,5}\$"/>
+	</bean>
+	
+	<bean id="STATE_CT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CT"/>
+		<property name="name" value="State of Connecticut"/>
+		<property name="format" value="\^\\d{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_DE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DE"/>
+		<property name="name" value="State of Delaware"/>
+		<property name="format" value="\^\\d{1,7}\$"/>
+	</bean>
+	
+	<bean id="STATE_DC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DC"/>
+		<property name="name" value="District of Columbia"/>
+		<property name="format" value="\^\\d{7}\$|\^\\d{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_FL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="FL"/>
+		<property name="name" value="State of Florida"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{12}\$"/>
+	</bean>
+	
+	<bean id="STATE_GA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GA"/>
+		<property name="name" value="State of Georgia"/>
+		<property name="format" value="\^\\d{7,9}\$"/>
+	</bean>
+	
+	<bean id="STATE_GU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GU"/>
+		<property name="name" value="Guam"/>
+	</bean>
+	
+	<bean id="STATE_HI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="HI"/>
+		<property name="name" value="State of Hawaii"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{8}\$|\^\\d{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_ID" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ID"/>
+		<property name="name" value="State of Idaho"/>
+		<property name="format" value="\^[a-zA-Z]{2}\\d{6}[a-zA-Z]{1}\$|\^\\d{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_IL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IL"/>
+		<property name="name" value="State of Illinois"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{11,12}\$"/>
+	</bean>
+	
+	<bean id="STATE_IN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IN"/>
+		<property name="name" value="State of Indiana"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{9}\$|\^\\d{9,10}\$"/>
+	</bean>
+	
+	<bean id="STATE_IA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IA"/>
+		<property name="name" value="State of Iowa"/>
+		<property name="format" value="\^\\d{9}\$|\^\\d{3}[a-zA-Z]{2}\\d{4}\$"/>
+	</bean>
+	
+	<bean id="STATE_KS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KS"/>
+		<property name="name" value="State of Kansas"/>
+		<property name="format" value="\^\\d{9}\$|\^[a-zA-Z]{1}\\d{8}\$|\^[a-zA-Z]{1}\\d{1}[a-zA-Z]{1}\\d{1}[a-zA-Z]{1}\$"/>
+	</bean>
+	
+	<bean id="STATE_KY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KY"/>
+		<property name="name" value="State of Kentucky"/>
+		<property name="format" value="\^\\d{9}\$|\^[a-zA-Z]{1}\\d{8,9}\$"/>
+	</bean>
+	
+	<bean id="STATE_LA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LA"/>
+		<property name="name" value="State of Louisiana"/>
+		<property name="format" value="\^\\d{1,9}\$"/>
+	</bean>
+	
+	<bean id="STATE_ME" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ME"/>
+		<property name="name" value="State of Maine"/>
+		<property name="format" value="\^\\d{7,8}\$|\^\\d{7}[a-zA-Z]{1}\$"/>
+	</bean>
+	
+	<bean id="STATE_MD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MD"/>
+		<property name="name" value="State of Maryland"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{12}\$"/>
+	</bean>
+	
+	<bean id="STATE_MA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MA"/>
+		<property name="name" value="State of Massachusetts"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{8}\$|\^\\d{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_MI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MI"/>
+		<property name="name" value="State of Michigan"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{10}\$|\^[a-zA-Z]{1}\\d{12}\$"/>
+	</bean>
+	
+	<bean id="STATE_MN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MN"/>
+		<property name="name" value="State of Minnesota"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{12}\$"/>
+	</bean>
+	
+	<bean id="STATE_MS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MS"/>
+		<property name="name" value="State of Mississippi"/>
+		<property name="format" value="\^\\d{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_MO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MO"/>
+		<property name="name" value="State of Missouri"/>
+		<property name="format" value="\^\\d{9}\$|\^[a-zA-Z]{1}\\d{5,9}\$|\^[a-zA-Z]{1}\\d{6}[Rr]{1}\$|\^\\d{8}[a-zA-Z]{2}\$|\^\\d{9}[a-zA-Z]{1}\$"/>
+	</bean>
+	
+	<bean id="STATE_MT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MT"/>
+		<property name="name" value="State of Montana"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{8}\$|\^\\d{9}\$|\^\\d{13,14}\$|\^[A-Za-z0-9]{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_NE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NE"/>
+		<property name="name" value="State of Nebraska"/>
+		<property name="format" value="\^\\d{1,7}\$|\^[a-zA-Z]{1}\\d{3,8}\$"/>
+	</bean>
+	
+	<bean id="STATE_NV" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NV"/>
+		<property name="name" value="State of Nevada"/>
+		<property name="format" value="\^\\d{9,10}\$|\^\\d{12}\$|\^[Xx]{1}\\d{8}\$"/>
+	</bean>
+	
+	<bean id="STATE_NH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NH"/>
+		<property name="name" value="State of New Hampshire"/>
+		<property name="format" value="\^\\d{2}[a-zA-Z]{3}\\d{5}\$"></property>
+	</bean>
+	
+	<bean id="STATE_NJ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NJ"/>
+		<property name="name" value="State of New Jersey"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{14}\$"/>
+	</bean>
+	
+	<bean id="STATE_NM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NM"/>
+		<property name="name" value="State of New Mexico"/>
+		<property name="format" value="\^\\d{8,9}\$"></property>
+	</bean>
+	
+	<bean id="STATE_NY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NY"/>
+		<property name="name" value="State of New York"/>
+		<property name="format" value="\^\\d{8,9}\$|\^[a-zA-Z]{1}\\d{7}\$|\^[a-zA-Z]{1}\\d{18}\$|\^\\d{16}\$|\^[a-zA-Z]{8}\$"/>
+	</bean>
+	
+	<bean id="STATE_NC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NC"/>
+		<property name="name" value="State of North Carolina"/>
+		<property name="format" value="\^\\d{1,12}\$"/>
+	</bean>
+	
+	<bean id="STATE_ND" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ND"/>
+		<property name="name" value="State of North Dakota"/>
+		<property name="format" value="\^\\d{9}\$|\^[a-zA-Z]{3}\\d{6}\$"/>
+	</bean>
+	
+	<bean id="STATE_MP" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MP"/>
+		<property name="name" value="Northern Marianas Islands"/>
+	</bean>
+	
+	<bean id="STATE_OH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="OH"/>
+		<property name="name" value="State of Ohio"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{4,8}\$|\^[a-zA-Z]{2}\\d{3,7}\$|\^\\d{8}\$"/>
+	</bean>
+	
+	<bean id="STATE_OK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="OK"/>
+		<property name="name" value="State of Oklahoma"/>
+		<property name="format" value="\^\\d{9}\$|\^[a-zA-Z]{1}\\d{9}\$"/>
+	</bean>
+	
+	<bean id="STATE_OR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="OR"/>
+		<property name="name" value="State of Oregon"/>
+		<property name="format" value="\^\\d{1,9}\$"/>
+	</bean>
+	
+	<bean id="STATE_PA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PA"/>
+		<property name="name" value="State of Pennsylvania"/>
+		<property name="format" value="\^\\d{8}\$"/>
+	</bean>
+	
+	<bean id="STATE_PR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PR"/>
+		<property name="name" value="Puerto Rico"/>
+	</bean>
+	
+	<bean id="STATE_RI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="RI"/>
+		<property name="name" value="State of Rhode Island"/>
+		<property name="format" value="\^\\d{7}\$|\^[a-zA-Z]{1}\\d{6}\$"/>
+	</bean>
+	
+	<bean id="STATE_SC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SC"/>
+		<property name="name" value="State of South Carolina"/>
+		<property name="format" value="\^\\d{5,11}\$"/>
+	</bean>
+	
+	<bean id="STATE_SD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SD"/>
+		<property name="name" value="State of South Dakota"/>
+		<property name="format" value="\^\\d{6,10}\$|\^\\d{12}\$"/>
+	</bean>
+	
+	<bean id="STATE_TN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TN"/>
+		<property name="name" value="State of Tennessee"/>
+		<property name="format" value="\^\\d{7,9}\$"/>
+	</bean>
+	
+	<bean id="STATE_TX" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TX"/>
+		<property name="name" value="State of Texas"/>
+		<property name="format" value="\^\\d{7,8}\$"/>
+	</bean>
+	
+	<bean id="STATE_UT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="UT"/>
+		<property name="name" value="State of Utah"/>
+		<property name="format" value="\^\\d{4,10}\$"/>
+	</bean>
+	
+	<bean id="STATE_VT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VT"/>
+		<property name="name" value="State of Vermont"/>
+		<property name="format" value="\^\\d{8}\$|\^\\d{7}[a-zA-Z]{1}\$"/>
+	</bean>
+	
+	<bean id="STATE_VA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VA"/>
+		<property name="name" value="State of Virginia"/>
+		<property name="format" value="\^\\d{9}\$|\^[a-zA-Z]{1}\\d{8,11}\$"/>
+	</bean>
+	
+	<bean id="STATE_VI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VI"/>
+		<property name="name" value="Virgin Islands"/>
+	</bean>
+	
+	<bean id="STATE_WA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="WA"/>
+		<property name="name" value="State of Washington"/>
+		<property name="format" value="\^[a-zA-Z0-9*]{12}\$"/>
+	</bean>
+	
+	<bean id="STATE_WV" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="WV"/>
+		<property name="name" value="State of West Virginia"/>
+		<property name="format" value="\^\\d{7}\$|\^[a-zA-Z]{1,2}\\d{5,6}\$"/>
+	</bean>
+	
+	<bean id="STATE_WI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="WI"/>
+		<property name="name" value="State of Wisconsin"/>
+		<property name="format" value="\^[a-zA-Z]{1}\\d{13}\$"/>
+	</bean>
+	
+	<bean id="STATE_WY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="WY"/>
+		<property name="name" value="State of Wyoming"/>
+		<property name="format" value="\^\\d{9,10}\$"/>
+	</bean>
+	
+	<bean id="genericStateList" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="STATELIST">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="STATE_AL"/>
+								<ref bean="STATE_AK"/>
+								<ref bean="STATE_AS"/>
+								<ref bean="STATE_AZ"/>
+								<ref bean="STATE_AR"/>
+								<ref bean="STATE_CA"/>
+								<ref bean="STATE_CO"/>
+								<ref bean="STATE_CT"/>
+								<ref bean="STATE_DE"/>
+								<ref bean="STATE_DC"/>
+								<ref bean="STATE_FL"/>
+								<ref bean="STATE_GA"/>
+								<ref bean="STATE_GU"/>
+								<ref bean="STATE_HI"/>
+								<ref bean="STATE_ID"/>
+								<ref bean="STATE_IL"/>
+								<ref bean="STATE_IN"/>
+								<ref bean="STATE_IA"/>
+								<ref bean="STATE_KS"/>
+								<ref bean="STATE_KY"/>
+								<ref bean="STATE_LA"/>
+								<ref bean="STATE_ME"/>
+								<ref bean="STATE_MD"/>
+								<ref bean="STATE_MA"/>
+								<ref bean="STATE_MI"/>
+								<ref bean="STATE_MN"/>
+								<ref bean="STATE_MS"/>
+								<ref bean="STATE_MO"/>
+								<ref bean="STATE_MT"/>
+								<ref bean="STATE_NE"/>
+								<ref bean="STATE_NV"/>
+								<ref bean="STATE_NH"/>
+								<ref bean="STATE_NJ"/>
+								<ref bean="STATE_NM"/>
+								<ref bean="STATE_NY"/>
+								<ref bean="STATE_NC"/>
+								<ref bean="STATE_ND"/>
+								<ref bean="STATE_MP"/>
+								<ref bean="STATE_OH"/>
+								<ref bean="STATE_OK"/>
+								<ref bean="STATE_OR"/>
+								<ref bean="STATE_PA"/>
+								<ref bean="STATE_PR"/>
+								<ref bean="STATE_RI"/>
+								<ref bean="STATE_SC"/>
+								<ref bean="STATE_SD"/>
+								<ref bean="STATE_TN"/>
+								<ref bean="STATE_TX"/>
+								<ref bean="STATE_UT"/>
+								<ref bean="STATE_VT"/>
+								<ref bean="STATE_VA"/>
+								<ref bean="STATE_VI"/>
+								<ref bean="STATE_WA"/>
+								<ref bean="STATE_WV"/>
+								<ref bean="STATE_WI"/>
+								<ref bean="STATE_WY"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>

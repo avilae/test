@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+	
+<beans>
+  
+  <!-- ############################################################### -->
+
+  	<bean id="hibernateSessionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:/ABCIntHibernateSessionFactory"/>
+  	</bean>
+  	
+  	<bean id="orderProcSessionFactory" class="com.abc.service.OrderProcSessionFactory">
+    	<property name="defaultSessionFactory" ref="hibernateSessionFactory"/>
+  	</bean>
+
+  		
+	<!-- Pre Interceptors -->
+	<bean singleton="false" id="orderStateNewInterceptor" class="com.abc.service.odrproc.interceptors.OrderStateNewInterceptor"/>
+	<bean singleton="false" id="initializationInterceptor" class="com.abc.service.odrproc.interceptors.pre.InitializationInterceptor"/>
+	<bean singleton="false" id="subjectInterceptor" class="com.abc.service.odrproc.interceptors.pre.SubjectInterceptor"/>
+	<bean singleton="false" id="componentVerifyInterceptor" class="com.abc.service.odrproc.interceptors.pre.ComponentVerifyInterceptor"/>
+	<bean singleton="false" id="eduInterceptor" class="com.abc.service.odrproc.interceptors.pre.EduInterceptor"/>
+	<bean singleton="false" id="empInterceptor" class="com.abc.service.odrproc.interceptors.pre.EmpInterceptor">
+		<property name="donotContactPastEmp">	
+		    <list>
+                <value>TFS</value>
+            </list>
+        </property>	
+	</bean>	
+	<bean singleton="false" id="empStep2Interceptor" class="com.abc.service.odrproc.interceptors.pre.EmpInterceptor">
+		<property name="overrideCurrentEmployer" value="false"/>		
+	</bean>
+	<bean singleton="false" id="mvrInterceptor" class="com.abc.service.odrproc.interceptors.pre.MvrInterceptor"/>
+	<bean singleton="false" id="refInterceptor" class="com.abc.service.odrproc.interceptors.pre.RefInterceptor"/>
+	<bean singleton="false" id="countryInterceptor" class="com.abc.service.odrproc.interceptors.pre.CountryInterceptor"/>
+	<bean singleton="false" id="stateCodeInterceptor" class="com.abc.service.odrproc.interceptors.pre.StateCodeInterceptor"/>
+	<bean singleton="false" id="countyInterceptor" class="com.abc.service.odrproc.interceptors.pre.CountyInterceptor"/>
+	<bean singleton="false" id="sbjNotificationInterceptor" class="com.abc.service.odrproc.interceptors.pre.SbjNotificationInterceptor"/>
+	<bean singleton="false" id="configPreviewInterceptor" class="com.abc.service.odrproc.interceptors.ConfigPreviewInterceptor"/>
+	<bean singleton="false" id="reconcilePackageInterceptor" class="com.abc.service.odrproc.interceptors.pre.ReconcilePackageInterceptor"/>
+	<bean singleton="false" id="sbjNotificationStep2Interceptor" class="com.abc.service.odrproc.interceptors.pre.SbjNotificationStep2Interceptor"/>
+	<bean singleton="false" id="individualTransactionInterceptor" class="com.abc.service.odrproc.interceptors.pre.IndividualTransactionInterceptor"/>
+    <bean singleton="false" id="locationBasedCriminalInterceptor" class="com.abc.service.odrproc.interceptors.pre.LocationBasedCriminalInterceptor">
+	    <property name="companyCodes">
+            <list>
+                <value>KBRGBL</value>
+            </list>
+        </property>
+        <!-- When the country of origin is ( CHINA (PRC)-CN , HONG KONG-HK, JAPAN-JP, MALAYSIA-MY , SINGAPORE-SG, THAILAND-TH) the INTCRM should be INTCIV" -->        
+        <property name="countryCodesINTCIV">
+            <list>
+                <value>CN</value>
+                <value>HK</value>
+                <value>JP</value>
+                <value>MY</value>
+                <value>SG</value>
+                <value>TH</value>
+            </list>
+        </property>
+	</bean>
+	<!-- This interceptor to add INTCRM to Starbucks companies below with duplication check for countries (not adding 1 county twice ) -->
+	<bean singleton="false" id="locationBasedCriminalInterceptor2" class="com.abc.service.odrproc.interceptors.pre.AddressHistoryCriminalInterceptor">
+	    <property name="companyCodes">
+            <list>
+                <value>STARE</value>
+                <value>STARC</value>
+                <value>STARNR</value>
+                <value>EVOFR</value>
+            </list>
+        </property>        
+	</bean>
+	
+	<!-- Validation Interceptors -->
+	<bean singleton="false" id="userAuthenticationVInterceptor" class="com.abc.service.odrproc.interceptors.validation.UserAuthenticationVInterceptor"/>
+	<bean singleton="false" id="packageAuthenticationVInterceptor" class="com.abc.service.odrproc.interceptors.validation.PackageAuthenticationVInterceptor"/>
+	<bean singleton="false" id="refSetupVInterceptor" class="com.abc.service.odrproc.interceptors.validation.RefSetupVInterceptor"/>
+	<bean singleton="false" id="validationInterceptor" class="com.abc.service.odrproc.interceptors.validation.ValidationInterceptor">
+		<property name="packageDefaultValidationDefinitionsContext" value="DEFAULT"/>
+		<property name="standaloneDefaultValidationDefinitionsContext" value="DEFAULT_SA"/>
+	</bean>
+	<bean singleton="false" id="minorVInterceptor" class="com.abc.service.odrproc.interceptors.validation.MinorVInterceptor"/>
+	<bean singleton="false" id="fieldLengthVInterceptor" class="com.abc.service.odrproc.interceptors.validation.FieldLengthVInterceptor"/>
+	<bean singleton="false" id="duplicateSearchVInterceptor" class="com.abc.service.odrproc.interceptors.validation.DuplicateSearchVInterceptor"/>
+	
+	<!-- Preparation Interceptors -->
+	<bean singleton="false" id="clientNotePrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.ClientNotePrepInterceptor"/>
+	<bean singleton="false" id="researcherPrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.ResearcherPrepInterceptor"/>
+	<bean singleton="false" id="searchStatusPrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.SearchStatusPrepInterceptor"/>
+	<bean singleton="false" id="searchStatusPrepStep2Interceptor" class="com.abc.service.odrproc.interceptors.preparation.SearchStatusPrepInterceptor">
+		<property name="overrideCurrentEmployer" value="false"/>
+		<property name="doForCanEntry" value="true"/>
+	</bean>
+	<bean singleton="false" id="searchReferencesPrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.SearchReferencesPrepInterceptor"/>
+	<bean singleton="false" id="canEntryInitComponentPrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.CanEntryInitComponentPrepInterceptor"/>
+	<bean singleton="false" id="hybridPrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.HybridPrepInterceptor">
+		<property name="draftSearchTypes">
+			<list>
+				<value>MVR</value>
+			</list>
+		</property>
+	</bean>
+	<bean singleton="false" id="hybridSearchStatusPrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.SearchStatusPrepInterceptor">
+		<property name="doForCanEntry" value="true"/>
+	</bean>
+	<bean singleton="false" id="documentPrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.DocumentPrepInterceptor"/>
+	
+	
+	<!-- Commit Interceptors -->
+	<bean singleton="false" id="basicCommitInterceptor" class="com.abc.service.odrproc.interceptors.commit.BasicCommitInterceptor">
+		<property name="test" value="false"/>
+	</bean>
+	<bean singleton="false" id="step2CommitInterceptor" class="com.abc.service.odrproc.interceptors.commit.Step2CommitInterceptor">
+		<property name="test" value="false"/>
+	</bean>
+	
+	<!-- Post Interceptors -->
+	<bean singleton="false" id="candidateLoginInterceptor" class="com.abc.service.odrproc.interceptors.post.CandidateLoginInterceptor"/>
+	<bean singleton="false" id="emailReceiptInterceptor" class="com.abc.service.odrproc.interceptors.post.EmailReceiptInterceptor">
+		<property name="candidateEmailResolver">
+			<bean class="com.abc.service.odrproc.resolvers.CandidateEmailResolver">
+				<property name="doCandidateEntryCheck" value="true"/>
+			</bean>
+		</property>
+		<property name="requestorEmailResolver">
+			<bean class="com.abc.service.odrproc.resolvers.RequestorEmailResolver">
+				<property name="doCandidateEntryCheck" value="true"/>
+			</bean>
+		</property>
+	</bean>
+	<bean singleton="false" id="hybridEmailReceiptInterceptor" class="com.abc.service.odrproc.interceptors.post.EmailReceiptInterceptor">
+		<property name="candidateEmailResolver">
+			<bean class="com.abc.service.odrproc.resolvers.CandidateEmailResolver">
+				<property name="doCandidateEntryCheck" value="false"/>
+			</bean>
+		</property>
+		<property name="requestorEmailResolver">
+			<bean class="com.abc.service.odrproc.resolvers.RequestorEmailResolver">
+				<property name="doCandidateEntryCheck" value="false"/>
+			</bean>
+		</property>
+	</bean>
+	<bean singleton="false" id="emailI9ReceiptInterceptor" class="com.abc.service.odrproc.interceptors.post.EmailReceiptInterceptor">
+		<property name="candidateEmailResolver">
+			<bean class="com.abc.service.odrproc.resolvers.I9CandidateEmailResolver">
+				<property name="doCandidateEntryCheck" value="true"/>
+			</bean>
+		</property>
+	</bean>
+	<bean singleton="false" id="requestPreviewInterceptor" class="com.abc.service.odrproc.interceptors.RequestPreviewInterceptor"/>
+	<bean singleton="false" id="orderStateCompleteInterceptor" class="com.abc.service.odrproc.interceptors.OrderStateCompleteInterceptor"/>
+	<bean singleton="false" id="hybridPostInterceptor" class="com.abc.service.odrproc.interceptors.post.HybridPostInterceptor"/>
+
+  	<bean singleton="false" id="PackageComponentPostInterceptor" class="com.abc.service.odrproc.interceptors.post.PackageComponentPostInterceptor">
+            <property name="searchTypeList">
+                    <list>
+                            <value>FP</value>
+                    </list>
+            </property>
+	</bean>
+	<bean singleton="false" id="escreenSchedulerInterceptor" class="com.abc.service.odrproc.interceptors.post.EscreenSchedulerInterceptor"/>
+	
+	<bean singleton="false" id="i3screenSchedulerInterceptor" class="com.abc.service.odrproc.interceptors.post.I3screenSchedulerInterceptor"/>
+	
+
+	<bean singleton="false" id="taleoI9DupPrepInterceptor" class="com.abc.service.odrproc.interceptors.preparation.TaleoI9DupPrepInterceptor"/>
+	<bean singleton="false" id="taleoI9DupCommitInterceptor" class="com.abc.service.odrproc.interceptors.commit.TaleoI9DupCommitInterceptor"/>
+	
+	<bean id="orderProcessorInterceptedService"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target">
+			<bean class="com.abc.service.odrproc.processors.DefaultOrderProcessor"/>
+		</property>
+		<property name="proxyTargetClass"><value>true</value></property>
+		<property name="interceptorNames">
+		<list>
+			<!-- Pre Interceptors -->
+			<value>orderStateNewInterceptor</value>
+			<value>initializationInterceptor</value>
+			<value>individualTransactionInterceptor</value>
+			<value>componentVerifyInterceptor</value>
+			<value>subjectInterceptor</value>
+			<value>eduInterceptor</value>
+			<value>empInterceptor</value>
+			<value>mvrInterceptor</value>
+			<value>refInterceptor</value>
+			<value>countryInterceptor</value>
+			<value>stateCodeInterceptor</value>
+            <value>locationBasedCriminalInterceptor</value>
+            <value>locationBasedCriminalInterceptor2</value>
+			<value>countyInterceptor</value>
+			<value>sbjNotificationInterceptor</value>
+			<value>configPreviewInterceptor</value>
+			<!-- Validation Interceptors -->
+			<value>requestPreviewInterceptor</value>
+			<value>userAuthenticationVInterceptor</value>
+			<value>packageAuthenticationVInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+			<value>validationInterceptor</value>
+			<value>refSetupVInterceptor</value>
+			<value>minorVInterceptor</value>
+			<value>fieldLengthVInterceptor</value>
+			<value>duplicateSearchVInterceptor</value>
+			<!-- Preparation Interceptors -->
+			<value>clientNotePrepInterceptor</value>
+			<value>researcherPrepInterceptor</value>
+			<value>searchStatusPrepInterceptor</value>
+			<value>searchReferencesPrepInterceptor</value>
+			<value>canEntryInitComponentPrepInterceptor</value>
+			<value>documentPrepInterceptor</value>
+			<!-- Commit Interceptors -->
+			<value>basicCommitInterceptor</value>
+			<!-- Post Interceptors -->
+			<value>candidateLoginInterceptor</value>
+			<value>emailReceiptInterceptor</value>
+			<value>escreenSchedulerInterceptor</value>
+			<value>i3screenSchedulerInterceptor</value>
+			<value>orderStateCompleteInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+		</list>
+		</property>
+	</bean>
+    
+	<bean id="orderProcessorHybridInterceptedService"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" >
+			<bean class="com.abc.service.odrproc.processors.HybridOrderProcessor"/>
+		</property>
+		<property name="proxyTargetClass"><value>true</value></property>
+		<property name="interceptorNames">
+		<list>
+			<!-- Pre Interceptors -->
+			<value>orderStateNewInterceptor</value>
+			<value>initializationInterceptor</value>
+			<value>individualTransactionInterceptor</value>
+			<value>subjectInterceptor</value>
+			<value>eduInterceptor</value>
+			<value>empInterceptor</value>
+			<value>mvrInterceptor</value>
+			<value>refInterceptor</value>
+			<value>countryInterceptor</value>
+			<value>stateCodeInterceptor</value>
+			<value>countyInterceptor</value>
+			<value>sbjNotificationInterceptor</value>
+			<value>configPreviewInterceptor</value>
+			<!-- Validation Interceptors -->
+			<value>requestPreviewInterceptor</value>
+			<value>userAuthenticationVInterceptor</value>
+			<value>packageAuthenticationVInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+			<value>validationInterceptor</value>
+			<value>refSetupVInterceptor</value>
+			<value>minorVInterceptor</value>
+			<value>fieldLengthVInterceptor</value>
+			<value>duplicateSearchVInterceptor</value>
+			<!-- Preparation Interceptors -->
+			<value>clientNotePrepInterceptor</value>
+			<value>researcherPrepInterceptor</value>
+			<value>hybridSearchStatusPrepInterceptor</value>
+			<value>searchReferencesPrepInterceptor</value>
+			<value>hybridPrepInterceptor</value>
+			<value>documentPrepInterceptor</value>
+			<!-- Commit Interceptors -->
+			<value>basicCommitInterceptor</value>
+			<!-- Post Interceptors -->
+			<value>hybridPostInterceptor</value>
+			<value>PackageComponentPostInterceptor</value>
+			<value>hybridEmailReceiptInterceptor</value>
+			<value>escreenSchedulerInterceptor</value><!-- eScreen "CAN post-submit pop-up form" Scheduler (implemented 1st for BlueShield) -->
+			<value>i3screenSchedulerInterceptor</value>
+			<value>orderStateCompleteInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+		</list>
+		</property>
+	</bean>
+    
+	<bean id="orderProcessorStep2InterceptedService"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" >
+			<bean class="com.abc.service.odrproc.processors.ApOrderProcessor"/>
+		</property>
+		<property name="proxyTargetClass"><value>true</value></property>
+		<property name="interceptorNames">
+		<list>
+			<!-- Pre Interceptors -->
+			<value>orderStateNewInterceptor</value>
+			<value>initializationInterceptor</value>
+			<value>individualTransactionInterceptor</value>
+			<value>reconcilePackageInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+			<value>subjectInterceptor</value>
+			<value>eduInterceptor</value>
+			<value>empStep2Interceptor</value>
+			<value>mvrInterceptor</value>
+			<value>refInterceptor</value>
+			<value>countryInterceptor</value>
+			<value>stateCodeInterceptor</value>
+			<value>countyInterceptor</value>
+			<value>sbjNotificationStep2Interceptor</value>
+			<value>configPreviewInterceptor</value>
+			<!-- Validation Interceptors -->
+			<value>requestPreviewInterceptor</value>
+			<value>userAuthenticationVInterceptor</value>
+			<value>packageAuthenticationVInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+			<value>validationInterceptor</value>
+			<value>refSetupVInterceptor</value>
+			<value>minorVInterceptor</value>
+			<value>fieldLengthVInterceptor</value>
+			<value>duplicateSearchVInterceptor</value>
+			<!-- Preparation Interceptors -->
+			<value>clientNotePrepInterceptor</value>
+			<value>researcherPrepInterceptor</value>
+			<value>searchStatusPrepStep2Interceptor</value>
+			<value>searchReferencesPrepInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+			<!-- Commit Interceptors -->
+			<value>step2CommitInterceptor</value>
+			<!-- Post Interceptors -->
+			<value>orderStateCompleteInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+		</list>
+		</property>
+	</bean>
+    
+	<bean id="orderProcessorI9InterceptedService"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" >
+			<bean class="com.abc.service.odrproc.processors.DefaultI9OrderProcessor"/>
+		</property>
+		<property name="proxyTargetClass"><value>true</value></property>
+		<property name="interceptorNames">
+		<list>
+			<!-- Pre Interceptors -->
+			<value>orderStateNewInterceptor</value>
+			<value>initializationInterceptor</value>
+			<value>subjectInterceptor</value>
+			<value>countryInterceptor</value>
+			<value>stateCodeInterceptor</value>
+			<value>countyInterceptor</value>
+			<value>configPreviewInterceptor</value>
+			<!-- Validation Interceptors -->
+			<value>requestPreviewInterceptor</value>
+			<value>userAuthenticationVInterceptor</value>
+			<value>packageAuthenticationVInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+			<value>validationInterceptor</value>
+			<value>fieldLengthVInterceptor</value>
+			<value>duplicateSearchVInterceptor</value>
+			<!-- Preparation Interceptors -->
+			<value>clientNotePrepInterceptor</value>
+			<value>researcherPrepInterceptor</value>
+			<value>searchStatusPrepInterceptor</value>
+			<value>searchReferencesPrepInterceptor</value>
+			<!-- Commit Interceptors -->
+			<value>basicCommitInterceptor</value>
+			<!-- Post Interceptors -->
+			<value>candidateLoginInterceptor</value>
+			<value>emailI9ReceiptInterceptor</value>
+			<value>orderStateCompleteInterceptor</value>
+			<value>requestPreviewInterceptor</value>
+		</list>
+		</property>
+	</bean>
+	
+    
+	<bean id="orderProcessorPartnerInviteDupI9InterceptedService"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" >
+			<bean class="com.abc.service.odrproc.processors.DefaultI9OrderProcessor"/>
+		</property>
+		<property name="proxyTargetClass"><value>true</value></property>
+		<property name="interceptorNames">
+		<list>
+			<!-- Preparation Interceptors -->
+			<value>taleoI9DupPrepInterceptor</value>
+			<!-- Commit Interceptors -->
+			<value>taleoI9DupCommitInterceptor</value>
+		</list>
+		</property>
+	</bean>
+	
+	<!--       FACTORY           -->
+	<bean id="orderRequestProcessorFactory" class="com.abc.service.odrproc.OrderRequestProcessorFactory">
+		<property name="services" >
+		<map>
+			<entry>
+				<key><value>DEFAULT</value></key>
+				<value>orderProcessorInterceptedService</value>
+			</entry>
+			<entry>
+				<key><value>HYBRID</value></key>
+				<value>orderProcessorHybridInterceptedService</value>
+			</entry>
+			<entry>
+				<key><value>STEP2</value></key>
+				<value>orderProcessorStep2InterceptedService</value>
+			</entry>
+			<entry>
+				<key><value>STDI9</value></key>
+				<value>orderProcessorI9InterceptedService</value>
+			</entry>
+			<entry>
+				<key><value>TALEOINVITEDUPI9</value></key>
+				<value>orderProcessorPartnerInviteDupI9InterceptedService</value>
+			</entry>
+ 		</map>
+		</property>
+	</bean>
+  
+</beans>

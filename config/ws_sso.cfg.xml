@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+ 
+<comment>
+     ABC SSO WS Agent Application Properties   Martin Z. 01/2008
+</comment>
+
+      <entry key="sso.mbean.jndi">java:/CasMgrJmx</entry>
+
+      <entry key="auth.requestors">
+           auth.count=1
+		   auth.[0].name=com.abc.j2ee.wsc.sso.WscSsoMessageBroker 
+		   auth.[1].name=authorize.for.internal.only.messages
+      </entry>
+      
+</properties>

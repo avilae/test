@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:util="http://www.springframework.org/schema/util"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+			
+	<!-- Import -->
+	<import resource="i9Section2Validation.xml"/>
+	
+  	<bean id="mailQueueManagerService" class="com.abc.service.managers.MailQueueManager">
+    	<property name="freq" value="6000"/>
+  	</bean>
+	
+  	<bean id="hibernateSessionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:/ABCIntHibernateSessionFactory"/>
+  	</bean>
+  			
+	<bean id="emailEngine" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- <property name="host" value="10.18.34.38"/>  -->
+		<property name="host" value="ablfvmbf1d32"/>
+	</bean>
+	
+	<bean id="mailProperties" class="com.abc.service.managers.ResourceBundleManager">
+		<property name="baseName" value="mail"></property>		
+	</bean>
+	
+	<bean id="bundle" class="org.commons.library.lang.ResourceControl">
+    	<property name="baseName" value="email" />
+	</bean>
+	
+	 <bean id="velocityTemplateHelper" class="com.abc.service.utils.VelocityTemplateHelper">
+	   <property name="bundle" ref="bundle" />
+	</bean>
+	
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+	 	<property name="resourceLoaderPath" value="template/email/"/>
+		<property name="preferFileSystemAccess" value="false"/> 		
+		<property name="velocityProperties">
+			<props>
+		 		<prop key="velocimacro.library">macro.vm</prop>
+		 	</props>
+		</property>
+	</bean>
+	
+	<bean id="velocityEngineTest" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="template/email/"/>
+		<property name="preferFileSystemAccess" value="false"/> 		
+		<property name="velocityProperties">
+			<props>
+		 		<prop key="velocimacro.library">macro.vm</prop>
+		 	</props>
+		</property>
+	</bean>	
+	
+	<!-- SURVEY -->
+	<bean id="surveySessionFactory" class="com.abc.service.survey.SurveySessionFactory">
+		<property name="sessionFactory" ref="hibernateSessionFactory" />
+	</bean>	
+		
+	<bean id="candidateSurveyContext" class="com.abc.service.survey.SurveyContext">
+		<property name="name" value="candidateSurveyContext" />
+		<property name="loader" >
+			<bean class="com.abc.service.survey.candidate.CandidateSurveyRequestLoader">
+				<property name="compConfigs">
+					<list>
+						<bean class="com.abc.service.survey.candidate.CandidateSurveyCompConfig">
+							<property name="sql" value="select top 100 PERCENT * from v_CanSurvey where comp_code=? and return_datetime>getdate()-7" />
+							<property name="compCode" value="WOLT" />
+						</bean>	
+					</list>
+				</property>	
+			</bean>	
+		</property>	
+		<property name="transporter" >
+			<bean class="com.abc.service.survey.candidate.CandidateSurveyTransporter">
+				<property name="baseUrl" value="https://nptest.ebackground.com/JSP/SurveyRedirector" />
+				<property name="emailSubject" value="AccurateBackground.com: Tell us about your experience with us" />
+				<property name="emailTemplateId" value="66" />
+				<property name="surveyUrl" value="http://www.surveymonkey.com/s/67BK8F9" />
+				<property name="searchTypeCode" value="CANSUR" />
+			</bean>	
+		</property>	
+		<property name="responseProcessor" >
+			<bean class="com.abc.service.survey.candidate.CandidateSurveyResponseProcessor" />
+		</property>	
+	</bean>	
+	
+</beans>

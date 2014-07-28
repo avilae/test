@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+<comment>
+        ABC CAS Application Properties
+</comment>
+
+	<entry key="cas.mbean.jndi">java:/CasMgrJmx</entry>
+	<entry key="cas.domain.hbm.config">cas_hibernate.cfg.xml</entry>
+	<entry key="cas.domain.sess.jndi">java:/CasHibernateSessionFactory</entry>
+
+</properties>

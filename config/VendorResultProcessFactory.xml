@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="i3ScreenTransformer" class="com.abc.service.integrations.vendor.fw.utils.Transformer">
+		<property name="requestXSLTFileName" value="i3screen/i3screen_request.xsl" />
+	</bean>
+	
+	<bean id="eScreenTransformer" class="com.abc.service.integrations.vendor.fw.utils.Transformer">
+        <property name="requestXSLTFileName" value="escreen/escreen_request.xsl"/>        
+    </bean>
+
+	<bean id="omegaTransformer" class="com.abc.service.integrations.vendor.fw.utils.Transformer">
+        <property name="requestXSLTFileName" value="omega/omega_request.xsl"/>
+    </bean>
+
+	<bean id="vendorResultProcessService" class="com.abc.service.integrations.vendor.fw.VendorResultProcessService" />
+	
+	<bean id="drugTestUtils" class="com.abc.service.integrations.vendor.fw.utils.DrugTestUtils"/>
+	
+	<bean id="i3screenRecheck" class="com.abc.service.integrations.vendor.fw.i3screen.I3screenResultProcess">
+		<property name="contextName" value="I3_RECHECK"/>
+		<property name="drugTestUtils" ref="drugTestUtils"/>
+		<property name="providerReferenceId" value="TransmissionID"/>
+		<property name="logFileStore" value="\\\LF-ABVM-FSDEV01\dev\FilterLog\vendor\i3screen\results\"/>
+		<property name="resultsFileStore" value="\\\LF-ABVM-FSDEV01\dev\FilterLog\vendor\i3screen\results\resultDocs"/>
+		<property name="transformer" ref="i3ScreenTransformer" />
+		<property name="vendorCompCode" value="I3SCREEN"/>
+		<property name="vendorResultProcessService" ref="vendorResultProcessService"/>
+	</bean>
+	
+	<bean id="escreenRecheck" class="com.abc.service.integrations.vendor.fw.escreen.EscreenResultProcess">
+		<property name="contextName" value="ESCREEN_RECHECK"/>
+		<property name="drugTestUtils" ref="drugTestUtils"/>
+		<property name="providerReferenceId" value="TransmissionID"/>
+		<property name="logFileStore" value="\\\LF-ABVM-FSDEV01\dev\FilterLog\vendor\escreen\results\"/>
+		<property name="resultsFileStore" value="\\\LF-ABVM-FSDEV01\dev\FilterLog\vendor\escreen\results\resultDocs"/>
+		<property name="transformer" ref="eScreenTransformer" />
+		<property name="vendorCompCode" value="ESCREEN"/>
+		<property name="vendorResultProcessService" ref="vendorResultProcessService"/>
+	</bean>
+	
+	<bean id="omegaRecheck" class="com.abc.service.integrations.vendor.fw.omega.OmegaResultProcess">
+		<property name="contextName" value="OMEGA_RECHECK"/>
+		<property name="drugTestUtils" ref="drugTestUtils"/>
+		<property name="providerReferenceId" value="BatchId"/>
+		<property name="logFileStore" value="\\\LF-ABVM-FSDEV01\dev\FilterLog\vendor\omega\results\"/>
+		<property name="resultsFileStore" value="\\\LF-ABVM-FSDEV01\dev\FilterLog\vendor\omega\results\resultDocs"/>
+		<property name="transformer" ref="omegaTransformer" />
+		<property name="vendorCompCode" value="OMEGA"/>
+		<property name="vendorResultProcessService" ref="vendorResultProcessService"/>
+	</bean>
+	
+	<!--  FACTORY -->
+	<bean id="vendorResultProcessFactory" class="com.abc.ws.integrations.vendor.service.impl.VendorResultProcessFactory">
+		<property name="contexts">
+			<map>
+				<!-- <entry>
+					<key><value>I3_RECHECK</value></key>
+					<ref bean="i3screenRecheck"/>
+				</entry> -->
+				<entry>
+					<key><value>ESCREEN_RECHECK</value></key>
+					<ref bean="escreenRecheck"/>
+				</entry>
+				<entry>
+					<key><value>OMEGA_RECHECK</value></key>
+					<ref bean="omegaRecheck"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

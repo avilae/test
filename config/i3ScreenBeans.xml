@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <!-- CONFIGURATION AREA  -->
+
+    <bean id="i3screenDeliveryService" class="com.abc.service.odrproc.resolvers.I3screenDeliveryService">
+        <property name="abI3screenScheduleEndpoint" value="https://localhost/BackgroundReportService/i3screenProxy" />   		
+  	 	<property name="emailCustomTexts"> 
+	  	 	<map>
+	  	 		<entry key="FUJI">
+	  	 			<value>The link will be active for a period of 48 hours to schedule your collection appointment.</value>
+	  	 		</entry> 	  	 		
+	  	 	</map>
+  	 	</property>
+    </bean>  	
+  	
+  	<bean id="TABE_I3ScreenContext" class="com.abc.service.i3screen.RequestContext">  	 
+  	 <property name="compCode" value="TABE"/>
+  	 <property name="scheduleWindow" value="72"/>
+  	 <property name="packageContexts">
+  	 	<map>
+  	 		<entry key="3493">
+			  	<bean class="com.abc.service.i3screen.PackageContext">
+					<property name="packageCode" value="3493"/>
+					<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+					<property name="scheduleType" value="REC"/>
+					<property name="i3AccountNumber" value="505744"/>
+					<property name="i3LocationCode" value="114225"/>								
+  				</bean>
+  	 		</entry> 
+  	 	</map>
+  	 </property>
+  	</bean>
+	
+	<bean id="contexts" class="org.springframework.beans.factory.config.MapFactoryBean">
+    	<property name="sourceMap">
+      		<map>        		
+        		<entry key="TABE" value-ref="TABE_I3ScreenContext"/>
+       		</map>
+    	</property>
+    </bean>
+
+    <bean id="contextFactory" class="com.abc.service.i3screen.I3screenContextFactory">
+        <property name="map" ref="contexts" />   		
+    </bean>
+</beans>

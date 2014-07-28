@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.session_factory_name">java:/ABCIntHibernateSessionFactory</property>
+  <!-- defaults to org.hibernate.transaction.JDBCTransactionFactory -->
+  <property name="hibernate.current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>
+  <!-- 
+        <property name="hibernate.current_session_context_class">org.hibernate.context.JTASessionContext</property> 
+        <property name="hibernate.current_session_context_class">org.hibernate.context.CurrentSessionContext</property>
+        
+  <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>  TODO -->
+  <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+  <property name="hibernate.show_sql">false</property>
+  <property name="hibernate.format_sql">false</property>
+  <property name="hibernate.use_sql_comments">false</property>
+  <!-- <property name="hibernate.cache.use_query_cache">true</property>  TODO -->
+  <property name="hibernate.bytecode.use_reflection_optimizer">true</property>
+  <property name="hibernate.jdbc.use_streams_for_binary">true</property>
+  <!-- CONNECTION POOLING CONFIG : all time in seconds/UM -->
+  <property name="c3p0.max_size">60</property>
+  <property name="c3p0.min_size">4</property>
+  <property name="c3p0.acquire_increment">1</property>
+  <property name="c3p0.idle_test_period">60</property>
+  <!--idle time pool will test idle con-->
+  <property name="c3p0.timeout">120</property>
+  <!--idle time pool will discard con-->
+  <property name="c3p0.max_statements">0</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+  <property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+  <property name="hibernate.default_schema">dbo</property>
+  <property name="hibernate.connection.username">jboss_ATMapp</property>
+  <property name="hibernate.connection.password">Btx9k.wxTuz</property>
+  <property name="hibernate.connection.url">jdbc:jtds:sqlserver://ABLFVM3F5818:1433;</property>
+  <property name="hibernate.default_catalog">ABCNEW_DEV</property>
+  <!-- Managed by container JTA implementation
+            <property name="hibernate.connection.datasource">java:ABCWEBDS</property>
+            <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property>
+            <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+            <property name="hibernate.transaction.auto_close_session">false</property>
+            <property name="hibernate.transaction.flush_before_completion">false</property>
+                <property name="jta.UserTransaction">UserTransaction</property>
+        
+
+               // SQM-SVR
+           <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+               <property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+               <property name="hibernate.connection.password">sa</property>
+               <property name="hibernate.connection.url">jdbc:jtds:sqlserver://AGILITY-XPS:1433/PSPEchoService;</property>
+               <property name="hibernate.connection.username">sa</property>
+               <property name="hibernate.default_catalog">PSPEchoService</property>
+               <property name="hibernate.default_schema">dbo</property>
+
+               // POSTGRE-SQL
+               <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+               <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+               <property name="hibernate.connection.url">jdbc:postgresql://PSPGSX:5432/PSPEchoService</property>
+               <property name="hibernate.connection.username">postgresAdmin</property>
+               <property name="hibernate.connection.password">postgresadmin</property>
+
+               // ORACLE10g
+               <property name="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</property>
+               <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+               <property name="hibernate.connection.url">jdbc:oracle:thin:@pspgsx.irvine.msf-usa.org:1521:orcl</property>
+               <property name="hibernate.connection.username">PSPSERVICE</property>
+               <property name="hibernate.connection.password">pspservice</property>
+
+               // MYSQL
+               <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+               <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+               <property name="hibernate.connection.url">jdbc:mysql://PSPGSX:3306/PSPEchoService</property>
+               <property name="hibernate.connection.username">root</property>
+               <property name="hibernate.connection.password">mysqladmin</property>
+               <property name="hibernate.default_schema">pspechoservice</property>
+        
+ //////// KNOWN ENTITIES /////////// -->
+  <mapping resource="com/abc/bo/hbm/Issues.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/AutoNotes.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Abcuser.hbm.xml"/>
+  <!-- PM-625, Technology: Build the Vendor Portal on ATM -->
+  <mapping resource="com/abc/bo/hbm/ActivityHistory.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Roles.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UserRoles.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Search.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/SearchAddl.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Subject.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/SearchStatus.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/SearchType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Company.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Package.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UserType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UserLevel.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Journal.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/JournalCategory.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VAbcArcSearch.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VAbcWebSearch.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VAbcWebUserSearch.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/InvoiceType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Abconfigure.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/PackageComponent.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/PackageSearchType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/PrefferedMethod.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CompanyConfig.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/SubStatus.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/County.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/StateCode.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/ResearcherCost.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/FaxResearcherId.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/GeneralRecord.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Newid.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/HistoryDetail.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CivilCase.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CivilCaseDisposition.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CivilCaseType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Emp.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Edu.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/AdjProcessDetail.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Plv.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/NbdGateway.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/NbdGatewayAkas.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/NbdGatewayRecords.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/SsnValidation.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VZipCodes.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Jobs.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/SubjectAkas.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CountyExSrcType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/queries.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Country.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/IdPassword.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Cri.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriCharge.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriSentence.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriAddition.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriChargeCategory.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriChargeLevel.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriChargeAcronym.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriDisposition.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriDurationUm.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriProbationType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriAdditionType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CriAdditionAction.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/I9.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/I9DocumentType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/WamuBusinessUnit.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/ResultAccessLevel.hbm.xml"/>
+  <!-- SSO-CAS -->
+  <mapping resource="com/abc/bo/hbm/Applications.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/RoleApp.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Functions.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/RoleFunction.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/GroupUser.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Group.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UserRelationships.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/cas-queries.hbm.xml" />
+  <mapping resource="com/abc/bo/hbm/orderproc-queries.hbm.xml" /> 
+   
+  <!-- PM-384 -->
+  <mapping resource="com/abc/bo/hbm/SearchBillingCodes.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/ReasonAdded.hbm.xml"/>
+  <!-- PM-327-->
+  <mapping resource="com/abc/bo/hbm/AddressHistory.hbm.xml"/>
+  <!-- PM-319 -->
+  <mapping resource="com/abc/bo/hbm/AdjOption.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/RelationshipUpdateSchedule.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/RelationshipScheduleDetail.hbm.xml"/>
+  <!-- PM-320 -->
+  <mapping resource="com/abc/bo/hbm/Document.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/DocumentInfo.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/DocumentType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/MimeTypes.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/RefResult.hbm.xml"/>
+  <!-- PM-402 -->
+  <mapping resource="com/abc/bo/hbm/FollowUpHistory.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/FollowUpType.hbm.xml"/>
+  <!--  PM-348   -->
+  <mapping resource="com/abc/bo/hbm/Verification.hbm.xml"/>
+  <!-- PM-613-->
+  <mapping resource="com/abc/bo/hbm/InvoiceNew.hbm.xml"/>
+  <!-- IM-1692-->
+  <mapping resource="com/abc/bo/hbm/VCountyNBDNoName.hbm.xml"/>
+  <!--  PM-154   -->
+  <mapping resource="com/abc/bo/hbm/MvrsearchResults.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/IfpsResponse.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/IfpsMessage.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/IfpsMatch.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/IfpsMatchrecord.hbm.xml"/>
+  <!-- PM-438 -->
+  <mapping resource="com/abc/bo/hbm/RegionType.hbm.xml"/>
+  <!--  PM-598   -->
+  <mapping resource="com/abc/bo/hbm/ScheduledTask.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/ScheduledTaskExecutionLog.hbm.xml"/>
+  <!--  Order Proc   -->
+  <mapping resource="com/abc/bo/hbm/RefQNew.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Ref2QNew.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/EmailType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/EmailAttachment.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/PackageAccessLevel.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VDuplicateSearch.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Employer.hbm.xml"/>
+  <!-- PM-567 -->
+  <mapping resource="com/abc/bo/hbm/SearchSubjectAkas.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VCountyNBDName.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VSubjectAkas.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VTbeResults.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VRequestForVendor.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/TaleoInterface.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VResultSummary.hbm.xml"/>
+  <!--  PM-413   -->
+  <mapping resource="com/abc/bo/hbm/VResultSummaryMil214.hbm.xml"/>
+  <!--  PM-629   -->
+  <mapping resource="com/abc/bo/hbm/AdjOptionGroup.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/AdjGrid.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/AdjGridConfig.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/AdjPkgCompGrid.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VAdjGridRelationship.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VPendingAdjudicationPackages.hbm.xml"/>
+  <!-- FM-20 -->
+  <mapping resource="com/abc/bo/hbm/EsbjIdPassword.hbm.xml"/>
+  <!-- FM-25 -->
+  <mapping resource="com/abc/bo/hbm/CompInstructions.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/InstructionsType.hbm.xml"/>
+  <!-- FM-76 -->
+  <mapping resource="com/abc/bo/hbm/PositionLocation.hbm.xml"/>
+  <!-- PM-682  -->
+  <mapping resource="com/abc/bo/hbm/LoginLog.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VResearcherPendingSummary.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VResearcherCases.hbm.xml"/>
+  <!-- PM-677 -->
+  <mapping resource="com/abc/bo/hbm/BusinessType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VendorResultEvaluation.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VResultBasket.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/ActivityLogCategory.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/ApplicantAccount.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/ApplicantPackage.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/ApplicantPackageStatus.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/InvitationCode.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/InvitationCodePackage.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/InvitationCodePackageConfig.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/InvitationCodeStatus.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/InvitationCodeType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/LockoutConfig.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/LoginAttempt.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UserAccountPwdRetrieval.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UserAccountStatus.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UserActivityLog.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UserAuthenticate.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/UsernameType.hbm.xml"/> 
+  <mapping resource="com/abc/bo/hbm/VInvitationCode.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VLockedAccount.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VResearcherCost.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/IndustryClass.hbm.xml"/>
+  <!-- US147 Address History Mapping -->
+  <mapping resource="com/abc/bo/hbm/InternationalHistory.hbm.xml"/> 
+  <mapping resource="com/abc/bo/hbm/VAgingStatusReport.hbm.xml"/>
+  
+  <!-- ENH95 ATM ADJ QA  -->
+  <mapping resource="com/abc/bo/hbm/VAdjQualityCheck.hbm.xml"/>
+  
+  <!-- Applicant Portal Sprint 10  -->
+  <mapping resource="com/abc/bo/hbm/CompanyDomain.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/CompanyDomainNewsItem.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/DomainName.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/NewsItem.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/NewsStatus.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/NewsType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/Token.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/TokenStatus.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/TokenType.hbm.xml"/>
+  <mapping resource="com/abc/bo/hbm/VNewsItem.hbm.xml"/>
+  
+    <!-- INT-150 --> 
+  <mapping resource="com/abc/bo/hbm/EverifyConfig.hbm.xml"/>
+
+	<!-- INT-229 - Generic Attributes introduction. Implementation: Starbucks - KRONOS -->
+	<mapping resource="com/abc/bo/hbm/OrderOrigin.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OrderType.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OrderMode.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OrderRequest.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/ResultDeliveryLog.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/EhEntityType.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/EhGenericAttribute.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/EhGaSet.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/EhGaGroup.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/EhGaGroupGa.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OrEavEntityGen.hbm.xml" />
+	
+	<!-- ENH-112 - Call Logging -->
+	<mapping resource="com/abc/bo/hbm/CommunicationMethod.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/ContactType.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/ApplicationType.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/NatureOfCall.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/ContactNatureType.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/CallLog.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/VCallLog.hbm.xml"/>
+  
+    <!-- INT-432 -->
+	<!-- <mapping resource="com/abc/bo/hbm/OfacAddress.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OfacAka.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OfacDob.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OfacId.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OfacRecord.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/OfacDownload.hbm.xml" /> -->
+   	
+  	<!-- Translation -->
+  	<mapping resource="com/abc/bo/hbm/Locale.hbm.xml"/>	
+	<mapping resource="com/abc/bo/hbm/PackageLocale.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/Timezone.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/VPackageLocale.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/GovernmentIdType.hbm.xml"/>		
+	<mapping resource="com/abc/bo/hbm/EmailLog.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/EmailRecipient.hbm.xml"/>
+	<mapping resource="com/abc/bo/hbm/EmailTemplateValues.hbm.xml"/>
+	
+    <mapping resource="com/abc/bo/hbm/CompanyConfigEavEntityGen.hbm.xml" />
+    <mapping resource="com/abc/bo/hbm/VCompanyConfigGenericAttribValue.hbm.xml" />
+    <mapping resource="com/abc/bo/hbm/VCompanyConfigGenericAttrib.hbm.xml" />
+    <mapping resource="com/abc/bo/hbm/VResultSummaryTaleo.hbm.xml"/> 
+    
+    <mapping resource="com/abc/bo/hbm/I9DocumentExpiredCallableSP.hbm.xml"/>
+    
+    <mapping resource="com/abc/bo/hbm/VendorRequest.hbm.xml" />
+    <mapping resource="com/abc/bo/hbm/AutoCreateTWNRequestsSP.hbm.xml" />
+    
+    <mapping resource="com/abc/bo/hbm/TwnResult.hbm.xml" />
+    <mapping resource="com/abc/bo/hbm/TwnResultEmployment.hbm.xml" />
+    <mapping resource="com/abc/bo/hbm/TwnResultEmployee.hbm.xml" />
+    <mapping resource="com/abc/bo/hbm/TwnResultEmployer.hbm.xml" />
+    
+	<mapping resource="com/abc/bo/hbm/ProcessCategory.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/Process.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/ProcessIndicator.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/ProcessIndicatorAudit.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/ProcessObject.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/ProcessObjectAudit.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/statemachine-edu-queries.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/VEducationPoolRecord.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/VEducationVerifierRecord.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/VendorResultXml.hbm.xml" />
+	<mapping resource="com/abc/bo/hbm/VendorRequestResultXml.hbm.xml" />
+		
+ </session-factory>
+</hibernate-configuration>

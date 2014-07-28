@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd		
+    	http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util-2.0.xsd">    	    	                 
+       
+	<!--
+		Report Configuration
+			path: report path on ms reporting service
+			deafultFormat: default format that the report will be returned in
+			defaultParameters: all required parameters needed to run report, if value contains dot notation then program will
+								pick up values from profile bean. Currently profile contains abcuser and company objects
+	 --> 
+	    <bean id="pendingReport" class="com.abc.service.ssrs.AbstractReportConfiguration">
+	    	<property name="path"   value="/AppReports/DEV/Client_Facing_Pending_Report"/>	    		    
+	    	<property name="defaultFormat" value="EXCEL"/>
+	    	<property name="defaultParameters">	    	
+	    		<map>
+	    			<entry key="db" value="current"/>    			
+	    			<entry key="company_filter" value="company"/>
+	    			<entry key="company_code" value="company.compCode"/>     
+	    			<entry key="search_type" value=" "/>       	
+	    		</map>
+	    	</property>
+	    </bean>
+     	<bean id="amazonReport" class="com.abc.service.ssrs.AbstractReportConfiguration">
+	    	<property name="path"   value="/AppReports/DEV/Amazon Reporting DEV"/>	    		    
+	    	<property name="defaultFormat" value="EXCEL"/>
+	    	<property name="defaultParameters">	    	
+	    		<map>	    					    			  
+	    			<entry key="db" value="current"/>
+	    			<entry key="parent_comp" value=""/>
+	    			<entry key="report" value=""/>	    			
+	    			<entry key="start_date" value="01/01/2012"/>
+	    			<entry key="end_date" value="01/01/2012"/>
+	    			<entry key="division" value=""/>
+	    			<entry key="location" value=""/>
+	    			<entry key="agency" value=""/>	    				    			       	    			  
+	    		</map>
+	    	</property>
+	    </bean>
+	    <!-- AMAZON DROP DOWN VALUES -->
+	    <bean id="divisionMap" class="org.springframework.beans.factory.config.MapFactoryBean">
+	              <property name="sourceMap">
+	                     <map>
+	                           <entry key="" value="**All Divisions**"/>
+	                           <entry key="Corporate" value="Corporate"/>
+	                           <entry key="Operations" value="Operations"/>
+	                           <entry key="Customer Service" value="Customer Service"/>
+	                           <entry key="Delivery Stations" value="Delivery Stations"/>
+	                     </map>
+	              </property>
+	       </bean>
+	       
+	       <bean id="reportMap" class="org.springframework.beans.factory.config.MapFactoryBean">
+	              <property name="sourceMap">
+	                     <map>
+	                           <entry key="0" value="-- Select Report --"/>
+	                           <entry key="awaiting_action" value="Awaiting Action"/>
+	                           <entry key="dismissed" value="Dismissed"/>
+	                           <entry key="needs_review" value="Needs Review"/>
+	                           <entry key="other_information_needed" value="Other Information Needed"/>
+	                           <entry key="tracker" value="Tracker"/>	                           
+	                     </map>
+	              </property>
+	       </bean>
+	    
+      	<bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/> 
+      
+  	  	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+  	  		<property name="soapVersion">
+           	 <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12"/>
+       		</property>
+  	  	</bean>  	                            
+		 	  	
+		 <bean id="webserviceManager" class="com.abc.service.ssrs.WebServiceTemplate">
+		 	<property name="messageFactory" ref="messageFactory"/>	
+		 	<property name="defaultUri" value="http://abreports/reportserver/ReportExecution2005.asmx" />		 			 	 		    	  
+		    <property name="marshaller" ref="marshaller" />
+		    <property name="unmarshaller" ref="marshaller" />
+		    <property name="logFileStore" value="\\LF-ABVM-FSDEV01\DEV\FilterLog\reporting\req\"/>
+		    <property name="messageSender">
+		        <bean class="org.springframework.ws.transport.http.CommonsHttpMessageSender">
+		            <property name="credentials">
+		                <bean class="com.abc.service.ssrs.NTCredentials">	                	
+		                   <constructor-arg value="AppReportsDEV"/>
+		                   <constructor-arg value="PrkXTMo61"/>
+		                </bean>
+		            </property>
+		        </bean>
+	    	</property>	
+		 </bean>
+	     
+	    
+	    <bean id="contexts" class="org.springframework.beans.factory.config.MapFactoryBean">
+    		<property name="sourceMap">
+      			<map>        		         	        	
+        			<entry key="PENDING" value-ref="pendingReport"/>      
+        			<entry key="AMAZON_REPORT" value-ref="amazonReport"/>
+        		</map>
+        	</property>
+        </bean>
+</beans>

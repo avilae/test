@@ -1,0 +1,1545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+						
+	<import resource="countryBeans.xml"/>
+	<import resource="stateBeans.xml"/>
+	<import resource="nativeAmericanTribesBeans.xml"/>
+	
+	<!-- Configuration name -->
+	<util:constant id="i9Citizenship" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_CITIZENSHIP"/>
+	<util:constant id="i9NonCitizenship" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_NON_CITIZENSHIP"/>
+	<util:constant id="i9PermanentResident" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_PERMANENT_RESIDENT"/>
+	<util:constant id="i9AlienAuthorized" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_ALIEN_AUTHORIZED"/>
+	<util:constant id="i9Section2ConfigName"  static-field="com.abc.service.constants.ServiceDefaultConstants.i9Section2ConfigName"/>
+	<util:constant id="issuingAuthority" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_ISSUING_AUTHORITY"/>
+	<util:constant id="documentNumber" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_DOCUMENT_NUMBER"/>
+	<util:constant id="expirationDate" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_EXPIRATION_DATE"/>
+	<util:constant id="documentNumber2" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_DOCUMENT_NUMBER_2"/>
+	<util:constant id="expirationDate2" static-field="com.abc.service.constants.ServiceDefaultConstants.I9_EXPIRATION_DATE_2"/>
+	<util:constant id="inputTextField" static-field="com.abc.service.constants.ServiceDefaultConstants.INPUT_TEXTFIELD"/>
+	<util:constant id="inputDropDown" static-field="com.abc.service.constants.ServiceDefaultConstants.INPUT_DROPDOWN"/>
+	<util:constant id="inputAutoComplete" static-field="com.abc.service.constants.ServiceDefaultConstants.INPUT_AUTOCOMPLETE"/>
+	
+	
+	<!-- List of Fields Definition -->
+	<!-- Issuing Authority -->
+	<!-- TextField -->
+	<bean id="IssuingAuthorityRequired" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputTextField"/>
+	</bean>
+	<bean id="IssuingAuthorityOptional" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputTextField"/>
+	</bean>
+	<bean id="IssuingAuthorityHidden" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="false"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputTextField"/>
+	</bean>
+	
+	<!-- DropDown -->
+	<bean id="IssuingAuthorityRequiredDD" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputDropDown"/>
+	</bean>
+	<bean id="IssuingAuthorityOptionalDD" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputDropDown"/>
+	</bean>
+	<bean id="IssuingAuthorityHiddenDD" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="false"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputDropDown"/>
+	</bean>
+	
+	<!-- AutoComplete -->
+	<bean id="IssuingAuthorityRequiredAC" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputAutoComplete"/>
+	</bean>
+	<bean id="IssuingAuthorityOptionalAC" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputAutoComplete"/>
+	</bean>
+	<bean id="IssuingAuthorityHiddenAC" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="issuingAuthority"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="false"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="inputFieldType" ref="inputAutoComplete"/>
+	</bean>
+	
+	<!-- Document Number -->
+	<bean id="DocumentNumberRequired" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+	</bean>
+	<bean id="DocumentNumberOptional" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+	</bean>
+	<bean id="DocumentNumberHidden" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="false"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+	</bean>
+	
+	<!-- Validate State -->
+	<bean id="DocumentNumberRequiredValSt" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="regExValidator"/>
+	</bean>
+	<bean id="DocumentNumberOptionalValSt" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="regExValidator"/>
+	</bean>
+	<bean id="DocumentNumberHiddenValSt" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="false"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="regExValidator"/>
+	</bean>
+	
+	<!-- Match SSN -->
+	<bean id="DocumentNumberRequiredMatchSSN" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="matchSSNValidator"/>
+		<property name="otherFld" value="empSSN"/>
+	</bean>
+	
+	<!-- Expiration Date -->
+	<bean id="ExpirationDateRequired" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="expirationDate"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="dateEarlierValidator"/>
+		<property name="format" value="MM/dd/yyyy"/>
+	</bean>
+	<bean id="ExpirationDateOptional" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="expirationDate"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="dateEarlierValidator"/>
+		<property name="format" value="MM/dd/yyyy"/>
+	</bean>
+	<bean id="ExpirationDateHidden" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="expirationDate"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="false"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="dateEarlierValidator"/>
+		<property name="format" value="MM/dd/yyyy"/>
+	</bean>
+	
+	<!-- Document Number 2 -->
+	<bean id="DocumentNumber2Required" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber2"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+	</bean>
+	<bean id="DocumentNumber2Optional" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber2"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+	</bean>
+	<bean id="DocumentNumber2Hidden" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="documentNumber2"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="false"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+	</bean>
+	
+	<!-- Expiration Date 2 -->
+	<bean id="ExpirationDate2Required" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="expirationDate2"/>
+		<property name="requiredField" value="true"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="dateEarlierValidator"/>
+		<property name="format" value="MM/dd/yyyy"/>
+	</bean>
+	<bean id="ExpirationDate2Optional" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="expirationDate2"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="true"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="dateEarlierValidator"/>
+		<property name="format" value="MM/dd/yyyy"/>
+	</bean>
+	<bean id="ExpirationDate2Hidden" class="com.abc.service.validators.ValidationFieldDefinition">
+		<property name="name" ref="expirationDate2"/>
+		<property name="requiredField" value="false"/>
+		<property name="visible" value="false"/>
+		<property name="fieldSize" value=""/>
+		<property name="maxSize" value=""/>
+		<property name="validator" value="dateEarlierValidator"/>
+		<property name="format" value="MM/dd/yyyy"/>
+	</bean>
+	
+	<!-- Configuration with Definition Fields -->
+	<util:constant id="LISTA"  static-field="com.abc.service.constants.ServiceDefaultConstants.LISTA"/>
+	<util:constant id="LISTA2"  static-field="com.abc.service.constants.ServiceDefaultConstants.LISTA2"/>
+	<util:constant id="LISTA3"  static-field="com.abc.service.constants.ServiceDefaultConstants.LISTA3"/>
+	<util:constant id="LISTB"  static-field="com.abc.service.constants.ServiceDefaultConstants.LISTB"/>
+	<util:constant id="LISTC"  static-field="com.abc.service.constants.ServiceDefaultConstants.LISTC"/>
+	
+	
+	<!-- List Of I9 Issuing Authority Value -->
+	<bean id="USDS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="USDS"/>
+		<property name="name" value="U.S. Department of State"/>
+	</bean>
+	
+	<bean id="USCIS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="USCIS"/>
+		<property name="name" value="United States Citizenship and Immigration Services (USCIS)"/>
+	</bean>
+	
+	<bean id="DHS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DHS"/>
+		<property name="name" value="United States Department of Homeland Security (DHS)"/>
+	</bean>
+	
+	<bean id="FSM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="FSM"/>
+		<property name="name" value="Federated States of Micronesia"/>
+	</bean>
+	
+	<bean id="MAI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MAI"/>
+		<property name="name" value="Marshall Islands"/>
+	</bean>
+	
+	<bean id="USARMY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="USARMY"/>
+		<property name="name" value="U.S. Army"/>
+	</bean>
+	
+	<bean id="USMAC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="USMAC"/>
+		<property name="name" value="U.S. Marine Corps"/>
+	</bean>
+	
+	<bean id="USNAVY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="USNAVY"/>
+		<property name="name" value="U.S. Navy"/>
+	</bean>
+	
+	<bean id="USAIRF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="USAIRF"/>
+		<property name="name" value="U.S. Air Force"/>
+	</bean>
+	
+	<bean id="USCOGRD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="USCOGRD"/>
+		<property name="name" value="U.S. Coast Guard"/>
+	</bean>
+	
+	<bean id="ALBERTA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ALBERTA"/>
+		<property name="name" value="Alberta"/>
+	</bean>
+	
+	<bean id="BRCOLUM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BRCOLUM"/>
+		<property name="name" value="British Columbia"/>
+	</bean>
+	
+	<bean id="MANITOBA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MANITOBA"/>
+		<property name="name" value="Manitoba"/>
+	</bean>
+	
+	<bean id="NWBRUN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NWBRUN"/>
+		<property name="name" value="New Brunswick"/>
+	</bean>
+	
+	<bean id="PREDIS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PREDIS"/>
+		<property name="name" value="Prince Edward Island"/>
+	</bean>
+	
+	<bean id="NWFLLA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NWFLLA"/>
+		<property name="name" value="Newfoundland and Labrador"/>
+	</bean>
+	
+	<bean id="NVSCO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NVSCO"/>
+		<property name="name" value="Nova Scotia"/>
+	</bean>
+	
+	<bean id="ONTARIO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ONTARIO"/>
+		<property name="name" value="Ontario"/>
+	</bean>
+	
+	<bean id="QUEBEC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="QUEBEC"/>
+		<property name="name" value="Quebec"/>
+	</bean>
+	
+	<bean id="SASKCHE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SASKCHE"/>
+		<property name="name" value="Saskatchewan"/>
+	</bean>
+	
+	<bean id="SSA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SSA"/>
+		<property name="name" value="Social Security Administration"/>
+	</bean>
+	
+	<bean id="DHHS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DHHS"/>
+		<property name="name" value="Department of Health and Human Services"/>
+	</bean>
+	
+	<bean id="INS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="INS"/>
+		<property name="name" value="Immigration and Nationality Service (INS)"/>
+	</bean>
+	
+	<!-- Dictionary of Document Type -->
+	<bean id="DICTIONARY1" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY1">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="USDS"/>				
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="DICTIONARY2" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY2">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="USCIS"/>
+								<ref bean="DHS"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="DICTIONARY3" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY3">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="DHS"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="DICTIONARY4" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY4">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="FSM"/>
+								<ref bean="MAI"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="DICTIONARY5" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY5">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="USARMY"/>
+								<ref bean="USMAC"/>
+								<ref bean="USNAVY"/>
+								<ref bean="USAIRF"/>
+								<ref bean="USCOGRD"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="DICTIONARY6" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY6">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="USCOGRD"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>		
+	</bean>	
+	
+	<bean id="DICTIONARY7" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY7">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>				
+								<ref bean="ALBERTA"/>
+								<ref bean="BRCOLUM"/>
+								<ref bean="MANITOBA"/>
+								<ref bean="NWBRUN"/>
+								<ref bean="PREDIS"/>
+								<ref bean="NWFLLA"/>
+								<ref bean="NVSCO"/>
+								<ref bean="ONTARIO"/>
+								<ref bean="QUEBEC"/>
+								<ref bean="SASKCHE"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="DICTIONARY8" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY8">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="SSA"/>
+								<ref bean="DHHS"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="DICTIONARY9" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="DICTIONARY9">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="INS"/>				
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>	
+	
+	<!--  List A Type -->
+	<!-- US Passport or US Passport Card -->
+	<bean id="USPASP" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="US Passport or US Passport Card"/>
+		<property name="codeName" value="USPASP"/>
+		<property name="typeName" ref="LISTA"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY1"/>
+	</bean>
+	
+	<!-- Permanent Resident Card or Alien Registration Receipt Card (I-551) -->
+	<bean id="PERMRC" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Permanent Resident Card or Alien Registration Receipt Card (I-551)"/>
+		<property name="codeName" value="PERMRC"/>
+		<property name="typeName" ref="LISTA"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>		
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9PermanentResident"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY2"/>
+	</bean>
+	
+	<!-- Foreign Passport with I-551 Stamp -->
+	<bean id="FPI551" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Foreign Passport with I-551 Stamp"/>
+		<property name="codeName" value="FPI551"/>
+		<property name="typeName" ref="LISTA"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9PermanentResident"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericCountryList"/>
+	</bean>
+	
+	<!-- Employment Authorization Document w/ Photograph(I-766) -->
+	<bean id="EMPAD" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Employment Authorization Document w/ Photograph(I-766)"/>
+		<property name="codeName" value="EMPAD"/>
+		<property name="typeName" ref="LISTA"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY3"/>
+	</bean>
+	
+	<!-- Foreign Passport with I-94 or I-94A -->
+	<bean id="FPI94A" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Foreign Passport with I-94 or I-94A"/>
+		<property name="codeName" value="FPI94A"/>
+		<property name="typeName" ref="LISTA"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>			
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericCountryList"/>
+	</bean>
+	
+	<!-- Passport from FSM or RMI with I-94 or I-94A -->
+	<bean id="FRPASS" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Passport from FSM or RMI with I-94 or I-94A"/>
+		<property name="codeName" value="FRPASS"/>
+		<property name="typeName" ref="LISTA"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY4"/>
+	</bean>
+	
+	
+	<!--  List A2 Type -->
+	<!-- US Passport or US Passport Card -->
+	<bean id="USPASP_2" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="US Passport or US Passport Card"/>
+		<property name="codeName" value="USPASP"/>
+		<property name="typeName" ref="LISTA2"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY1"/>
+	</bean>
+	
+	<!-- Permanent Resident Card or Alien Registration Receipt Card (I-551) -->
+	<bean id="PERMRC_2" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Permanent Resident Card or Alien Registration Receipt Card (I-551)"/>
+		<property name="codeName" value="PERMRC"/>
+		<property name="typeName" ref="LISTA2"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9PermanentResident"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY2"/>
+	</bean>
+	
+	<!-- Foreign Passport with I-551 Stamp -->
+	<bean id="FPI551_2" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Foreign Passport with I-551 Stamp"/>
+		<property name="codeName" value="FPI551"/>
+		<property name="typeName" ref="LISTA2"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9PermanentResident"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericCountryList"/>
+	</bean>
+	
+	<!-- Employment Authorization Document w/ Photograph(I-766) -->
+	<bean id="EMPAD_2" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Employment Authorization Document w/ Photograph(I-766)"/>
+		<property name="codeName" value="EMPAD"/>
+		<property name="typeName" ref="LISTA2"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY3"/>
+	</bean>
+	
+	<!-- Foreign Passport with I-94 or I-94A -->
+	<bean id="FPI94A_2" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Foreign Passport with I-94 or I-94A"/>
+		<property name="codeName" value="FPI94A"/>
+		<property name="typeName" ref="LISTA2"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericCountryList"/>
+	</bean>
+	
+	<!-- Passport from FSM or RMI with I-94 or I-94A -->
+	<bean id="FRPASS_2" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Passport from FSM or RMI with I-94 or I-94A"/>
+		<property name="codeName" value="FRPASS"/>
+		<property name="typeName" ref="LISTA2"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY4"/>
+	</bean>
+	<!--  List A3 Type -->
+	<!-- US Passport or US Passport Card -->
+	<bean id="USPASP_3" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="US Passport or US Passport Card"/>
+		<property name="codeName" value="USPASP"/>
+		<property name="typeName" ref="LISTA3"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY1"/>
+	</bean>
+	
+	<!-- Permanent Resident Card or Alien Registration Receipt Card (I-551) -->
+	<bean id="PERMRC_3" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Permanent Resident Card or Alien Registration Receipt Card (I-551)"/>
+		<property name="codeName" value="PERMRC"/>
+		<property name="typeName" ref="LISTA3"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9PermanentResident"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY2"/>
+	</bean>
+	
+	<!-- Foreign Passport with I-551 Stamp -->
+	<bean id="FPI551_3" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Foreign Passport with I-551 Stamp"/>
+		<property name="codeName" value="FPI551"/>
+		<property name="typeName" ref="LISTA3"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9PermanentResident"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericCountryList"/>
+	</bean>
+	
+	<!-- Employment Authorization Document w/ Photograph(I-766) -->
+	<bean id="EMPAD_3" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Employment Authorization Document w/ Photograph(I-766)"/>
+		<property name="codeName" value="EMPAD"/>
+		<property name="typeName" ref="LISTA3"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY3"/>
+	</bean>
+	
+	<!-- Foreign Passport with I-94 or I-94A -->
+	<bean id="FPI94A_3" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Foreign Passport with I-94 or I-94A"/>
+		<property name="codeName" value="FPI94A"/>
+		<property name="typeName" ref="LISTA3"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericCountryList"/>
+	</bean>
+	
+	<!-- Passport from FSM or RMI with I-94 or I-94A -->
+	<bean id="FRPASS_3" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Passport from FSM or RMI with I-94 or I-94A"/>
+		<property name="codeName" value="FRPASS"/>
+		<property name="typeName" ref="LISTA3"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>				
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY4"/>
+	</bean>
+	<!-- List B Type -->
+	<!-- Driver's License -->
+	<bean id="DRVLIC" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Driver's License"/>
+		<property name="codeName" value="DRVLIC"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredDD"/>
+				<ref bean="DocumentNumberRequiredValSt"/>
+				<ref bean="ExpirationDateRequired"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericStateList"/>
+	</bean>
+	
+	<!-- Federal, state or local ID card -->
+	<bean id="STIDPH" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Federal, state or local ID card"/>
+		<property name="codeName" value="STIDPH"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredDD"/>
+				<ref bean="DocumentNumberRequiredValSt"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericStateList"/>
+	</bean>
+	
+	<!-- School ID with photo -->
+	<bean id="SCIDPH" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="School ID with photo"/>
+		<property name="codeName" value="SCIDPH"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequired"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Voter Registration Card -->
+	<bean id="VTRECA" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Voter Registration Card"/>
+		<property name="codeName" value="VTRECA"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequired"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">	
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- US Military Card or Draft Record-->
+	<bean id="USMTCA" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="US Military Card or Draft Record"/>
+		<property name="codeName" value="USMTCA"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateRequired"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY5"/>
+	</bean>
+	
+	<!-- Military Dependent's ID Card-->
+	<bean id="MTDPCA" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Military Dependent's ID Card"/>
+		<property name="codeName" value="MTDPCA"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY5"/>
+	</bean>
+	
+	<!-- US Coast Guard Merchant Mariner Card-->
+	<bean id="USCGCA" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="US Coast Guard Merchant Mariner Card"/>
+		<property name="codeName" value="USCGCA"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY6"/>
+	</bean>
+	
+	<!-- Native American Tribal Document-->
+	<bean id="NATDOC" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Native American Tribal Document"/>
+		<property name="codeName" value="NATDOC"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericNativeAmericanTribesList"/>
+	</bean>
+	
+	<!-- Canadian Driver's License-->
+	<bean id="CANDLI" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Canadian Driver's License"/>
+		<property name="codeName" value="CANDLI"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY7"/>
+	</bean>
+	
+	<!-- School Record or Report Card (Under 18)-->
+	<bean id="MINSRC" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="School Record or Report Card (Under 18)"/>
+		<property name="codeName" value="MINSRC"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequired"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Clinic, Doctor or Hospital Record (Under 18)-->
+	<bean id="MINMDR" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Clinic, Doctor or Hospital Record (Under 18)"/>
+		<property name="codeName" value="MINMDR"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequired"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Daycare or Nursery School Record (Under 18)-->
+	<bean id="MINDCR" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Daycare or Nursery School Record (Under 18)"/>
+		<property name="codeName" value="MINDCR"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequired"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Individual under age 18-->
+	<bean id="INDV18" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Individual under age 18"/>
+		<property name="codeName" value="INDV18"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityOptional"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Special Placement-->
+	<bean id="SP" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Special Placement"/>
+		<property name="codeName" value="SP"/>
+		<property name="typeName" ref="LISTB"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityOptional"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- List C Type -->
+	<!-- SSN Card-->
+	<bean id="SSNCA" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="SSN Card"/>
+		<property name="codeName" value="SSNCA"/>
+		<property name="typeName" ref="LISTC"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequiredMatchSSN"/>
+				<ref bean="ExpirationDateHidden"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY8"/>
+	</bean>
+	
+	<!-- Birth Certificate - Birth Abroad (FS-545)-->
+	<bean id="CRBRAB" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Birth Certificate - Birth Abroad (FS-545)"/>
+		<property name="codeName" value="CRBRAB"/>
+		<property name="typeName" ref="LISTC"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateHidden"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>				
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY1"/>
+	</bean>
+	
+	<!-- Birth Certificate - Department of State (DS-1350)-->
+	<bean id="DESBCE" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Birth Certificate - Department of State (DS-1350)"/>
+		<property name="codeName" value="DESBCE"/>
+		<property name="typeName" ref="LISTC"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateHidden"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>				
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY1"/>
+	</bean>
+	
+	<!-- Birth Certificate - Standard-->
+	<bean id="BRCER" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Birth Certificate - Standard"/>
+		<property name="codeName" value="BRCER"/>
+		<property name="typeName" ref="LISTC"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequiredValSt"/>
+				<ref bean="ExpirationDateHidden"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>				
+			</list>
+		</property>
+		<property name="dataObject" ref="genericStateList"/>
+	</bean>
+	
+	<!-- Native American Tribal Document-->
+	<bean id="NATRDO" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Native American Tribal Document"/>
+		<property name="codeName" value="NATRDO"/>
+		<property name="typeName" ref="LISTC"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberOptional"/>
+				<ref bean="ExpirationDateOptional"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="genericNativeAmericanTribesList"/>
+	</bean>
+	
+	<!-- US Citizen ID Card (I-197)-->
+	<bean id="USC197" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="US Citizen ID Card (I-197)"/>
+		<property name="codeName" value="USC197"/>
+		<property name="typeName" ref="LISTC"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateHidden"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>				
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY9"/>
+	</bean>
+	
+	<!-- US Citizen ID Card (I-179)-->
+	<bean id="USR179" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="US Citizen ID Card (I-179)"/>
+		<property name="codeName" value="USR179"/>
+		<property name="typeName" ref="LISTC"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateHidden"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>				
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY9"/>
+	</bean>
+	
+	<!-- Employment Authorization Document Issued by DHS-->
+	<bean id="DHSEMA" class="com.abc.service.validators.ValidationConfiguration">
+		<property name="configurationName" ref="i9Section2ConfigName"/>
+		<property name="name" value="Employment Authorization Document Issued by DHS"/>
+		<property name="codeName" value="DHSEMA"/>
+		<property name="typeName" ref="LISTC"/>
+		<property name="fldDftList">
+			<list>
+				<ref bean="IssuingAuthorityRequiredAC"/>
+				<ref bean="DocumentNumberRequired"/>
+				<ref bean="ExpirationDateRequired"/>
+				<ref bean="DocumentNumber2Hidden"/>
+				<ref bean="ExpirationDate2Hidden"/>
+			</list>
+		</property>
+		<property name="statusTypeList">
+			<list>
+				<ref bean="i9Citizenship"/>
+				<ref bean="i9NonCitizenship"/>
+				<ref bean="i9PermanentResident"/>
+				<ref bean="i9AlienAuthorized"/>
+			</list>
+		</property>
+		<property name="dataObject" ref="DICTIONARY3"/>
+	</bean>
+	
+	<bean id="i9Section2List" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="USPASP"/>
+				<ref bean="PERMRC"/>
+				<ref bean="FPI551"/>
+				<ref bean="EMPAD"/>
+				<ref bean="FPI94A"/>
+				<ref bean="FRPASS"/>
+				<ref bean="USPASP_2"/>
+				<ref bean="PERMRC_2"/>
+				<ref bean="FPI551_2"/>
+				<ref bean="EMPAD_2"/>
+				<ref bean="FPI94A_2"/>
+				<ref bean="FRPASS_2"/>
+				<ref bean="USPASP_3"/>
+				<ref bean="PERMRC_3"/>
+				<ref bean="FPI551_3"/>
+				<ref bean="EMPAD_3"/>
+				<ref bean="FPI94A_3"/>
+				<ref bean="FRPASS_3"/>
+				<ref bean="DRVLIC"/>
+				<ref bean="STIDPH"/>
+				<ref bean="VTRECA"/>
+				<ref bean="SCIDPH"/>
+				<ref bean="USMTCA"/>
+				<ref bean="MTDPCA"/>
+				<ref bean="USCGCA"/>
+				<ref bean="NATDOC"/>
+				<ref bean="CANDLI"/>
+				<ref bean="MINSRC"/>
+				<ref bean="MINMDR"/>
+				<ref bean="MINDCR"/>
+				<ref bean="INDV18"/>
+				<ref bean="SP"/>
+				<ref bean="SSNCA"/>
+				<ref bean="CRBRAB"/>
+				<ref bean="DESBCE"/>
+				<ref bean="BRCER"/>
+				<ref bean="NATRDO"/>
+				<ref bean="USC197"/>
+				<ref bean="USR179"/>
+				<ref bean="DHSEMA"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="i9Section3List" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="FPI551"/>
+				<ref bean="EMPAD"/>
+				<ref bean="FPI94A"/>
+				<ref bean="SSNCA"/>
+				<ref bean="DHSEMA"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="i9QualifyList" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="FPI551"/>
+				<ref bean="EMPAD"/>
+				<ref bean="FPI94A"/>
+				<ref bean="FRPASS"/>				
+				<ref bean="DHSEMA"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>
