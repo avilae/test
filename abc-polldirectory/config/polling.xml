@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+     <!--  PRODUCTION VERSION
+    Change Log:
+    Created: Carlos Romero 2009
+    Updated: Carlos - Minh: added LCRA _ Thursday, April 01, 2010 6:50:44 AM
+    -->
+    <bean id="directoryResolver" class="org.springframework.beans.factory.config.MapFactoryBean">
+      <property name="sourceMap">
+          <map>
+            <entry key="AMAZT" value-ref="iCimsAmazon"/>
+            <entry key="LCRA" value-ref="LCRA"/>
+            <entry key="JDL" value-ref="jdl"/>
+            <!-- <entry key="tmp" value-ref="carlosTest"/>  -->
+            <entry key="DKC" value-ref="dkc"/>
+            <entry key="USAA" value-ref="usaa"/>
+            <entry key="ULSE" value-ref="ulse"/>            
+            <entry key="BRIDG" value-ref="bridgestone"/>
+            <entry key="UNMT" value-ref="unmt"/>
+            <entry key="SMCC" value-ref="smcc"/>
+            <entry key="HALEY" value-ref="haley"/>           
+            <entry key="SXMR" value-ref="sxmr"/>
+            <entry key="DEPUB" value-ref="depub"/>
+            <entry key="AmazonUK" value-ref="AmazonUK"/>
+            <entry key="NRPC" value-ref="NRPC"/>
+            <entry key="TREM" value-ref="TREM"/>
+            <entry key="TECON" value-ref="TECON"/>
+            <entry key="MOBILE" value-ref="MOBILE"/>            
+            <entry key="UFCU" value-ref="ufcu"/>
+            <entry key="Lifetouch" value-ref="Lifetouch"/>
+            <entry key="UUHHR" value-ref="uuhhr"/>
+          </map>
+      </property>
+    </bean>
+
+    <!--
+        Naming Convention for Directory Monitoring root:\monitor\COMPANY-CODE
+            Examples: (Development) c:\monitor\AMAZT
+
+        File Identifier should use Company Code, matching monitor sub directory
+    -->
+    <bean id="iCimsAmazon" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/AMAZT"/>
+        <property name="fileIdentifier" value="AMAZT"/>
+        <property name="fileStartsWith" value="Request_AMAZT_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>
+                <ref bean="ProcessAmazonBatch"/>
+				<ref bean="GenerateAmazonResultFile"/>
+                <ref bean="RenameFile"/>
+            </list>
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+
+    <bean id="LCRA" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/LCRA"/>
+        <property name="fileIdentifier" value="LCRA"/>
+        <property name="fileStartsWith" value="Request_LCRA_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>
+                <ref bean="ProcessLCRABatch"/>
+                <ref bean="GenerateLCRAResultFile"/>
+                <ref bean="RenameFile"/>
+            </list>
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="jdl" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/JDL"/>
+        <property name="fileIdentifier" value="JDL"/>
+        <property name="fileStartsWith" value="Request_JDL_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>
+                <ref bean="ProcessJdlBatch"/>
+                <ref bean="RenameFile"/>
+            </list>
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="dkc" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/DKC"/>
+        <property name="fileIdentifier" value="DKC"/>
+        <property name="fileStartsWith" value="Request_DKC_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessDKCBatch"/>
+                <ref bean="GenerateDKCResultFile"/>
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean> 
+    
+    <bean id="usaa" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/USAA"/>
+        <property name="fileIdentifier" value="USAA"/>
+        <property name="fileStartsWith" value="Request_USAA_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessUSAABatch"/>
+                <ref bean="GenerateUSAAResultFile"/>
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="ulse" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/ULSE"/>
+        <property name="fileIdentifier" value="ULSE"/>
+        <property name="fileStartsWith" value="Request_ULSE_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessHybridCSVBatch"/>                
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>  
+    
+    <bean id="bridgestone" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/BRIDG"/>
+        <property name="fileIdentifier" value="BRIDG"/>
+        <property name="fileStartsWith" value="Request_BRIDG_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessBRIDGBatch"/>
+<!--                 <ref bean="GenerateBRIDGResultFile"/> -->
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="unmt" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/UNMT"/>
+        <property name="fileIdentifier" value="UNMT"/>
+        <property name="fileStartsWith" value="Request_UNMT_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessUNMTBatch"/>               
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="smcc" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/SMCC"/>
+        <property name="fileIdentifier" value="SMCC"/>
+        <property name="fileStartsWith" value="Request_SMCC_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessDefaultCSVBatch"/>               
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>    
+          
+    <bean id="haley" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/HALEY"/>
+        <property name="fileIdentifier" value="HALEY"/>
+        <property name="fileStartsWith" value="Request_HALEY_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessHybridCSVBatch"/>                
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="sxmr" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/SXMR"/>
+        <property name="fileIdentifier" value="SXMR"/>
+        <property name="fileStartsWith" value="Request_SXMR_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessSXMRBatch"/>  
+                <ref bean="GenerateSXMRResultFile"/>              
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+
+    <bean id="depub" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/DEPUB"/>
+        <property name="fileIdentifier" value="DEPUB"/>
+        <property name="fileStartsWith" value="Request_DEPUB_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessDEPUBBatch"/>  
+                <!-- <ref bean="GenerateDEPUBResultFile"/> -->              
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+
+    <bean id="uuhhr" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/UUHHR"/>
+        <property name="fileIdentifier" value="UUHHR"/>
+        <property name="fileStartsWith" value="Request_UUHHR_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessUUHHRBatch"/>  
+                <!-- <ref bean="GenerateUUHHRResultFile"/> -->              
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="AmazonUK" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/AmazonUK"/>
+        <property name="fileIdentifier" value="AmazonUK"/>
+        <property name="fileStartsWith" value="Request_AmazonUK_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessAmazonUKBatch"/>  
+                <!-- <ref bean="GenerateDEPUBResultFile"/> -->              
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+
+    <bean id="NRPC" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/NRPC"/>
+        <property name="fileIdentifier" value="NRPC"/>
+        <property name="fileStartsWith" value="Request_NRPC_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessNRPCBatch"/>  
+<!--                 <ref bean="GenerateAmazonUKResultFile"/>              -->
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+
+    <bean id="MOBILE" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/MOBILE"/>
+        <property name="fileIdentifier" value="MOBILE"/>
+        <property name="fileStartsWith" value="Request_MOBILE_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessMOBILEBatch"/>  
+                <!-- <ref bean="GenerateDEPUBResultFile"/> -->              
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+
+    <bean id="TREM" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/TREM"/>
+        <property name="fileIdentifier" value="TREM"/>
+        <property name="fileStartsWith" value="Request_TREM_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessTREMBatch"/>  
+<!--                 <ref bean="GenerateAmazonUKResultFile"/>              -->
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+
+    <bean id="TECON" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/TECON"/>
+        <property name="fileIdentifier" value="TECON"/>
+        <property name="fileStartsWith" value="Request_TECON_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessTECONBatch"/>  
+                <!-- <ref bean="GenerateDEPUBResultFile"/> -->              
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+           
+   	<bean id="ufcu" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/UFCU"/>
+        <property name="fileIdentifier" value="UFCU"/>
+        <property name="fileStartsWith" value="Request_UFCU_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessUFCUBatch"/>
+                <!--  <ref bean="GenerateUFCUResultFile"/>-->    
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="Lifetouch" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/Lifetouch"/>
+        <property name="fileIdentifier" value="Lifetouch"/>
+        <property name="fileStartsWith" value="Request_Lifetouch_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessLifetouchBatch"/>  
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
+    <bean id="ProcessAmazonBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="Amazon Batch - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Test Amazon Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+		<property name="minimumFileSize" value="493"/>
+    </bean>
+    
+    <bean id="ProcessLCRABatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="LCRA - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="LCRA Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="1650"/>
+    </bean>
+
+    <bean id="ProcessJdlBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="JDL - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Test JDL Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+		<property name="minimumFileSize" value="493"/>
+    </bean>
+    
+    <bean id="ProcessDKCBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="DKNY - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="DKC Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="1200"/>
+    </bean>
+    
+    <bean id="ProcessUSAABatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="USAA - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="USAA Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="1200"/>
+    </bean>
+    
+    <bean id="ProcessBRIDGBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="BRIDGESTONE - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="BRIDGESTONE Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="1200"/>
+    </bean>
+    
+     <bean id="ProcessUNMTBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="University of Montana - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="University of Montana Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="1200"/>
+    </bean>
+    
+    <bean id="ProcessSXMRBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="SiriusXM - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="SiriusXM Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="1200"/>
+    </bean>
+    
+    <bean id="ProcessDEPUBBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="DEPUB - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="DEPUB Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="5"/>
+    </bean>
+
+    <bean id="ProcessUUHHRBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="UUHHR - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="UUHHR Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="100"/>
+    </bean>
+
+    <bean id="ProcessAmazonUKBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="AmazonUK - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="AmazonUK Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="428"/>
+    </bean>
+
+    <bean id="ProcessNRPCBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="NRPC - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="NRPC Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="182"/>
+    </bean>    
+
+    <bean id="ProcessTREMBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="TREM - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="TREM Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="166"/>
+    </bean>
+    
+    <bean id="ProcessMOBILEBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="MOBILE - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="MOBILE Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="182"/>
+    </bean>    
+
+     <bean id="ProcessUFCUBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="UFCU - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="UFCU Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="428"/>
+    </bean>
+    
+     <bean id="ProcessLifetouchBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="Lifetouch - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Lifetouch Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="92"/>
+      </bean>
+
+    <bean id="ProcessTECONBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="TECON - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="TECON Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="182"/>
+    </bean>    
+
+    <bean id="ProcessDefaultCSVBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="Generic Batch (Default) - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Default Generic Batch Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="1200"/>
+    </bean>
+    
+    <bean id="ProcessHybridCSVBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="Generic Batch (Hybrid) - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Hybrid Generic Batch Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="1200"/>
+    </bean>
+
+    <bean id="GenerateAmazonResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="Amazon"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate Amazon Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+
+    <bean id="GenerateLCRAResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="LCRA"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate Amazon Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+    
+    <bean id="GenerateDKCResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="DKNY"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate Amazon Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+    
+    <bean id="GenerateUSAAResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="USAA"/> 
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate Amazon Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+    
+    <bean id="GenerateBRIDGResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="BRIDG"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate Amazon Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+    
+    <bean id="GenerateSXMRResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="SXMR"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate Amazon Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+
+    <bean id="GenerateDEPUBResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="DEPUB"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate DEPUB Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+
+    <bean id="GenerateAmazonUKResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="AmazonUK"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate AmazonUK Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+
+    <bean id="GenerateNRPCResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="NRPC"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate NRPC Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+
+    <bean id="GenerateTREMResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="TREM"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate TREM Result"/>        
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+        
+    <bean id="GenerateMOBILEResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="MOBILE"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate MOBILE Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+    
+    <bean id="GenerateUFCUResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="UFCU"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate UFCU Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+
+    <!-- bean id="GenerateLifetouchResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="Lifetouch"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate Lifetouch Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean -->
+
+    <bean id="GenerateTECONResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="TECON"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate TECON Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+
+    <bean id="GenerateUUHHRResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="UUHHR"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate UUHHR Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+    
+    <bean id="MoveAmazonBatchFile" class="com.abc.polling.impl.ArchiveFile">
+        <property name="archiveDirectory" value="@MOVE_BATCH_PATHFILE@\amazonArchive\"/>
+    </bean>
+
+    <bean id="ProcessOrderBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="Undefined"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Test Undefined Auto Batch"/>
+    </bean>
+
+    <bean id="ArchiveFile" class="com.abc.polling.impl.ArchiveFile">
+        <property name="archiveDirectory" value="file:/@ARCHIVE_FILEPATH@/AMAZT/Archive/"/>
+    </bean>
+
+    <bean id="RenameFile" class="com.abc.polling.impl.RenameFile">
+        <property name="prefix" value="PROCESSED_"/>
+<!--        <property name="suffix" value="_SUFFIX"/>	-->
+    </bean>
+
+</beans>

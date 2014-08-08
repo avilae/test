@@ -1,0 +1,1488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--                                  @BUILD_ENV@ BUILD                               -->
+
+<!--
+
+RsltSnd.kenexaRec.endpoint		@ENDPOINT_KENEXA_REC@
+
+RsltSnd.kbr.endpoint			@ENDPOINT_KBR@
+
+RsltSnd.ve.WOLT.endpoint		@ENDPOINT_VE_WOLT@
+RsltSnd.ve.AHS.endpoint			@ENDPOINT_VE_AHS@
+RsltSnd.ve.MEDCO.endpoint		@ENDPOINT_VE_MEDCO@
+RsltSnd.ve.URI.endpoint			@ENDPOINT_VE_URI@
+RsltSnd.ve.CACO.endpoint		@ENDPOINT_VE_CACO@
+
+RsltSnd.softscape.ssLoginurl 	@SOFTSCAPE_LOGINURL@
+RsltSnd.softscape.ssReturnurl 	@SOFTSCAPE_RETURNURL@
+
+RsltSnd.hcs.endpoint			@ENDPOINT_HCS@
+
+RsltSnd.kenexaCS.endpoint		@ENDPOINT_KENEXA_CS@
+
+RsltSnd.taleoI9.endpoint		@ENDPOINT_TALEOI9@
+RsltSnd.taleoI9.DRPEI9.zone		@ZONE_DRPEI9@
+RsltSnd.taleoI9.AMYI9.zone		@ZONE_AMYI9@
+
+
+RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
+
+  				
+-->
+
+<beans>
+
+	<import resource="baseLogFilePath.xml"/>
+	
+    <bean id="hbmSessionFactory" class="com.abc.hibernate.SessionFactory">
+        <constructor-arg ref="hbmJndiSessionFactory"/>
+    </bean>
+  	<bean id="hbmJndiSessionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:/ABCIntHibernateSessionFactory"/>
+  	</bean>
+  	
+  	
+    <bean id="wsdlDefinitionHandlerAdapter" class="org.springframework.ws.transport.http.WsdlDefinitionHandlerAdapter">
+        <description>Application Adapter tasked with handling WSDL requests</description>
+        <property name="transformLocations" value="true"/>
+    </bean>
+  	
+	<bean id="messageFactoryImpl" class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl" />
+
+	<bean id="messageFactory"  class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+  		<property name="messageFactory" ref="messageFactoryImpl" />
+	</bean>
+	
+	<bean id="kbrProxySOAPActionCallback" class="org.springframework.ws.soap.client.core.SoapActionCallback">
+		<constructor-arg value="http://kbr.com/services/background/request/v4/UpdateRequestStatus"/>
+	</bean>	
+	
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <property name="messageFactory" ref="messageFactory"/>
+		<property name="interceptors">
+			<list>
+			</list>
+		</property>
+    </bean>
+
+  	<!-- SENDING RESULTS -->
+  		 
+  	<bean id="kenexaRecBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="KENEXA_REC" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varKenexaRecResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  				<property name="endpoint" value="@ENDPOINT_KENEXA_REC@" />
+  				<property name="basicAuthentication" value="false" />
+  				<property name="username" value="taleo" />
+  				<property name="password" value="t4l3ntshow!" />
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="Result_KenexaRec-hrxml25-request.xsl"/>
+        		<property name="responseXSLTFileName" value="Result_KenexaRec-hrxml25-response.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="GUARB" />
+  					<property name="loginRequired" value="false" />
+  					<!-- Set an override sqlQuery at the company level -->
+  					<!-- 
+  					<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ?" />
+  					-->
+  					<!-- Set an override transporter at the company level -->
+  					<!-- 
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="https://localhost/backgroundCheckOrderService/taleo75" />
+  							<property name="basicAuthentication" value="true" />
+  							<property name="username" value="taleo" />
+  							<property name="password" value="t4l3ntshow!" />
+  						</bean>
+  					</property>
+  					-->
+  				</bean>
+  			</set>
+  		</property>
+  		
+  	</bean>
+
+  	<bean id="kbrBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="processorName" value="KBR" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummaryMil214 v where refNumber2 is not null and refNumber2 &lt;&gt; '' and compCode = ?" />
+  		<property name="baseLogFilePath" ref="varKbrResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SOAPTransporter">
+				<!-- Use proxy web service (hosted locally) -->
+  				<property name="endpoint" value="@ENDPOINT_KBR@" />
+  				<!-- KBR production endpoint is listed for reference only, it should not be used until WSE 3.0 issues are resolved
+  				<property name="endpoint" value="https://extgmtsservices.kbr.com/kbr_bgservicewse/bgrequest_v4.asmx" />
+				-->
+  				<property name="basicAuthentication" value="false" />
+  				<property name="username" value="tbd" />
+  				<property name="password" value="tbd" />
+				<property name="webServiceTemplate" ref="webServiceTemplate" />   
+				<property name="webServiceMessageCallback" ref="kbrProxySOAPActionCallback"/>
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="Result_KBR-hrxml25-request.xsl"/>
+        		<property name="responseXSLTFileName" value="Result_KBR-hrxml25-response.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="KBRS" />
+  					<property name="loginRequired" value="true" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="KBRSA" />
+  					<property name="loginRequired" value="true" />
+  				</bean>
+  			</set>
+  		</property>
+  		
+  	</bean>
+  	
+  	<bean id="virtualEdgeBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="addClientLogin" value="true" />  
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="VIRTUAL_EDGE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and OO.ooSubCode = 'VIRTUAL-EDGE'" />
+  		<property name="baseLogFilePath" ref="varVirtualEdgeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  				<property name="endpoint" value="https://www.automation.virtualedge.com/ADPBGI/324/ADPBGIResponse.cfm?%25%2D%3B3%2EX%3CT%20%0A" />
+  				<property name="basicAuthentication" value="false" />
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="ve/VE-hrxml25-result.xsl"/>
+        		<property name="responseXSLTFileName" value="ve/VE-hrxml25-result_ACK.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="WOLT" />
+  					<property name="loginRequired" value="false" />
+  					<!-- Set an override sqlQuery at the company level -->
+  					<!-- 
+  					<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ?" />
+  					-->
+  					<!-- Set an override transporter at the company level -->
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_VE_WOLT@" />
+  							<property name="basicAuthentication" value="false" />
+  						</bean>
+  					</property>
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="AHS" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_VE_AHS@" />
+  							<property name="basicAuthentication" value="false" />
+  						</bean>
+  					</property>
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="MEDCO" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_VE_MEDCO@" />
+  							<property name="basicAuthentication" value="false" />
+  						</bean>
+  					</property>
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="URI" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_VE_URI@" />
+  							<property name="basicAuthentication" value="false" />
+  						</bean>
+  					</property>
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="CACO" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_VE_CACO@" />
+  							<property name="basicAuthentication" value="false" />
+  						</bean>
+  					</property>
+  				</bean>
+  			</set>
+  		</property>
+  		
+  	</bean>
+  	
+  	
+  	<bean id="avatureBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="addClientLogin" value="true" />  
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="AVATURE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varAvatureResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchOrderAttributes" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  				<property name="endpoint" value="https://testfacadeaccurate.avature.net/peopleCallback" />
+  				<property name="basicAuthentication" value="false" />
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="avature/AvatureCRM-result-ack.xsl"/>
+        		<property name="responseXSLTFileName" value="avature/AvatureCRM-hxml-response.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="INVE" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  		
+  	</bean>
+  	
+    <!--     SoftScape Return Result Configuration   -->
+  	<bean id="softscapeBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="SOFTSCAPE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
+  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="DEPUB" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  		
+  	</bean>
+  	<!--      Return Result Configuration  AMAZON UK -->
+  	<bean id="amazonUKBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="SOFTSCAPE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
+  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="AMZUK" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="AMZROI" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="AMZLMA" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="AMZUKC" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+
+<!--     NRPC Return Result Configuration   -->
+  	<bean id="NRPCBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="NRPC" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@NRPC_LOGINURL@" />
+  				<property name="ssReturnurl" value="@NRPC_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="NRPC" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  		
+  	</bean> 
+  	 	
+  	<!--      Return Result Configuration  THINGS REMEMBERED - TREM -->
+  	<bean id="TREMBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="SOFTSCAPE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
+  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="TREM" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+  	
+  	  	<!--      Return Result Configuration  MOBILE IRON -->
+  	<bean id="MOBILEBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="SOFTSCAPE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
+  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="MOBILE" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+
+  	<!--      Return Result Configuration  TECON -->
+  	<bean id="TECONBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="SOFTSCAPE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
+  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="TECON" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+
+    <!--     SoftScape Return Result Configuration   -->
+  	<bean id="uuhhrBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="SOFTSCAPE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
+  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="UUHHR" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>  		
+  	</bean>
+  	
+	<!--     UFCU Return Result Configuration   -->
+  	<bean id="UFCUBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="UFCU" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@NRPC_LOGINURL@" />
+  				<property name="ssReturnurl" value="@NRPC_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="UFCU" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  		
+  	</bean> 
+
+  	<!--     HealthCareSource Return Result Configuration   -->
+  	<bean id="hcsBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="HCS" />
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'P' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varHcsResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.HealthCareSrcHttpPostTransporter">
+  				<property name="config">
+  					<bean class="com.abc.webservices.backgroundreport.service.HttpPostConfig">
+  						<property name="endpoint" value="@ENDPOINT_HCS@" />
+  						<property name="basicAuthentication" value="false" />
+  						<property name="contentType" value="text/html; charset=utf-8" />
+  						<property name="sendAsQueryString" value="true" />
+  						<property name="staticHeaders">
+        					<map>
+        						<entry>
+        							<key><value>Cache-Control</value></key>
+        							<value>no-cache</value>
+        						</entry>
+        						<entry>
+        							<key><value>Pragma</value></key>
+        							<value>no-cache</value>
+        						</entry>
+        					</map>
+  						</property>
+  					</bean>
+  				</property>
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="hcs/hcs-result.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="CENTRA" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+  	
+  	
+  	  	
+  	<bean id="kenexaCSBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="KENEXA_CS" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and OO.ooSubCode = 'KENEXA-CS' and dbo.fn_isResultStatusChange(v.packageReqId) = 1" />
+  		<property name="baseLogFilePath" ref="varKenexaCSResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  				<property name="endpoint" value="@ENDPOINT_KENEXA_CS@" />
+  				<property name="basicAuthentication" value="false" />
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="kenexaCS/kenexaCS-hrxml25-result.xsl"/>
+        		<property name="responseXSLTFileName" value="kenexaCS/kenexaCS-hrxml25-result_ack.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="KENEX" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="HOSP" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="BLSH" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="TREM" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="ROSS" />
+<!--   					<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummaryAdjudicationDetail v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and OO.ooSubCode = 'KENEXA-CS' and dbo.fn_isResultStatusChange(v.packageReqId) = 1" /> -->
+  					<property name="loginRequired" value="false" />
+  				</bean>  				 
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="AMGR" />
+  					<property name="loginRequired" value="false" />
+  				</bean>  
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="MOLHE" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="ISYS" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+
+  	<!--****************************************-->
+  	<!-- Taleo I9 Results Configuration - BEGIN -->
+  	<!--****************************************-->
+	<bean id="wss4jSecurityInterceptor" class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+		<property name="securementActions" value="UsernameToken"/>
+		<property name="securementUsername" value="accurateonb" />
+		<property name="securementPassword" value="TBi50uoBXnBFvvY6dDFwasvwLUc=" />
+		<property name="securementPasswordType" value="PasswordDigest" />
+		<property name="securementUsernameTokenElements" value="Nonce Created" />
+	</bean>
+	
+	<!-- SOAP Message factory -->
+	<bean id="taleoI9MessageFactoryImpl" class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl" />
+
+	<bean id="taleoI9MessageFactory"  class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+  		<property name="messageFactory" ref="taleoI9MessageFactoryImpl" />
+	</bean>
+
+	<!-- Message Sender -->
+	<bean id="messageSender" class="org.springframework.ws.transport.http.CommonsHttpMessageSender" />
+
+	<bean id="commonsHttpMessageSender" class="org.springframework.ws.transport.http.CommonsHttpMessageSender"/>
+
+	<!-- Web Service Template is the main bean for handling SOAP calls -->
+	<bean id="webServiceTemplateI9" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <property name="defaultUri" value="https://cowm.taleo.net:7754/invoke/wm.tn/receive/"/>
+        <property name="messageFactory" ref="taleoI9MessageFactory"/>
+		<property name="checkConnectionForFault" value="true"/>
+		<property name="checkConnectionForError" value="true"/>
+		
+		<property name="interceptors">
+			<list>
+                <ref bean="wss4jSecurityInterceptor"/>
+			</list>
+		</property>
+
+		<property name="messageSender">
+			<ref bean="commonsHttpMessageSender" />
+		</property>
+    </bean>
+  	
+	<bean id="taleoI9SOAPActionCallback" class="org.springframework.ws.soap.client.core.SoapActionCallback">
+		<constructor-arg value="http://www.taleo.com/ws/passport/2008/04/PassportService#publishDocumentWithParameters"/>
+	</bean>	
+	
+  	<bean id="taleoI9ReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="TALEO_I9" />
+  		<property name="baseLogFilePath" ref="varTaleoI9ResultsLocation" />
+		<property name="sqlQuery" value="select * from fn_taleoI9PackageStatus(?)" />
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SOAPTransporter">
+  				<property name="endpoint" value="@ENDPOINT_TALEOI9@" />
+  				<property name="basicAuthentication" value="false" />
+  				<property name="webServiceTemplate" ref="webServiceTemplateI9" />
+				<property name="webServiceMessageCallback" ref="taleoI9SOAPActionCallback"/>
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="TaleoI9/Taleo-I9-result.xsl"/>
+        		<property name="responseXSLTFileName" value="TaleoI9/Taleo-I9-result_ack.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="@ZONE_DRPEI9@%" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="@ZONE_AMYI9@%" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="@ZONE_ARONI9@%" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+	
+	</bean>  	
+  	<!--**************************************-->
+  	<!-- Taleo I9 Results Configuration - END -->
+  	<!--**************************************-->
+  	
+  	
+	<!--*******************************************-->
+	<!-- TALEO_BE_I9 Results Configuration - START -->
+	<!--*******************************************-->
+  	<bean id="taleoBEI9ReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="TALEO_BE_I9" />
+  		<property name="baseLogFilePath" ref="varTaleoBEI9ResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  				<property name="fetchOrderAttributes" value="true" />
+  			</bean>
+  		</property>
+		<property name="sqlQuery" value="select * from fn_taleoI9PackageStatusTBE(?, ?)" />
+
+  		<!--Set a transformer at the partner level-->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="TaleoBEI9/TaleoBE-I9-result.xsl"/>
+        		<property name="responseXSLTFileName" value="TaleoBEI9/TaleoBE-I9-result_ack.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="AMYI9" />
+  					<property name="compSubCode" value="TALEO-BE" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="WISI9" />
+  					<property name="compSubCode" value="TALEO-BE" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>	
+	</bean>   
+	<!--*****************************************-->
+	<!-- TALEO_BE_I9 Results Configuration - END -->
+	<!--*****************************************-->
+  	
+  	
+  	
+  	<!--****************************************-->
+  	<!-- SendOuts Results Configuration - BEGIN -->
+  	<!--****************************************-->
+	<bean id="sendOutsMessageFactoryImpl" class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl" />
+
+	<bean id="sendOutsMessageFactory"  class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+  		<property name="messageFactory" ref="sendOutsMessageFactoryImpl" />
+	</bean>
+	
+	<bean id="sendOutsWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <property name="messageFactory" ref="sendOutsMessageFactory"/>
+    </bean>
+    
+  	<bean id="sendOutsBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="SENDOUTS" />
+  		<property name="baseLogFilePath" ref="varSendOutsResultsLocation" />
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId, v.clientRefNumber, v.refNumber2 from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SOAPTransporter">
+  				<property name="endpoint" value="@ENDPOINT_SENDOUTS@" />
+  				<property name="basicAuthentication" value="false" />
+  				<property name="webServiceMessageCallback" >
+					<bean class="org.springframework.ws.soap.client.core.SoapActionCallback">
+						<constructor-arg value="http://tempuri.org/BackgroundCheckComplete"/>
+					</bean>	
+  				</property>
+  				<property name="webServiceTemplate" ref="sendOutsWebServiceTemplate" />			
+  				<property name="username" value="accuratecheck" />
+  				<property name="password" value="jR3gxN8rRr" />	
+  			</bean>
+  		</property>
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="TYADT" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+  	<!--****************************************-->
+  	<!-- SendOuts Results Configuration - END -->
+  	<!--****************************************-->
+  	
+  	
+  	<!--****************************************-->
+  	<!-- MSP Results Configuration - BEGIN -->
+  	<!--****************************************-->
+  	<bean id="mspBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="MSP" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'P' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varMspResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.MspHttpPostTransporter">
+  				<property name="endpoint" value="@ENDPOINT_MSP@" />
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="msp/msp-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="VENFO" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="PCHC" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+  	<!--****************************************-->
+  	<!-- MSP Results Configuration - END -->
+  	<!--****************************************-->
+  	
+  	
+  	
+  	
+  	<!--****************************************-->
+  	<!-- KRONOS Results Configuration - BEGIN -->
+  	<!--****************************************-->
+	<!-- SOAP Message factory -->
+	<bean id="kronosMessageFactoryImpl" class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl" />
+
+	<bean id="kronosMessageFactory"  class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+  		<property name="messageFactory" ref="kronosMessageFactoryImpl" />
+	</bean>
+
+	<!-- Message Sender -->
+	<bean id="kronosMessageSender" class="org.springframework.ws.transport.http.CommonsHttpMessageSender" />
+
+	<bean id="kronosCommonsHttpMessageSender" class="org.springframework.ws.transport.http.CommonsHttpMessageSender"/>
+
+	<!-- Web Service Template is the main bean for handling SOAP calls -->
+	<bean id="kronosWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <property name="defaultUri" value="https://cowm.taleo.net:7754/invoke/wm.tn/receive/"/>
+        <property name="messageFactory" ref="kronosMessageFactory"/>
+		<property name="checkConnectionForFault" value="true"/>
+		<property name="checkConnectionForError" value="true"/>
+		<property name="messageSender">
+			<ref bean="kronosCommonsHttpMessageSender" />
+		</property>
+    </bean>
+	
+  	<bean id="kronosBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="KRONOS" />
+  		<property name="baseLogFilePath" ref="varKronosResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  				<property name="fetchOrderAttributes" value="true" />
+  			</bean>
+  		</property>
+  		<!-- PackageReqId SearchId ClientRefNumber RefNumber2 -->
+		<property name="sqlQuery" value="select v.packageReqId, v.searchId, v.clientRefNumber, v.refNumber2 from VResultSummary v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and OO.ooSubCode = 'KRONOS' and dbo.fn_isResultStatusChange(v.packageReqId) = 1" />
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SOAPTransporter">
+  				<property name="basicAuthentication" value="false" />
+  				<property name="webServiceTemplate" ref="kronosWebServiceTemplate" />
+				<property name="webServiceMessageCallback" >
+					<bean class="org.springframework.ws.soap.client.core.SoapActionCallback">
+						<constructor-arg value="http://unicru.com/TransferData"/>
+					</bean>	
+				</property>
+  			</bean>
+  		</property>
+  		
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="kronos/kronos-hrxml25-result.xsl"/>
+        		<property name="responseXSLTFileName" value="kronos/kronos-hrxml25-result-ack.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="STARB" />
+  					<property name="loginRequired" value="true" />
+  				</bean>
+  			</set>
+  		</property>
+	
+	</bean> 
+
+  	<!--****************************************-->
+  	<!-- KRONOS Results Configuration - END -->
+  	<!--****************************************-->
+  	
+  	
+  	<!--****************************************-->
+  	<!-- TALEO_EE Results Configuration - BEGIN -->
+  	<!--****************************************-->
+  	<bean id="taleoEEBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="TALEO75" />
+  		<property name="baseLogFilePath" ref="varTaleo75ResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  				<property name="fetchOrderAttributes" value="true" />
+  			</bean>
+  		</property>
+  		<!-- PackageReqId SearchId ClientRefNumber RefNumber2 -->
+   		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummaryTaleo v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'P4' or v.searchStatus = 'P5' or v.searchStatus = 'P8' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and (OO.ooSubCode = 'TALEO-EE' or OO.ooSubCode = 'TALEO-EE-OLD') and dbo.fn_isResultStatusChangeTaleo(v.packageReqId) = 1" />
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  				<!-- <property name="endpoint" value="@ENDPOINT_TEE@" /> -->
+  				<property name="basicAuthentication" value="true" />
+				<property name="username" value="@TEE_USERID@" />
+				<property name="password" value="@TEE_PASSWORD@" />
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="taleo75-hrxml25-result.xsl"/>
+        		<property name="responseXSLTFileName" value="taleo75-hrxml25-result-ack.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<!-- TODO: Start migrating with 3 companies (DRPEP, TYCO, AMZTA) later on add the rest... -->
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="DRPEP" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_TEE_DRPEP@" />
+  							<property name="basicAuthentication" value="true" />
+  							<property name="username" value="@TEE_USERID@" />
+  							<property name="password" value="@TEE_PASSWORD@" />
+  						</bean>
+  					</property>
+  				</bean>   						 
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="PDEV3" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_TEE_PDEV3@" />
+  							<property name="basicAuthentication" value="true" />
+  							<property name="username" value="@TEE_USERID@" />
+  							<property name="password" value="@TEE_PASSWORD@" />
+  						</bean>
+  					</property>
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="STARE" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_TEE_STARE@" />
+  							<property name="basicAuthentication" value="true" />
+  							<property name="username" value="@TEE_USERID@" />
+  							<property name="password" value="@TEE_PASSWORD@" />
+  						</bean>
+  					</property>
+  				</bean>		 
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="STARC" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_TEE_STARC@" />
+  							<property name="basicAuthentication" value="true" />
+  							<property name="username" value="@TEE_USERID@" />
+  							<property name="password" value="@TEE_PASSWORD@" />
+  						</bean>
+  					</property>
+  				</bean> 
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="STARNR" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_TEE_STARNR@" />
+  							<property name="basicAuthentication" value="true" />
+  							<property name="username" value="@TEE_USERID@" />
+  							<property name="password" value="@TEE_PASSWORD@" />
+  						</bean>
+  					</property>
+  				</bean>	
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="EVOFR" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_TEE_EVOFR@" />
+  							<property name="basicAuthentication" value="true" />
+  							<property name="username" value="@TEE_USERID@" />
+  							<property name="password" value="@TEE_PASSWORD@" />
+  						</bean>
+  					</property>
+  				</bean>
+  				
+			<!--
+   				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="TYCO" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_TALEO_EE_TYCO@" />
+  							<property name="basicAuthentication" value="false" />
+  						</bean>
+  					</property>
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="AMZTA" />
+  					<property name="loginRequired" value="true" />
+			  		<property name="transporter" >
+			  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  							<property name="endpoint" value="@ENDPOINT_TALEO_EE_AMZTA@" />
+  							<property name="basicAuthentication" value="false" />
+  						</bean>
+  					</property>
+  				</bean>
+ 		-->
+  			</set>
+  		</property>
+	
+	</bean> 
+  	<!--****************************************-->
+  	<!-- TALEO_EE Results Configuration - END -->
+  	<!--****************************************-->
+  	
+  	
+  	<bean id="clickandHireBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="CLICKANDHIRE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and OO.ooSubCode = 'CLICKANDHIRE' and dbo.fn_isResultStatusChange(v.packageReqId) = 1" />
+  		<property name="baseLogFilePath" ref="varClickandHireResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  				<property name="fetchOrderAttributes" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.POXTransporter">
+  				<property name="endpoint" value="@ENDPOINT_KENEXA_CS@" />
+  				<property name="basicAuthentication" value="false" />
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="clickandHire/clickandHire-hrxml25-result.xsl"/>
+        		<property name="responseXSLTFileName" value="clickandHire/clickandHire-hrxml25-result_ack.xsl"/>
+    		</bean>
+  		</property>	
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="SMC" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>
+  	</bean>
+  	
+
+  	<!--****************************************-->
+  	<!-- ActiveMQ Configuration - END           -->
+  	<!--****************************************-->  	
+
+  	<!--****************************************-->
+  	<!-- VAS Results Configuration - BEGIN      -->
+  	<!--****************************************-->
+	<!-- SOAP Message factory -->
+	<bean id="vasMessageFactoryImpl" class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl" />
+
+	<bean id="vasMessageFactory"  class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+  		<property name="messageFactory" ref="vasMessageFactoryImpl" />
+	</bean>
+
+	<!-- Message Sender -->
+	<bean id="vasMessageSender" class="org.springframework.ws.transport.http.CommonsHttpMessageSender" />
+
+	<bean id="vasCommonsHttpMessageSender" class="org.springframework.ws.transport.http.CommonsHttpMessageSender"/>
+
+	<!-- Web Service Template is the main bean for handling SOAP calls -->
+	<bean id="vasWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <property name="defaultUri" value="https://cowm.taleo.net:7754/invoke/wm.tn/receive/"/>
+        <property name="messageFactory" ref="vasMessageFactory"/>
+		<property name="checkConnectionForFault" value="true"/>
+		<property name="checkConnectionForError" value="true"/>
+		<property name="messageSender">
+			<ref bean="vasCommonsHttpMessageSender" />
+		</property>
+    </bean>
+	
+  	<bean id="vasBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="VAS" />
+  		<property name="baseLogFilePath" ref="varKronosResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  				<property name="fetchOrderAttributes" value="true" />
+  			</bean>
+  		</property>
+  		<!-- PackageReqId SearchId ClientRefNumber RefNumber2 -->
+		<property name="sqlQuery" value="select v.packageReqId, v.searchId, v.clientRefNumber, v.refNumber2 from VResultSummary v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and OO.ooSubCode = 'AMAZON-VAS' and dbo.fn_isResultStatusChange(v.packageReqId) = 1" />
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.ActiveMQTransporter">
+  				<property name="queueName" value="AmazonV" />
+<!--
+  				<property name="basicAuthentication" value="false" />
+  				<property name="webServiceTemplate" ref="vasWebServiceTemplate" />
+				<property name="webServiceMessageCallback" >
+					<bean class="org.springframework.ws.soap.client.core.SoapActionCallback">
+						<constructor-arg value="http://unicru.com/TransferData"/>
+					</bean>	
+				</property>
+-->
+  			</bean>
+  		</property>
+  		
+  		<!-- Set a transformer at the partner level 
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="kronos/kronos-hrxml25-result.xsl"/>
+        		<property name="responseXSLTFileName" value="kronos/kronos-hrxml25-result-ack.xsl"/>
+    		</bean>
+  		</property>	
+  		-->
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="VASBC" />
+  					<property name="loginRequired" value="true" />
+  				</bean>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="SVPP" />
+  					<property name="loginRequired" value="true" />
+  				</bean>
+  			</set>
+  		</property>
+	
+	</bean> 
+
+  	<!--****************************************-->
+  	<!-- VAS Results Configuration - END        -->
+  	<!--****************************************-->
+  	
+  	
+  	<bean id="backgroundReportServiceServlet" class="com.abc.webservices.backgroundreport.service.BackgroundReportServiceServlet">
+        <property name="services">
+        	<map>
+        		<entry>
+        			<key><value>KENEXA_REC</value></key>
+        			<ref bean="kenexaRecBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>KBR</value></key>
+        			<ref bean="kbrBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>VIRTUAL_EDGE</value></key>
+        			<ref bean="virtualEdgeBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>AVATURE</value></key>
+        			<ref bean="avatureBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>SOFTSCAPE</value></key>
+        			<ref bean="softscapeBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>HCS</value></key>
+        			<ref bean="hcsBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>KENEXA_CS</value></key>
+        			<ref bean="kenexaCSBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>CLICKANDHIRE</value></key>
+        			<ref bean="clickandHireBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>TALEO_I9</value></key>
+        			<ref bean="taleoI9ReportService"/> 
+        		</entry>        		
+        		<entry>
+        			<key><value>TALEO_BE_I9</value></key>
+        			<ref bean="taleoBEI9ReportService"/> 
+        		</entry>        		
+        		<entry>
+        			<key><value>SENDOUTS</value></key>
+        			<ref bean="sendOutsBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>MSP</value></key>
+        			<ref bean="mspBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>KRONOS</value></key>
+        			<ref bean="kronosBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>TALEO75</value></key>
+        			<ref bean="taleoEEBackgroundReportService"/> 
+        		</entry>
+        		<entry>
+        			<key><value>VAS</value></key>
+        			<ref bean="vasBackgroundReportService"/> 
+        		</entry>
+        	</map>
+        </property>
+    </bean>
+</beans>

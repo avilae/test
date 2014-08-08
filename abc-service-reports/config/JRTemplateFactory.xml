@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="jrTemplateFactory" class="com.abc.service.reports.util.JRTemplateFactory">
+		<property name="templates" >
+			<map>
+				<entry>
+					<key><value>ELEC_INVOICE</value></key>
+					<value>ElecInvoice.jrxml</value>
+                </entry>
+				<entry>
+					<key><value>ALLVENDORS_PASTDUE</value></key>
+					<value>AllVendorsPastDueFax.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>ALLVENDORS_PENDING</value></key>
+					<value>AllVendorsPendingFax.jrxml</value>
+                </entry>
+				<entry>
+					<key><value>VENDOR_PENDING</value></key>
+					<value>VendorPendingFax.jrxml</value>
+                </entry>
+				<entry>
+					<key><value>BATCHRESPONSE_AMAZON</value></key>
+					<value>jrxml/BatchResultReportAmazon.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_DEPUB</value></key>
+					<value>jrxml/BatchResultReportDEPUB.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_GENERIC</value></key>
+					<value>jrxml/BatchResultReportGeneric.jrxml</value>
+				</entry>	
+				<entry>
+					<key><value>BATCHRESPONSE_LCRA</value></key>
+					<value>jrxml/BatchResultReportLCRA.jrxml</value>
+				</entry>			
+				<entry>
+					<key><value>BATCHRESPONSE_UNION</value></key>
+					<value>jrxml/BatchResultReportUNION.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_DKNY</value></key>
+					<value>jrxml/BatchResultReportDKNY.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_USAA</value></key>
+					<value>jrxml/BatchResultReportUSAA.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_BRIDGESTONE</value></key>
+					<value>jrxml/BatchResultReportBridgestone.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_SXMR</value></key>
+					<value>jrxml/BatchResultReportSxmr.jrxml</value>
+				</entry>			
+				<entry>
+					<key><value>BATCHRESPONSE_MOBILE</value></key>
+					<value>jrxml/BatchResultReportMOBILE.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_AmazonUK</value></key>
+					<value>jrxml/BatchResultReportAmazonUK.jrxml</value>
+				</entry>	
+				<entry>
+					<key><value>BATCHRESPONSE_NRPC</value></key>
+					<value>jrxml/BatchResultReportNRPCACK.jrxml</value>
+				</entry>	
+				<entry>
+					<key><value>BATCHRESPONSE_NRPCACK</value></key>
+					<value>jrxml/BatchResultReportNRPCACK.jrxml</value>
+				</entry>		
+				<entry>
+					<key><value>BATCHRESPONSE_TREM</value></key>
+					<value>jrxml/BatchResultReportTREM.jrxml</value>	
+				</entry>				
+				<entry>
+					<key><value>BATCHRESPONSE_UFCU</value></key>
+					<value>jrxml/BatchResultReportAmazonUK.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_Lifetouch</value></key>
+					<value>jrxml/BatchResultReportLifetouch.jrxml</value>
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_TECON</value></key>
+					<value>jrxml/BatchResultReportTECON.jrxml</value>					
+				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_UUHHR</value></key>
+					<value>jrxml/BatchResultReportUUHHR.jrxml</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
+
+		

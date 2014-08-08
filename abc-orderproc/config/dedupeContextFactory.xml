@@ -1,0 +1,1490 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+			
+<beans>
+	
+	<bean id="std_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjLastName"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjLastName"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjSSN"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjSsn"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	
+	<bean id="stdSA_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjLastName"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjLastName"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjSSN"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjSsn"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="beanValue" value="searchPackage.searchGroups[].searchComponent.searchTypeCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	
+	<bean id="BLOO_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjSSN"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjSsn"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	
+	<bean id="AMAZT_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="clientRefNumber"/>
+                    <property name="beanValue" value="clientRefNumber"/>
+                </bean>                
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+        <property name="adjDescProperty" value="adjDesc"/>
+	</bean>
+	
+    
+	<bean id="DESHW_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+		<property name="overrideDuplicateSearchDefinition" value="DEFAULT" />
+	</bean>
+    
+	<bean id="TABE_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+		<property name="overrideDuplicateSearchDefinition" value="DEFAULT" />
+	</bean>
+	
+	<bean id="GUARB_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjSSN"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjSsn"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+    
+	<bean id="KBR_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjFirstName"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjFirstName"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjLastName"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjLastName"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="clientRefNumber"/>
+                    <property name="beanValue" value="clientRefNumber"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="WOLT_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="clientRefNumber"/>
+                    <property name="beanValue" value="clientRefNumber"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="LCRA_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjSSN"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjSsn"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+        <property name="adjDescProperty" value="adjDesc"/>
+	</bean>
+	
+	<bean id="UNION_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjSSN"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjSsn"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="BROHE_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="sbjSSN"/>
+                    <property name="beanValue" value="searchPackage.subject.sbjSsn"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyId"/>
+                    <property name="beanValue" value="searchPackage.company.companyId"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="pkgCode"/>
+                    <property name="beanValue" value="packageCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchStatus"/>
+                    <property name="constantValue" value="C"/>
+                    <property name="method" value="ne"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<!-- ///////////////////////////////////////////////////////////// -->
+	
+	<bean id="c_ssn" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="sbjSSN"/>
+		<property name="beanValue" value="searchPackage.subject.sbjSsn"/>
+	</bean>
+	<bean id="c_email" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="sbjEmail"/>
+		<property name="beanValue" value="searchPackage.subject.sbjEmail"/>
+	</bean>
+	<bean id="c_company" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="companyId"/>
+		<property name="beanValue" value="searchPackage.company.companyId"/>
+	</bean>
+	<bean id="c_package" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="pkgCode"/>
+		<property name="beanValue" value="packageCode"/>
+	</bean>
+	<bean id="c_header" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="searchTypeCode"/>
+		<property name="constantValue" value="9PK"/>
+	</bean>
+	<bean id="c_cancel_status" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="searchStatus"/>
+		<property name="constantValue" value="C"/>
+		<property name="method" value="ne"/>
+	</bean>
+	<bean id="c_order_date" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="orderDatetime"/>
+		<property name="beanValue" value="duplicateIfAfterDate"/>
+		<property name="method" value="ge"/>
+		<property name="orIsNull" value="true"/>
+	</bean>
+	<!-- INT-118, by zshao -->
+	<!-- <property name="constantValue" value="2009-02-10"/> -->  
+	<!-- Starting point of de-duping range (go live date) -->
+	<bean id="c_headers" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="searchTypeCode"/>
+		<property name="constantValue" value="%PK"/>
+		<property name="method" value="like"/>
+	</bean>	
+	<bean id="c_return_date" class="com.abc.service.CriteriaDefinition">
+		<property name="propName" value="returnDatetime"/>
+		<property name="beanValue" value="duplicateIfAfterDate"/>
+		<property name="method" value="ge"/>
+		<property name="orIsNull" value="true"/>
+	</bean>
+	<bean id="c_client_ref" class="com.abc.service.CriteriaDefinition">
+        <property name="propName" value="clientRefNumber"/>
+        <property name="beanValue" value="clientRefNumber"/>
+    </bean>
+	<bean id="c_refNumber5" class="com.abc.service.CriteriaDefinition">
+        <property name="propName" value="refNumber5"/>
+        <property name="beanValue" value="refNumber5"/>
+    </bean>
+                
+	<bean id="SSN_COMP_PKG_60_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="60"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+                
+	<bean id="SSN_COMP_30_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_company" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+                
+	<bean id="SSN_COMP_PKG_30_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>        
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+        <property name="adjDescProperty" value="adjDesc"/>
+	</bean>
+	
+	<bean id="TAKE_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_client_ref" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="BLOCK_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="name" value="Blockbuster Custom De-Dup"/>
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="returnDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="maxResults" value="1"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_client_ref" />            	
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_headers" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_return_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+    </bean>
+     
+    <bean id="STARBUCK_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>       
+            	<ref bean="c_email"/>     	
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	 
+	<bean id="CHESE_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="name" value="Cheesecake Custom De-Dup"/>
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="returnDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="maxResults" value="1"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_headers" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_return_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+    </bean>
+    
+    <bean id="TALEO_I9_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="60"/>
+        <property name="maxResults" value="1"/>
+        <property name="fieldName">
+            <list>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="companyCode"/>
+                    <property name="beanValue" value="companyCode"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="searchTypeCode"/>
+                    <property name="constantValue" value="9PK"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="refNumber4"/>
+                    <property name="beanValue" value="refNumber4"/>
+                </bean>
+                <bean class="com.abc.service.CriteriaDefinition">
+                    <property name="propName" value="orderDatetime"/>
+                    <property name="beanValue" value="duplicateIfAfterDate"/>
+                    <property name="method" value="ge"/>
+                    <property name="orIsNull" value="true"/>
+                </bean>
+				<bean class="com.abc.service.CriteriaDefinition">
+					<property name="propName" value="searchStatus"/>
+					<property name="constantValue" value="C"/>
+					<property name="method" value="ne"/>
+				</bean>
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber5"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+    
+    <bean id="KWIK_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="7"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+    
+    <bean id="TREM_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="90"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="COBA_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_client_ref" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="ROSS_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<bean id="c_ref_number2" class="com.abc.service.CriteriaDefinition">
+			        <property name="propName" value="refNumber2"/>
+			        <property name="beanValue" value="refNumber2"/>
+			    </bean>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="BLSH_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_client_ref" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="NEST_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_client_ref" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="URI_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	<bean id="WISI_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_client_ref" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="HYBRID_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_client_ref" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="HYBRID_Ref5_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_refNumber5" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber5"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<bean id="VALI_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_client_ref" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
+	<!--       FACTORY           -->
+	<bean id="dedupeContextFactory" class="com.abc.service.odrproc.validation.DedupeContextFactory">
+		<property name="contextMap" >
+		<map>
+			<entry>
+				<key><value>DEFAULT</value></key>
+				<ref bean="std_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>DEFAULT_SA</value></key>
+				<ref bean="stdSA_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>BLOO</value></key>
+				<ref bean="BLOO_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>AMAZT</value></key>
+				<ref bean="AMAZT_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>DESHW</value></key>
+				<ref bean="DESHW_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>TABE</value></key>
+				<ref bean="TABE_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>GUARB</value></key>
+				<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>KBR</value></key>
+				<ref bean="KBR_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>WOLT</value></key>
+				<ref bean="WOLT_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>DEPUB</value></key>
+				<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>CENTRA</value></key>
+				<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>LCRA</value></key>
+				<ref bean="LCRA_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>INFOP</value></key>
+				<ref bean="SSN_COMP_PKG_60_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>CCSD</value></key>
+				<ref bean="SSN_COMP_30_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>JDL</value></key>
+				<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>JDS</value></key>
+				<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>NEWEL</value></key>
+				<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>INFOS</value></key>
+				<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+        		<key><value>ABC</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>REST</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<!-- 
+      		<entry>
+        		<key><value>MFH</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		 -->
+			<entry>
+				<key><value>UNION</value></key>
+				<ref bean="UNION_DuplicateSearchDefinition" />
+			</entry>
+			<entry>
+				<key><value>BROHE</value></key>
+				<ref bean="BROHE_DuplicateSearchDefinition" />
+			</entry>
+      		<entry>
+        		<key><value>AHS</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>DRPEP</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>BRINK</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>KBRGBL</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>PKG_SSN_30</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>TAKE</value></key>
+        		<ref bean="TAKE_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>TYCO</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>MEDCO</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<!--  
+      		<entry>
+        		<key><value>RIOT</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		-->
+      		<entry>
+        		<key><value>AMZTA</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>   
+      		<entry>
+        		<key><value>ACTI</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>   
+      		
+      		<!-- INT-118, by zshao -->
+      		<entry>
+        		<key><value>BLOCK</value></key>
+        		<ref bean="BLOCK_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>ANDER</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>MEHC</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>FROST</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>GUARB</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>HNC</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>VERME</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>CHESE</value></key>
+        		<ref bean="CHESE_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>TALEO_I9</value></key>
+        		<ref bean="TALEO_I9_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>BLSH</value></key>
+        		<ref bean="BLSH_DuplicateSearchDefinition" />
+      		</entry>  		
+      		<entry>
+        		<key><value>HOSP</value></key>
+        		<ref bean="SSN_COMP_PKG_60_DuplicateSearchDefinition" />
+      		</entry>   
+      		<entry>
+        		<key><value>TYADT</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>   
+      		<entry>
+        		<key><value>KWIK</value></key>
+        		<ref bean="KWIK_DuplicateSearchDefinition" />
+      		</entry>  
+      		<entry>
+        		<key><value>VENFO</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>STARB</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry> 
+      		<entry>
+        		<key><value>STARC</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>STARE</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>STARNR</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>STARP</value></key>
+        		<ref bean="STARBUCK_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>EVOFR</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>SEABE</value></key>
+        		<ref bean="STARBUCK_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>TREM</value></key>
+        		<ref bean="TREM_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>COBA</value></key>
+        		<ref bean="COBA_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>ROSS</value></key>
+        		<ref bean="ROSS_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>ADT</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>TFS</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>PENTA</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>AMGR</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>NEST</value></key>
+        		<ref bean="NEST_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>URI</value></key>
+        		<ref bean="URI_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>WISI</value></key>
+        		<ref bean="WISI_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>MOLHE</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>USAA</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>      		 
+      		 <entry>
+        		<key><value>ANSYS</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>CACO</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>BRIDG</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>SMC</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>UNMT</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+     		</entry>
+     		<entry>
+        		<key><value>SMCC</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>ARONS</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>PSTOR</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>VHA</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      	    <entry>
+        		<key><value>COLL</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>ULSE</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>      		
+      		<entry>
+        		<key><value>HALEY</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>      		
+      		<entry>
+        		<key><value>PCHC</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>      		
+      		<entry>
+        		<key><value>SXMR</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>      		 
+      		<entry>
+        		<key><value>CPE</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>      		
+      		<entry>
+        		<key><value>NGRID</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>MAEE</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>INVE</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>	
+      		<entry>
+        		<key><value>CAIN</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>VASBC</value></key>
+        		<ref bean="HYBRID_Ref5_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>SVPP</value></key>
+        		<ref bean="HYBRID_Ref5_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>AMZUK</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>AMZROI</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>AMZLMA</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>AMZUKC</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>SPHE</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>TREM</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>NRPC</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>CAIN</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>      		
+      		<entry>
+        		<key><value>EXPG</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>MOBILE</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>BCBSMI</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>ISYS</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>TWTEL</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>      		
+        	<entry>
+        		<key><value>UFCU</value></key>
+        		<ref bean="SSN_COMP_PKG_30_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>LIFCD</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>LIFPT</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>LIFNT</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>LIFSE</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>LIFIN</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+        	</entry>
+        	<entry>
+        		<key><value>ATSE</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>TECON</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+			<entry>
+        		<key><value>SBARO</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+			<entry>
+        		<key><value>USANA</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+			<entry>
+        		<key><value>SNS</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+			<entry>
+        		<key><value>ECOP2</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+			<entry>
+        		<key><value>VALI</value></key>
+        		<ref bean="VALI_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+				<key><value>UUHHR</value></key>
+				<ref bean="HYBRID_DuplicateSearchDefinition" />
+			</entry>
+		</map>
+		</property>
+	</bean>
+</beans>

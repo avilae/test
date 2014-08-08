@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+			
+<beans>
+
+	<!--            Set Session Factory                          -->
+  	<bean id="hibernateSessionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:/ABCIntHibernateSessionFactory"/>
+  	</bean>
+  	
+  	<bean id="reportsSessionFactory" class="com.abc.service.ReportsSessionFactory">
+    	<property name="defaultSessionFactory" ref="hibernateSessionFactory"/>
+  	</bean>
+
+	<!--            Set Default Recipient Email address                          -->
+	<bean class="com.abc.service.batchresult.BatchResultEmailProcessor">
+		<property name="recipientEmailAddress" value="requests@accuratebackground.com" />
+	</bean>
+	
+	<!--            Set Default Database Update Action                           -->
+	<bean class="com.abc.service.StampResultsSent">
+		<property name="doUpdate" value="true" />
+	</bean>
+			
+	<!--            Amazon Configuration                                         -->
+	<bean id="brc_AMAZT" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="Amazon" />
+		<property name="companyCode" value="AMAZT" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_AMAZON" />
+		<property name="docType" value="CSV" />
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)+' '+convert(varchar, s.order_datetime, 108) as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101)+' '+convert(varchar, getDate(), 108) ELSE convert(varchar, s.return_datetime, 101)+' '+convert(varchar, s.return_datetime, 108) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code = '9PK' and c.comp_code='AMAZT' and s.result_print_datetime is null" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
+	<!--            DEPUB Configuration                                         -->
+		<bean  id="brc_DEPUB" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="DEPUB" />
+		<property name="companyCode" value="DEPUB" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_DEPUB" />
+		<property name="docType" value="CSV" />
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101) as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program, '' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='DEPUB' and s.result_print_datetime is null" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
+		<!--            LCRA Configuration                                         -->
+	<bean id="brc_LCRA" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="LCRA" />
+		<property name="companyCode" value="LCRA" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_LCRA" />
+		<property name="docType" value="CSV" />
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='LCRA' and s.result_print_datetime is null" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
+	<!--            UNION Configuration                                         -->
+	<bean id="brc_UNION" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="UNION" />
+		<property name="companyCode" value="UNION" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_UNION" />
+		<property name="docType" value="CSV" /> 
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar(10), s.order_datetime, 120)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar(10), getDate(), 120) ELSE convert(varchar(10), s.return_datetime, 120) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request O on O.OR_HeaderSearchId = s.search_id inner join order_origin OO on OO.OO_Id = O.OR_OO_ID  left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='UNION' and s.result_print_datetime is null and OO.OO_Code='BATCH'" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
+	<bean id="brc_DKNY" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="DKNY" />
+		<property name="companyCode" value="DKC" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_DKNY" />
+		<property name="docType" value="CSV" /> 
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='DKC' and s.result_print_datetime is null and oo.oo_code='BATCH'" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
+	<bean id="brc_USAA" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="USAA" />
+		<property name="companyCode" value="USAA" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_USAA" />
+		<property name="docType" value="CSV" /> 
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='USAA' and s.result_print_datetime is null and oo.oo_code='BATCH'" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
+	<bean id="brc_BRIDGESTONE" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="BRIDG" />
+		<property name="companyCode" value="BRIDG" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_BRIDGESTONE" />
+		<property name="docType" value="CSV" /> 
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program,'' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='BRIDG' and s.result_print_datetime is null and oo.oo_code='BATCH'" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
+	<bean id="brc_SXMR" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="SXMR" />
+		<property name="companyCode" value="SXMR" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_SXMR" />
+		<property name="docType" value="CSV" /> 
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program,'' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='SXMR' and s.result_print_datetime is null and oo.oo_code='BATCH'" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmssSS" />
+	</bean>
+		
+	<!--            AmazonUK Configuration                                         -->
+		<bean  id="brc_AmazonUK" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="AmazonUK" />		
+		<property name="companyCode" value="AMZAUK" />
+		<property name="filename" value="Response_AmazonUK_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_AmazonUK" />
+		<property name="docType" value="CSV" />		
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program ,'' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code in ('AMZUK','AMZROI','AMZLMA','AMZUKC') and s.result_print_datetime is null ORDER BY comp_code ASC" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	<!--            NRPC Configuration                                         -->
+		<bean  id="brc_NRPCACK" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="NRPCACK" />		
+		<property name="companyCode" value="NRPC" />
+		<property name="filename" value="SentResp_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_NRPCACK" />
+		<property name="docType" value="CSV" />		
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101) as ack_date, '' as ack_status, '' as err_msg, s.search_status,  CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc,  CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101)  ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program, '' as report_url,  sub.sbj_ssn as ab_ssn, convert(varchar(10),sub.sbj_dob,101) as ab_dob  from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id inner join subject sub on s.subject_id=sub.subject_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='NRPC' and s.result_print_datetime is null ORDER BY comp_code ASC" />
+		<property name="filenameDateFormat" value="MMddyy" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	<!--            NRPC Configuration                                         -->
+		<bean  id="brc_NRPC" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="NRPC" />		
+		<property name="companyCode" value="NRPC" />
+		<property name="filename" value="SentAck_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_NRPC" />
+		<property name="docType" value="CSV" />		
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101) as ack_date, '' as ack_status, '' as err_msg, s.search_status,  CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc,  CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101)  ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program, '' as report_url, sub.sbj_ssn as ab_ssn, convert(varchar(10),sub.sbj_dob,101) as ab_dob  from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id inner join subject sub on s.subject_id=sub.subject_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='NRPC' and s.result_print_datetime is null ORDER BY comp_code ASC" />
+		<property name="filenameDateFormat" value="MMddyy" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+
+	<!--            TREM Configuration                                         -->
+		<bean  id="brc_TREM" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="TREM" />		
+		<property name="companyCode" value="TREM" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_TREM" />
+		<property name="docType" value="CSV" />		
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program,'' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code ='TREM' and s.result_print_datetime is null ORDER BY comp_code ASC" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+
+	<!--            MOBILE IRON Configuration                                         -->
+		<bean  id="brc_MOBILE" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="MOBILE" />
+		<property name="companyCode" value="MOBILE" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_MOBILE" />
+		<property name="docType" value="CSV" />
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program,'' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='MOBILE' and s.result_print_datetime is null ORDER BY comp_code ASC" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+
+	<!--            UFCU Configuration                                         -->
+		<bean  id="brc_UFCU" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="UFCU" />		
+		<property name="companyCode" value="UFCU" />
+		<property name="filename" value="Response_UFCU_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_UFCU" />
+		<property name="docType" value="CSV" />		
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program,'' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id  left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code ='UFCU' and s.result_print_datetime is null ORDER BY comp_code ASC" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+
+	<!--            LifeTech Configuration                                         -->
+	<bean  id="brc_Lifetouch" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="Lifetouch" />		
+		<property name="companyCode" value="Lifetouch" />
+		<property name="filename" value="Response_Lifetouch_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_Lifetouch" />
+		<property name="docType" value="CSV" />		
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program,'' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code in ('LIFCD', 'LIFPT', 'LIFNT', 'LIFSE', 'LIFIN') and s.result_print_datetime is null ORDER BY comp_code ASC" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+
+	<!--            TECON Configuration                                         -->
+		<bean  id="brc_TECON" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="TECON" />
+		<property name="companyCode" value="TECON" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_TECON" />
+		<property name="docType" value="CSV" />
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101)as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program,'' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='TECON' and s.result_print_datetime is null ORDER BY comp_code ASC" />
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>	
+	
+	<!--            UUHHR Configuration                                         -->
+	<bean  id="brc_UUHHR" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="UUHHR" />
+		<property name="companyCode" value="UUHHR" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_UUHHR" />
+		<property name="docType" value="CSV" />		
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101) as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program, '' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='UUHHR' and s.result_print_datetime is null" />		
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
+	<!--            Generic Configuration                                    -->
+	<bean id="genSQL" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="select * from v_GenericBatchResults where comp_code = ?"/>
+	</bean>
+	<bean id="genFILENAME" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="ResponseG_::COMPCODE::_::DATE::_::TIME::"/>
+		<!--constructor-arg type="java.lang.String" value="ResponseG_::COMPCODE::_::DATE::_::TIME::"/-->
+	</bean>
+	<bean id="genTEMPLATE" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="BATCHRESPONSE_GENERIC"/>
+	</bean>
+	<bean id="genItemNames" class="java.util.ArrayList">
+		<constructor-arg>
+		<list>
+			<value>ClientReferenceNumber</value>
+			<value>FirstName</value>
+			<value>LastName</value>
+			<value>PackageReqId</value>
+			<value>SearchId</value>
+		</list>
+		</constructor-arg>
+	</bean>
+	<bean id="genGenericCompCodeList" class="java.util.ArrayList">
+		<constructor-arg>
+		<list>
+		</list>
+		</constructor-arg>
+	</bean>
+
+	<!--            Generic CSV Configuration                                    -->
+	<bean singleton="false" id="brc_GENERIC_CSV" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="Generic Batch - CSV" />
+		<property name="filename" ref="genFILENAME" />
+		<property name="template" ref="genTEMPLATE" />
+		<property name="docType" value="CSV" />
+		<property name="sqlQuery" ref="genSQL" />
+		<property name="sendEmailReceipt" value="true" />
+		<property name="itemNames" ref="genItemNames"/>
+		<property name="genericContext" value="true" />
+	</bean>
+	
+	<!--            Generic XLS Configuration                                    -->
+	<bean singleton="false" id="brc_GENERIC_XLS" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="Generic Batch - Excel" />
+		<property name="filename" ref="genFILENAME" />
+		<property name="template" ref="genTEMPLATE" />
+		<property name="docType" value="XLS" />
+		<property name="sqlQuery" ref="genSQL" />
+		<property name="sendEmailReceipt" value="true" />
+		<property name="itemNames" ref="genItemNames"/>
+		<property name="genericContext" value="true" />
+	</bean>
+	
+	<!--            Generic TAB Configuration                                    -->
+	<bean singleton="false" id="brc_GENERIC_TAB" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="Generic Batch - TAB" />
+		<property name="filename" ref="genFILENAME" />
+		<property name="template" ref="genTEMPLATE" />
+		<property name="docType" value="TAB" />
+		<property name="sqlQuery" ref="genSQL" />
+		<property name="sendEmailReceipt" value="true" />
+		<property name="itemNames" ref="genItemNames"/>
+		<property name="genericContext" value="true" />
+	</bean>
+	
+	
+	<!--            Context Factory                                              -->
+	<bean id="batchResultContextFactory" class="com.abc.service.batchresult.BatchResultContextFactory">
+		<property name="drive" value="@BATCHRESULT_DRIVE@" /> 
+		<property name="live" value="@BATCHRESULT_LIVE@" /> 
+		<property name="genericCompCodeList" ref="genGenericCompCodeList" />
+		<property name="contextMap" >
+			<map>
+				<entry>
+					<key><value>Amazon</value></key>
+					<ref bean="brc_AMAZT"/> 
+                </entry>
+				<entry>
+					<key><value>Generic Batch - CSV</value></key>
+					<ref bean="brc_GENERIC_CSV"/> 
+                </entry>
+				<entry>
+					<key><value>Generic Batch - Excel</value></key>
+					<ref bean="brc_GENERIC_XLS"/> 
+                </entry>
+				<entry>
+					<key><value>Generic Batch - TAB</value></key>
+					<ref bean="brc_GENERIC_TAB"/> 
+                </entry>
+                <entry>
+					<key><value>LCRA</value></key>
+					<ref bean="brc_LCRA"/> 
+                </entry>                
+                <entry>
+					<key><value>UNION</value></key>
+					<ref bean="brc_UNION"/> 
+                </entry> 
+                <entry>
+					<key><value>DKNY</value></key>
+					<ref bean="brc_DKNY"/> 
+                </entry>  
+                <entry>
+					<key><value>USAA</value></key>
+					<ref bean="brc_USAA"/> 
+                </entry>  
+                <entry>
+					<key><value>BRIDG</value></key>
+					<ref bean="brc_BRIDGESTONE"/> 
+                </entry>  
+                <entry>
+					<key><value>SXMR</value></key>
+					<ref bean="brc_SXMR"/> 
+                </entry>    
+                <entry>
+					<key><value>DEPUB</value></key>
+					<ref bean="brc_DEPUB"/>
+                </entry>     
+                <entry>
+					<key><value>TREM</value></key>
+					<ref bean="brc_TREM"/> 
+                </entry>
+                <entry>
+					<key><value>MOBILE</value></key>
+					<ref bean="brc_MOBILE"/> 
+                </entry>  
+                 <entry>
+					<key><value>AmazonUK</value></key>
+					<ref bean="brc_AmazonUK"/> 
+                </entry>   
+                <entry>
+					<key><value>NRPC</value></key>
+					<ref bean="brc_NRPC"/> 
+                </entry> 
+                <entry>
+					<key><value>NRPCACK</value></key>
+					<ref bean="brc_NRPCACK"/> 
+                </entry> 
+                <entry>
+					<key><value>TECON</value></key>
+					<ref bean="brc_TECON"/> 
+                </entry>  
+                <entry>
+					<key><value>UFCU</value></key>
+					<ref bean="brc_UFCU"/> 
+                </entry>                
+                <entry>
+					<key><value>Lifetouch</value></key>
+					<ref bean="brc_Lifetouch"/> 
+                </entry> 
+                <entry>
+					<key><value>UUHHR</value></key>
+					<ref bean="brc_UUHHR"/> 
+                </entry> 
+			</map>
+		</property>
+	</bean>
+	
+</beans>
+
+		
