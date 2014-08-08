@@ -209,7 +209,19 @@
 		<property name="filenameDateFormat" value="yyyyMMdd" />
 		<property name="filenameTimeFormat" value="HHmmss" />
 	</bean>	
-
+	
+	<!--            UUHHR Configuration                                         -->
+	<bean  id="brc_UUHHR" class="com.abc.service.batchresult.BatchResultContext">
+		<property name="contextName" value="UUHHR" />
+		<property name="companyCode" value="UUHHR" />
+		<property name="filename" value="Response_::COMPCODE::_::DATE::_::TIME::" />
+		<property name="template" value="BATCHRESPONSE_UUHHR" />
+		<property name="docType" value="CSV" />		
+		<property name="sqlQuery" value="select s.search_id, s.package_req_id as PackageReqId, s.client_ref_number, convert(varchar, s.order_datetime, 101) as ack_date, '' as ack_status, '' as err_msg, s.search_status, CASE WHEN (select count(*) from search s1 where s1.package_req_id=s.package_req_id and s1.search_status='P5') > 0 THEN 'OTHER INFORMATION NEEDED' ELSE ss.status END as search_status_desc, CASE WHEN (s.search_status='R') THEN convert(varchar, getDate(), 101) ELSE convert(varchar, s.return_datetime, 101) END as adj_date, ao.adj_desc as adj_desc, ao.adj_category as adj_category, s.adj_id as adj_id, cc.adj_program as adj_program, '' as report_url from search s inner join abcuser u on s.requestor_id=u.user_id inner join company c on u.company_id=c.company_id inner join search_status ss on s.search_status=ss.status_code inner join order_request o on s.search_id = o.or_headersearchid inner join order_origin oo on o.or_oo_id = oo.oo_id left join ADJ_OPTION ao on ao.adj_id = s.adj_id left join COMPANY_CONFIG cc on cc.company_code = c.comp_code where s.search_type_code like '%PK' and c.comp_code='UUHHR' and s.result_print_datetime is null" />		
+		<property name="filenameDateFormat" value="yyyyMMdd" />
+		<property name="filenameTimeFormat" value="HHmmss" />
+	</bean>
+	
 	<!--            Generic Configuration                                    -->
 	<bean id="genSQL" class="java.lang.String">
 		<constructor-arg type="java.lang.String" value="select * from v_GenericBatchResults where comp_code = ?"/>
@@ -358,6 +370,10 @@
                 <entry>
 					<key><value>Lifetouch</value></key>
 					<ref bean="brc_Lifetouch"/> 
+                </entry> 
+                <entry>
+					<key><value>UUHHR</value></key>
+					<ref bean="brc_UUHHR"/> 
                 </entry> 
 			</map>
 		</property>

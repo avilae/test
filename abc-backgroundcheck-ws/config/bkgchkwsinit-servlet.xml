@@ -607,6 +607,51 @@ RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
   		</property>
   	</bean>
 
+    <!--     SoftScape Return Result Configuration   -->
+  	<bean id="uuhhrBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
+  		<property name="sendSeparateResults" value="true" />
+  		<property name="addReportUrl" value="true" />
+  		<property name="timedUrl" value="false" />
+  		<property name="processorName" value="SOFTSCAPE" />
+  		<!-- 
+  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
+  			Also must be able to provide the company code as parameter.
+  		-->
+  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
+  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
+  		<property name="builder" >
+  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
+  				<property name="fetchAdjOption" value="true" />
+  				<property name="fetchCompany" value="true" />
+  				<property name="fetchRequestor" value="true" />
+  			</bean>
+  		</property>
+  		<property name="transporter" >
+  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
+    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
+  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
+  				<property name="ssClientcd" value="47" />
+  				<property name="ssName" value="accuratebackground" />
+  				<property name="ssPassword" value="abuser123" />  
+  			</bean>
+  		</property>
+  		<!-- Set a transformer at the partner level -->
+  		<property name="transformer" >
+    		<bean class="com.abc.webservices.utils.Transformer">
+        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
+    		</bean>
+  		</property>	
+  		
+  		<property name="clientConfigs" >
+  			<set>
+  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
+  					<property name="compCode" value="UUHHR" />
+  					<property name="loginRequired" value="false" />
+  				</bean>
+  			</set>
+  		</property>  		
+  	</bean>
+  	
 	<!--     UFCU Return Result Configuration   -->
   	<bean id="UFCUBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
   		<property name="sendSeparateResults" value="true" />
@@ -707,6 +752,8 @@ RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
   			</set>
   		</property>
   	</bean>
+  	
+  	
   	  	
   	<bean id="kenexaCSBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
   		<property name="sendSeparateResults" value="true" />

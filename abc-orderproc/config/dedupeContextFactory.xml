@@ -989,6 +989,31 @@
         <property name="packageDescriptionProperty" value="pkgName"/>
 	</bean>
 	
+	<bean id="VALI_DuplicateSearchDefinition" class="com.abc.service.odrproc.validation.DuplicateSearchDefinition">
+        <property name="validationClass" value="com.abc.bo.hbm.VDuplicateSearch"/>
+        <property name="datePropertyName" value="orderDatetime"/>
+        <property name="dayCount" value="30"/>
+        <property name="fieldName">
+            <list>
+            	<ref bean="c_ssn" />
+            	<ref bean="c_client_ref" />
+            	<ref bean="c_company" />
+            	<ref bean="c_package" />
+            	<ref bean="c_header" />
+            	<ref bean="c_cancel_status" />
+            	<ref bean="c_order_date" />
+            </list>
+        </property>
+        <property name="transactionIdProperty" value="refNumber4"/>
+        <property name="candidateIdProperty" value="clientRefNumber"/>
+        <property name="searchIdProperty" value="searchId"/>
+        <property name="packageReqIdProperty" value="packageReqId"/>
+        <property name="requestDateProperty" value="orderDatetime"/>
+        <property name="completedDateProperty" value="returnDatetime"/>
+        <property name="packageCodeProperty" value="pkgCode"/>
+        <property name="packageDescriptionProperty" value="pkgName"/>
+	</bean>
+	
 	<!--       FACTORY           -->
 	<bean id="dedupeContextFactory" class="com.abc.service.odrproc.validation.DedupeContextFactory">
 		<property name="contextMap" >
@@ -1453,8 +1478,12 @@
       		</entry>
 			<entry>
         		<key><value>VALI</value></key>
-        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+        		<ref bean="VALI_DuplicateSearchDefinition" />
       		</entry>
+      		<entry>
+				<key><value>UUHHR</value></key>
+				<ref bean="HYBRID_DuplicateSearchDefinition" />
+			</entry>
 		</map>
 		</property>
 	</bean>

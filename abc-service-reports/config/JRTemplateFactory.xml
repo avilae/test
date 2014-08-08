@@ -90,6 +90,10 @@
 					<key><value>BATCHRESPONSE_TECON</value></key>
 					<value>jrxml/BatchResultReportTECON.jrxml</value>					
 				</entry>
+				<entry>
+					<key><value>BATCHRESPONSE_UUHHR</value></key>
+					<value>jrxml/BatchResultReportUUHHR.jrxml</value>
+				</entry>
 			</map>
 		</property>
 	</bean>

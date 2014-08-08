@@ -6219,7 +6219,7 @@
                 <ref bean="v_emp_country"/>
 
                 <ref bean="v_emp_empFrom"/>
-                <!-- <ref bean="v_emp_empTo"/> -->
+                <ref bean="v_emp_empTo"/>
 			</list>
 		</property>
 	</bean>
@@ -6262,6 +6262,24 @@
 			</list>
 		</property>
 	</bean>
+
+	<!-- UUHHR -->
+    <bean id="UUHHR_ValidationDefinitionsContext"
+          class="com.abc.service.odrproc.validation.ValidationDefinitionsContext">
+        <property name="validationDefinitions">
+            <list>	
+				<ref bean="v_clientRefNumber"/>
+				<ref bean="v_packageId"/>
+								
+				<ref bean="v_requestorEmail"/>
+				<ref bean="v_companyCode"/>			
+				
+				<ref bean="v_sbjFirstName"/>
+				<ref bean="v_sbjLastName"/>			
+				<ref bean="v_sbjEmail"/>		
+            </list>
+        </property>
+    </bean>
 
     <!--       FACTORY           -->
     <bean id="validationDefinitionFactory" class="com.abc.service.odrproc.validation.ValidationDefinitionFactory">
@@ -6795,6 +6813,10 @@
         			<key><value>VALI</value></key>
         			<ref bean="VALI_ValidationDefinitionsContext" />
         		</entry>
+        		<entry>
+        			<key><value>UUHHR</value></key>
+        			<ref bean="UUHHR_ValidationDefinitionsContext" />
+        		</entry>      
       		</map>
         </property>
     </bean>

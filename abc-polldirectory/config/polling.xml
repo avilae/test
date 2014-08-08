@@ -30,6 +30,7 @@
             <entry key="MOBILE" value-ref="MOBILE"/>            
             <entry key="UFCU" value-ref="ufcu"/>
             <entry key="Lifetouch" value-ref="Lifetouch"/>
+            <entry key="UUHHR" value-ref="uuhhr"/>
           </map>
       </property>
     </bean>
@@ -227,6 +228,22 @@
         <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
     </bean>
 
+    <bean id="uuhhr" class="com.abc.polling.PollDirectory">
+        <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/UUHHR"/>
+        <property name="fileIdentifier" value="UUHHR"/>
+        <property name="fileStartsWith" value="Request_UUHHR_"/>
+        <property name="fileExtension" value="csv"/>
+        <property name="fireOnCreated" value="true"/>
+        <property name="fileCreatedActions">
+            <list>                
+                <ref bean="ProcessUUHHRBatch"/>  
+                <!-- <ref bean="GenerateUUHHRResultFile"/> -->              
+                <ref bean="RenameFile"/>
+            </list>            
+        </property>
+        <property name="emailRecipients" value="@EMAIL_RECIPIENTS@"/>
+    </bean>
+    
     <bean id="AmazonUK" class="com.abc.polling.PollDirectory">
         <property name="directory" value="file:/@SERVERFILES_MONITOR_PATH@/monitor/AmazonUK"/>
         <property name="fileIdentifier" value="AmazonUK"/>
@@ -410,6 +427,14 @@
         <property name="minimumFileSize" value="5"/>
     </bean>
 
+    <bean id="ProcessUUHHRBatch" class="com.abc.polling.impl.ProcessOrderBatch">
+        <property name="batchContext" value="UUHHR - CSV"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="UUHHR Auto Batch"/>
+        <property name="url" value="@JBOSS_URL@/batch/BatchProcess"/>
+        <property name="minimumFileSize" value="100"/>
+    </bean>
+
     <bean id="ProcessAmazonUKBatch" class="com.abc.polling.impl.ProcessOrderBatch">
         <property name="batchContext" value="AmazonUK - CSV"/>
         <property name="userId" value="0"/>
@@ -580,6 +605,13 @@
         <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
     </bean>
 
+    <bean id="GenerateUUHHRResultFile" class="com.abc.polling.impl.GenerateResultFile">
+        <property name="batchResultType" value="UUHHR"/>
+        <property name="userId" value="0"/>
+        <property name="userName" value="Generate UUHHR Result"/>
+        <property name="url" value="@JBOSS_URL@/batch/processBatchResults.jsp"/>
+    </bean>
+    
     <bean id="MoveAmazonBatchFile" class="com.abc.polling.impl.ArchiveFile">
         <property name="archiveDirectory" value="@MOVE_BATCH_PATHFILE@\amazonArchive\"/>
     </bean>
