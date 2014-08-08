@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- BACKGROUND REPORT BEANS -->
+	<!-- removed. we should not use default any more due to processor getting crossed with companies within an ats
+  	<bean id="defaultReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="DEFAULT"></constructor-arg>
+  	</bean>
+ 	-->
+ 
+  	<bean id="kenexaRecReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="KENEXA_REC"/>
+  	</bean>
+  	<bean id="kenexaCSReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="KENEXA_CS"/>
+  	</bean>
+  	<bean id="kbrReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="KBR"/>
+  	</bean>
+  	<bean id="virtualEdgeReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="VIRTUAL_EDGE"/>
+  	</bean>
+  	<bean id="inveReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="INVE"/>
+  	</bean>
+  	<bean id="softacapeReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="SOFTSCAPE"/>
+  	</bean>
+  	<bean id="hcsReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="HCS"/>
+  	</bean>
+  	<bean id="mspReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="MSP"/>
+  	</bean>
+  	<bean id="clicknHireReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.ReportServiceProcessorImpl" >
+  		<constructor-arg value="CLICKANDHIRE"/>
+  	</bean>
+
+  	<bean id="taleoI9ReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.TaleoI9ReportServiceProcessor" >
+  		<property name="processorName" value="TALEO_I9" />
+  		<property name="taleoI9ServiceIdentifier" value="@TALEOI9SI@" />
+  	</bean>
+
+  	<bean id="taleoBEI9ReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.TaleoBEI9ReportServiceProcessor" >
+  		<property name="processorName" value="TALEO_BE_I9" />
+  		<!-- <property name="taleoI9ServiceIdentifier" value="TBE_I9" /> -->
+  	</bean>
+
+  	<bean id="sendOutsReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.SendoutsReportServiceProcessor" >
+  		<property name="processorName" value="SENDOUTS" />
+  	</bean>
+	<!-- I9 REPORT BEAN -->
+
+  	<bean id="kronosReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.KronosReportServiceProcessor" >
+  		<property name="processorName" value="KRONOS" />
+  		<property name="xferid" value="@KRONOS_XFERID@" />
+  		<property name="userid" value="@KRONOS_USERID@" />
+  		<property name="password" value="@KRONOS_PASSWORD@" />
+  	</bean>
+
+  	<bean id="taleo75ReportServiceProcessor" class="com.abc.webservices.backgroundreport.service.processors.Taleo75ReportServiceProcessor" >
+  		<property name="processorName" value="TALEO75" />
+  		<property name="username" value="@TEE_USERID@" />
+  		<property name="password" value="@TEE_PASSWORD@" />
+  	</bean>
+        		
+	<!--       FACTORY           -->
+	<bean id="reportServiceProcessorContextFactory" 
+		class="com.abc.webservices.backgroundreport.service.processors.BackgroundReportServiceProcessorFactory">
+		<property name="reportServiceProcessors" >
+		<map>
+			<!-- 
+			<entry>
+				<key><value>DEFAULT</value></key>
+       			<ref bean="defaultReportServiceProcessor" />
+			</entry>
+ 			-->
+			<entry>
+				<key><value>TALEO_I9</value></key>
+       			<ref bean="taleoI9ReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>TALEO_BE_I9</value></key>
+       			<ref bean="taleoBEI9ReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>SENDOUTS</value></key>
+       			<ref bean="sendOutsReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>KRONOS</value></key>
+       			<ref bean="kronosReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>KENEXA_REC</value></key>
+       			<ref bean="kenexaRecReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>KENEXA_CS</value></key>
+       			<ref bean="kenexaCSReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>KBR</value></key>
+       			<ref bean="kbrReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>VIRTUAL_EDGE</value></key>
+       			<ref bean="virtualEdgeReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>INVE</value></key>
+       			<ref bean="inveReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>SOFTSCAPE</value></key>
+       			<ref bean="softacapeReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>HCS</value></key>
+       			<ref bean="hcsReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>MSP</value></key>
+       			<ref bean="mspReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>TALEO75</value></key>
+       			<ref bean="taleo75ReportServiceProcessor" />
+			</entry>
+			<entry>
+				<key><value>CLICKANDHIRE</value></key>
+       			<ref bean="clicknHireReportServiceProcessor" />
+			</entry>
+		</map>
+		</property>
+	</bean>
+
+</beans>

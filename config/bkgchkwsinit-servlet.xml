@@ -426,52 +426,6 @@ RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
   		</property>
   	</bean>
 
-<!--     NRPC Return Result Configuration   -->
-  	<bean id="NRPCBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
-  		<property name="sendSeparateResults" value="true" />
-  		<property name="addReportUrl" value="true" />
-  		<property name="timedUrl" value="false" />
-  		<property name="processorName" value="NRPC" />
-  		<!-- 
-  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
-  			Also must be able to provide the company code as parameter.
-  		-->
-  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
-  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
-  		<property name="builder" >
-  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
-  				<property name="fetchAdjOption" value="true" />
-  				<property name="fetchCompany" value="true" />
-  				<property name="fetchRequestor" value="true" />
-  			</bean>
-  		</property>
-  		<property name="transporter" >
-  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
-    			<property name="ssLoginurl" value="@NRPC_LOGINURL@" />
-  				<property name="ssReturnurl" value="@NRPC_RETURNURL@" />
-  				<property name="ssClientcd" value="47" />
-  				<property name="ssName" value="accuratebackground" />
-  				<property name="ssPassword" value="abuser123" />  
-  			</bean>
-  		</property>
-  		<!-- Set a transformer at the partner level -->
-  		<property name="transformer" >
-    		<bean class="com.abc.webservices.utils.Transformer">
-        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
-    		</bean>
-  		</property>	
-  		
-  		<property name="clientConfigs" >
-  			<set>
-  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
-  					<property name="compCode" value="NRPC" />
-  					<property name="loginRequired" value="false" />
-  				</bean>
-  			</set>
-  		</property>
-  		
-  	</bean> 
-  	 	
   	<!--      Return Result Configuration  THINGS REMEMBERED - TREM -->
   	<bean id="TREMBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
   		<property name="sendSeparateResults" value="true" />
@@ -517,188 +471,7 @@ RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
   		</property>
   	</bean>
   	
-  	  	<!--      Return Result Configuration  MOBILE IRON -->
-  	<bean id="MOBILEBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
-  		<property name="sendSeparateResults" value="true" />
-  		<property name="addReportUrl" value="true" />
-  		<property name="timedUrl" value="false" />
-  		<property name="processorName" value="SOFTSCAPE" />
-  		<!-- 
-  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
-  			Also must be able to provide the company code as parameter.
-  		-->
-  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
-  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
-  		<property name="builder" >
-  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
-  				<property name="fetchAdjOption" value="true" />
-  				<property name="fetchCompany" value="true" />
-  				<property name="fetchRequestor" value="true" />
-  			</bean>
-  		</property>
-  		<property name="transporter" >
-  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
-    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
-  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
-  				<property name="ssClientcd" value="47" />
-  				<property name="ssName" value="accuratebackground" />
-  				<property name="ssPassword" value="abuser123" />  
-  			</bean>
-  		</property>
-  		<!-- Set a transformer at the partner level -->
-  		<property name="transformer" >
-    		<bean class="com.abc.webservices.utils.Transformer">
-        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
-    		</bean>
-  		</property>	
-  		
-  		<property name="clientConfigs" >
-  			<set>
-  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
-  					<property name="compCode" value="MOBILE" />
-  					<property name="loginRequired" value="false" />
-  				</bean>
-  			</set>
-  		</property>
-  	</bean>
-
-  	<!--      Return Result Configuration  TECON -->
-  	<bean id="TECONBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
-  		<property name="sendSeparateResults" value="true" />
-  		<property name="addReportUrl" value="true" />
-  		<property name="timedUrl" value="false" />
-  		<property name="processorName" value="SOFTSCAPE" />
-  		<!-- 
-  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
-  			Also must be able to provide the company code as parameter.
-  		-->
-  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
-  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
-  		<property name="builder" >
-  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
-  				<property name="fetchAdjOption" value="true" />
-  				<property name="fetchCompany" value="true" />
-  				<property name="fetchRequestor" value="true" />
-  			</bean>
-  		</property>
-  		<property name="transporter" >
-  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
-    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
-  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
-  				<property name="ssClientcd" value="47" />
-  				<property name="ssName" value="accuratebackground" />
-  				<property name="ssPassword" value="abuser123" />  
-  			</bean>
-  		</property>
-  		<!-- Set a transformer at the partner level -->
-  		<property name="transformer" >
-    		<bean class="com.abc.webservices.utils.Transformer">
-        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
-    		</bean>
-  		</property>	
-  		
-  		<property name="clientConfigs" >
-  			<set>
-  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
-  					<property name="compCode" value="TECON" />
-  					<property name="loginRequired" value="false" />
-  				</bean>
-  			</set>
-  		</property>
-  	</bean>
-
-    <!--     SoftScape Return Result Configuration   -->
-  	<bean id="uuhhrBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
-  		<property name="sendSeparateResults" value="true" />
-  		<property name="addReportUrl" value="true" />
-  		<property name="timedUrl" value="false" />
-  		<property name="processorName" value="SOFTSCAPE" />
-  		<!-- 
-  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
-  			Also must be able to provide the company code as parameter.
-  		-->
-  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
-  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
-  		<property name="builder" >
-  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
-  				<property name="fetchAdjOption" value="true" />
-  				<property name="fetchCompany" value="true" />
-  				<property name="fetchRequestor" value="true" />
-  			</bean>
-  		</property>
-  		<property name="transporter" >
-  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
-    			<property name="ssLoginurl" value="@SOFTSCAPE_LOGINURL@" />
-  				<property name="ssReturnurl" value="@SOFTSCAPE_RETURNURL@" />
-  				<property name="ssClientcd" value="47" />
-  				<property name="ssName" value="accuratebackground" />
-  				<property name="ssPassword" value="abuser123" />  
-  			</bean>
-  		</property>
-  		<!-- Set a transformer at the partner level -->
-  		<property name="transformer" >
-    		<bean class="com.abc.webservices.utils.Transformer">
-        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
-    		</bean>
-  		</property>	
-  		
-  		<property name="clientConfigs" >
-  			<set>
-  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
-  					<property name="compCode" value="UUHHR" />
-  					<property name="loginRequired" value="false" />
-  				</bean>
-  			</set>
-  		</property>  		
-  	</bean>
-  	
-	<!--     UFCU Return Result Configuration   -->
-  	<bean id="UFCUBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
-  		<property name="sendSeparateResults" value="true" />
-  		<property name="addReportUrl" value="true" />
-  		<property name="timedUrl" value="false" />
-  		<property name="processorName" value="UFCU" />
-  		<!-- 
-  			sqlQuery value MUST only select the packageReqId and searchId in this sequence. 
-  			Also must be able to provide the company code as parameter.
-  		-->
-  		<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummary v where compCode = ? and ( searchStatus = 'C' or searchStatus = 'R' )" />
-  		<property name="baseLogFilePath" ref="varSoftscapeResultsLocation" />
-  		<property name="builder" >
-  			<bean class="com.abc.service.odrproc.utils.PackageBuilder">
-  				<property name="fetchAdjOption" value="true" />
-  				<property name="fetchCompany" value="true" />
-  				<property name="fetchRequestor" value="true" />
-  			</bean>
-  		</property>
-  		<property name="transporter" >
-  			<bean class="com.abc.webservices.backgroundreport.service.SoftScapeHttpPostTransporter">
-    			<property name="ssLoginurl" value="@NRPC_LOGINURL@" />
-  				<property name="ssReturnurl" value="@NRPC_RETURNURL@" />
-  				<property name="ssClientcd" value="47" />
-  				<property name="ssName" value="accuratebackground" />
-  				<property name="ssPassword" value="abuser123" />  
-  			</bean>
-  		</property>
-  		<!-- Set a transformer at the partner level -->
-  		<property name="transformer" >
-    		<bean class="com.abc.webservices.utils.Transformer">
-        		<property name="requestXSLTFileName" value="softscape/softscape-hrxml25-result.xsl"/>
-    		</bean>
-  		</property>	
-  		
-  		<property name="clientConfigs" >
-  			<set>
-  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
-  					<property name="compCode" value="UFCU" />
-  					<property name="loginRequired" value="false" />
-  				</bean>
-  			</set>
-  		</property>
-  		
-  	</bean> 
-
-  	<!--     HealthCareSource Return Result Configuration   -->
+    <!--     HealthCareSource Return Result Configuration   -->
   	<bean id="hcsBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
   		<property name="sendSeparateResults" value="true" />
   		<property name="addReportUrl" value="true" />
@@ -752,8 +525,6 @@ RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
   			</set>
   		</property>
   	</bean>
-  	
-  	
   	  	
   	<bean id="kenexaCSBackgroundReportService" class="com.abc.webservices.backgroundreport.service.BackgroundReportService">
   		<property name="sendSeparateResults" value="true" />
@@ -806,7 +577,7 @@ RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
   				</bean>
   				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
   					<property name="compCode" value="ROSS" />
-<!--   					<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummaryAdjudicationDetail v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and OO.ooSubCode = 'KENEXA-CS' and dbo.fn_isResultStatusChange(v.packageReqId) = 1" /> -->
+  					<property name="sqlQuery" value="select v.packageReqId, v.searchId from VResultSummaryAdjudicationDetail v, OrderRequest O, OrderOrigin OO where v.compCode = ? and O.orHeaderSearchId = v.searchId and OO.ooId=O.orderOrigin.ooId and ( v.searchStatus = 'C' or v.searchStatus = 'P' or v.searchStatus = 'R' ) and OO.ooCode= 'INTEGRATION' and OO.ooSubCode = 'KENEXA-CS' and dbo.fn_isResultStatusChange(v.packageReqId) = 1" />
   					<property name="loginRequired" value="false" />
   				</bean>  				 
   				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
@@ -815,10 +586,6 @@ RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
   				</bean>  
   				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
   					<property name="compCode" value="MOLHE" />
-  					<property name="loginRequired" value="false" />
-  				</bean>
-  				<bean class="com.abc.webservices.backgroundreport.service.ClientConfig">
-  					<property name="compCode" value="ISYS" />
   					<property name="loginRequired" value="false" />
   				</bean>
   			</set>
@@ -1485,4 +1252,5 @@ RsltSnd.sendOuts.endpoint		@ENDPOINT_SENDOUTS@
         	</map>
         </property>
     </bean>
+  	
 </beans>

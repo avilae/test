@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 
+
+
+ -->		
+<bean id="abtech_ABTECH" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="ABTECH"/>
+	<property name="logoCriteria">
+		<bean class="com.abc.service.vo.LogoCriteriaVO">			
+			<property name="defaultLogoName" value="logo.png"/>
+			<property name="fieldLevelCriteria">
+				<bean class="com.abc.service.vo.FieldLevelCriteriaVO">
+					<property name="fieldName" value="Search.refNumber2"/>				 
+					<property name="fieldValue" value="TEST"/>
+					<property name="logoName" value="logo.png" />
+				</bean>
+			</property>
+		</bean>
+	</property>
+</bean>
+
+<bean id="abtech2_ABTECH2" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="ABTECH2"/>
+	<property name="logoCriteria">
+		<bean class="com.abc.service.vo.LogoCriteriaVO">			
+			<property name="defaultLogoName" value="starbuckslogo.png"/>			 
+		</bean>
+	</property>
+</bean>
+
+
+<!--  sbucks logo reference  -->
+<bean id="starbucksLogo" class="com.abc.service.vo.LogoCriteriaVO" >			
+	<property name="defaultLogoName" value="starbuckslogo.png"/>			 
+</bean>
+
+<!--  sbucks co branding configurations -->
+<bean id="sbucks_STARC" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="STARC"/>
+	<property name="logoCriteria" ref="starbucksLogo"/>
+</bean>
+<bean id="sbucks_STARE" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="STARE"/>
+	<property name="logoCriteria" ref="starbucksLogo"/>
+</bean>
+<bean id="sbucks_STARNR" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="STARNR"/>
+	<property name="logoCriteria" ref="starbucksLogo"/>
+</bean>
+<bean id="sbucks_STARP" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="STARP"/>
+	<property name="logoCriteria" ref="starbucksLogo"/>
+</bean>
+
+<bean id="sbucks_EVOFR" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="EVOFR"/>
+	<property name="logoCriteria">
+		<bean class="com.abc.service.vo.LogoCriteriaVO">			
+			<property name="defaultLogoName" value="evolutionfresh.jpg"/>			 
+		</bean>
+	</property>
+</bean>
+<bean id="sbucks_SEABE" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="SEABE"/>
+	<property name="logoCriteria">
+		<bean class="com.abc.service.vo.LogoCriteriaVO">			
+			<property name="defaultLogoName" value="seattlesbest.jpg"/>			 
+		</bean>
+	</property>
+</bean>
+
+<bean id="sbucks_STLB" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="STLB"/>
+	<property name="logoCriteria">
+		<bean class="com.abc.service.vo.LogoCriteriaVO">			
+			<property name="defaultLogoName" value="labou.png"/>			 
+		</bean>
+	</property>
+</bean>
+
+<bean id="BRINK" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="BRINK"/>
+		<property name="logoCriteria">
+		<bean class="com.abc.service.vo.LogoCriteriaVO">			
+			<property name="defaultLogoName" value="brinker.png"/>			 
+		</bean>
+	</property>
+</bean>
+
+<bean id="sbucks_STARB" class="com.abc.service.vo.EmailDefinitionVO">
+	<property name="companyCode" value="STARB"/>
+	<property name="logoCriteria">
+		<bean class="com.abc.service.vo.LogoCriteriaVO">			
+			<property name="defaultLogoName" value="starbuckslogo.png"/>
+			<property name="fieldLevelCriteria">
+				<list>
+					<bean class="com.abc.service.vo.FieldLevelCriteriaVO">
+						<property name="fieldName" value="Search.refNumber2"/>				 
+						<property name="fieldValue" value="starbucks"/>
+						<property name="logoName" value="starbuckslogo.png" />
+					</bean>
+					<bean class="com.abc.service.vo.FieldLevelCriteriaVO">
+						<property name="fieldName" value="Search.refNumber2"/>				 
+						<property name="fieldValue" value="evolutionfresh"/>
+						<property name="logoName" value="evolutionfresh.jpg" />
+					</bean>
+					<bean class="com.abc.service.vo.FieldLevelCriteriaVO">
+						<property name="fieldName" value="Search.refNumber2"/>				 
+						<property name="fieldValue" value="seattlesbest"/>
+						<property name="logoName" value="seattlesbest.jpg" />
+					</bean>
+				</list>
+			</property>
+		</bean>
+	</property>
+</bean>
+ 
+<!--  CONTEXT FACTORY  -->
+<bean id="logoFactory" class="com.abc.service.cobranding.LogoFactory">
+		<property name="contextMap" >
+			<map>								 
+				<entry>
+					<key><value>STARC</value></key>
+					<ref bean="sbucks_STARC" />
+				</entry>
+				<entry>
+					<key><value>STARE</value></key>
+					<ref bean="sbucks_STARE" />
+				</entry>
+				<entry>
+					<key><value>STARNR</value></key>
+					<ref bean="sbucks_STARNR" />
+				</entry>
+				<entry>
+					<key><value>STARP</value></key>
+					<ref bean="sbucks_STARP" />
+				</entry>
+				<entry>
+					<key><value>STARB</value></key>
+					<ref bean="sbucks_STARB" />
+				</entry>
+				<entry>
+					<key><value>ABTECH2</value></key>
+					<ref bean="abtech2_ABTECH2" />
+				</entry>
+				<entry>
+					<key><value>ABTECH</value></key>
+					<ref bean="abtech_ABTECH" />
+				</entry>
+				<entry>
+					<key><value>BRINK</value></key>
+					<ref bean="BRINK" />
+				</entry>
+				<entry>
+					<key><value>EVOFR</value></key>
+					<ref bean="sbucks_EVOFR" />
+				</entry>				
+				<entry>
+					<key><value>STLB</value></key>
+					<ref bean="sbucks_STLB" />
+				</entry>
+				<entry>
+					<key><value>SEABE</value></key>
+					<ref bean="sbucks_SEABE" />
+				</entry>
+			</map>
+		</property>
+</bean>
+
+</beans>

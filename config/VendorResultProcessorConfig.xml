@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!--  ============================== RULES ======================================  -->
+	
+	<bean id="SJV_RulesContext"  class="com.abc.service.integrations.vendor.cs.rules.RulesContext">
+  		<property name="contextName" value="SJV" />
+  		<property name="rules">
+			<set>
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.CriminalCaseIdentifiersRule">
+					<property name="trustIdByName" value="true" />
+				</bean>
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.SjvCriminalCaseRule" />
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.SjvCivilCaseRule" />
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.NameMatchOnlyRule" />
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.CriminalCaseDatesRule" />
+			</set>
+  		</property>
+	</bean>
+	
+	<bean id="BAXTER_RulesContext"  class="com.abc.service.integrations.vendor.cs.rules.RulesContext">
+  		<property name="contextName" value="BAXTER" />
+  		<property name="rules">
+			<set>
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.CriminalCaseIdentifiersRule">
+					<property name="trustIdByName" value="true" />
+				</bean>
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.BaxterCriminalCaseRule" />
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.NameMatchOnlyRule" />
+				<bean class="com.abc.service.integrations.vendor.cs.rules.custom.CriminalCaseDatesRule" />
+			</set>
+  		</property>
+	</bean>
+
+	<bean id="vendorResultsRulesFactory"  class="com.abc.service.integrations.vendor.cs.rules.RulesContextFactory">
+  		<property name="services">
+  			<map>
+  				<entry>
+					<key><value>SJV</value></key>
+					<ref bean="SJV_RulesContext" />
+  				</entry>
+  				<entry>
+					<key><value>BAXTER</value></key>
+					<ref bean="BAXTER_RulesContext" />
+  				</entry>
+  			</map>
+  		</property>
+	</bean>
+	
+	
+	
+	<!--  ============================ VALIDATION ======================================  -->
+	
+
+	<bean id="vendorResultProcessorFactory"  class="com.abc.service.integrations.vendor.cs.ResultProcessorFactory">
+  		<property name="services">
+  			<map>
+  				<entry>
+					<key><value>CLEAR</value></key>
+					<ref bean="noRecordProcessor" />
+  				</entry>
+  				<entry>
+					<key><value>STATUS</value></key>
+					<ref bean="statusRecordProcessor" />
+  				</entry>
+  				<entry>
+					<key><value>HIT_CRIMINAL</value></key>
+					<ref bean="criminalRecordProcessor" />
+  				</entry>
+  				<entry>
+					<key><value>HIT_CIVIL</value></key>
+					<ref bean="civilRecordProcessor" />
+  				</entry>
+  				<entry>
+					<key><value>OIN_STATUS</value></key>
+					<ref bean="oinRecordProcessor" />
+  				</entry>
+  			</map>
+  		</property>
+	</bean>
+
+	<bean id="noRecordProcessor"  class="com.abc.service.integrations.vendor.cs.processors.NoRecordProcessor">
+	</bean>
+	<bean id="statusRecordProcessor"  class="com.abc.service.integrations.vendor.cs.processors.StatusRecordProcessor">
+	</bean>
+	<bean id="criminalRecordProcessor"  class="com.abc.service.integrations.vendor.cs.processors.CriminalRecordProcessor">
+	</bean>
+	<bean id="civilRecordProcessor"  class="com.abc.service.integrations.vendor.cs.processors.CivilRecordProcessor">
+	</bean>
+	<bean id="oinRecordProcessor"  class="com.abc.service.integrations.vendor.cs.processors.OinRecordProcessor">
+	</bean>
+	
+	<!--  ==========================================================================  -->
+	
+	
+	
+	<bean id="vendorResultsValidationFactory"  class="com.abc.service.integrations.vendor.cs.validators.ValidationContextFactory">
+  		<property name="services">
+  			<map>
+  				<entry>
+					<key><value>HIT_CRIMINAL</value></key>
+					<ref bean="criminalValidationContext" />
+  				</entry>
+  			</map>
+  		</property>
+	</bean>
+	
+	<bean id="criminalValidationContext"  class="com.abc.service.integrations.vendor.cs.validators.ValidationContext">
+  		<property name="validators">
+			<set>
+				<ref bean="criCaseValidator" />
+			</set>
+  		</property>
+		<property name="contextName" value="HIT_CRIMINAL" />
+  	</bean>
+	
+	
+	
+	<!--  Context Validators   -->
+	
+	<bean id="criCaseValidator"  class="com.abc.service.integrations.vendor.cs.validators.CriminalCaseValidator">
+  		<property name="validationDefinitions">
+			<set>
+				<ref bean="criCaseNumberDef" />
+				<ref bean="criCaseFilingDateDef" />
+				<!-- <ref bean="criCaseDispositionDateDef" /> -->
+				<ref bean="criminalIdentiferDef" />
+				<ref bean="s_communityServiceDef" />
+				<ref bean="s_jailDef" />
+				<ref bean="s_jailCreditDef" />
+				<ref bean="s_licenseSuspendedDef" />
+				<ref bean="s_prisonCreditDef" />
+				<ref bean="s_prisonDef" />
+				<ref bean="s_probationDef" />
+				<ref bean="a_communityServiceDef" />
+				<ref bean="a_jailDef" />
+				<ref bean="a_jailCreditDef" />
+				<ref bean="a_licenseSuspendedDef" />
+				<ref bean="a_prisonCreditDef" />
+				<ref bean="a_prisonDef" />
+				<ref bean="a_probationDef" />
+				<ref bean="fieldLengthDef" />
+			</set>
+  		</property>
+	</bean>
+	
+		
+	<!--  Validation Definitions  -->
+	
+	<bean id="criCaseNumberDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="criCase.criCase.id.caseNumber" />
+  		<property name="validator">
+  			<bean class="com.abc.service.integrations.vendor.cs.validators.RequiredFieldValidator">
+  				<constructor-arg value="Case Number" />
+  				<property name="name" value="Case Number Validator" />
+  			</bean>
+  		</property>
+	</bean>
+	
+	<bean id="criCaseFilingDateDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="criCase.criCase.filingDate" />
+  		<property name="validator">
+  			<bean class="com.abc.service.integrations.vendor.cs.validators.RequiredFieldValidator">
+  				<constructor-arg value="Case Filing Date" />
+  				<property name="name" value="Case Filing Date Validator" />
+  			</bean>
+  		</property>
+	</bean>
+	
+	<bean id="criCaseDispositionDateDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="criCase.criCase.caseDispositionDate" />
+  		<property name="validator">
+  			<bean class="com.abc.service.integrations.vendor.cs.validators.RequiredFieldValidator">
+  				<constructor-arg value="Case Disposition Date" />
+  				<property name="name" value="Case Disposition Date Validator" />
+  			</bean>
+  		</property>
+	</bean>
+	
+	<bean id="s_communityServiceDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="sentences[]" />
+  		<property name="validator" ref="vsCommunityServiceDuration" />
+	</bean>
+	
+	<bean id="s_jailDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="sentences[]" />
+  		<property name="validator" ref="vsJailDuration" />
+	</bean>
+	
+	<bean id="s_jailCreditDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="sentences[]" />
+  		<property name="validator" ref="vsJailCreditDuration" />
+	</bean>
+	
+	<bean id="s_licenseSuspendedDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="sentences[]" />
+  		<property name="validator" ref="vsLicenseSuspendedDuration" />
+	</bean>
+	
+	<bean id="s_prisonCreditDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="sentences[]" />
+  		<property name="validator" ref="vsPrisonCreditDuration" />
+	</bean>
+	
+	<bean id="s_prisonDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="sentences[]" />
+  		<property name="validator" ref="vsPrisonDuration" />
+	</bean>
+	
+	<bean id="s_probationDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="sentences[]" />
+  		<property name="validator" ref="vsProbationDuration" />
+	</bean>
+	
+	
+	<bean id="a_communityServiceDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="additions[]" />
+  		<property name="validator" ref="vaCommunityServiceDuration" />
+	</bean>
+	
+	<bean id="a_jailDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="additions[]" />
+  		<property name="validator" ref="vaJailDuration" />
+	</bean>
+	
+	<bean id="a_jailCreditDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="additions[]" />
+  		<property name="validator" ref="vaJailCreditDuration" />
+	</bean>
+	
+	<bean id="a_licenseSuspendedDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="additions[]" />
+  		<property name="validator" ref="vaLicenseSuspendedDuration" />
+	</bean>
+	
+	<bean id="a_prisonCreditDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="additions[]" />
+  		<property name="validator" ref="vaPrisonCreditDuration" />
+	</bean>
+	
+	<bean id="a_prisonDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="additions[]" />
+  		<property name="validator" ref="vaPrisonDuration" />
+	</bean>
+	
+	<bean id="a_probationDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="additions[]" />
+  		<property name="validator" ref="vaProbationDuration" />
+	</bean>
+	
+	<bean id="fieldLengthDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="this" />
+  		<property name="validator">
+  			<bean class="com.abc.service.integrations.vendor.cs.validators.FieldLengthValidator" />
+  		</property>
+	</bean>
+	
+	<bean id="criminalIdentiferDef"  class="com.abc.service.integrations.vendor.cs.validators.ValidationDefinition">
+  		<property name="propertyName" value="criCase" />
+  		<property name="validator" ref="criminalIdentiferValidator" />
+	</bean>
+	
+	
+	<!--  Base Validators  -->
+		
+	<bean id="vsCommunityServiceDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Sentence: Community Service Duration Validator" />
+  		<property name="displayMessage" value="Sentence: Community Service Duration" />
+  		<property name="valuePropertyName" value="communityServiceDuration" />
+  		<property name="typePropertyName" value="criDurationUmByCommunityServiceUmId" />
+	</bean>
+	
+	<bean id="vsJailDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Sentence: Jail Duration Validator" />
+  		<property name="displayMessage" value="Sentence: Jail Duration" />
+  		<property name="valuePropertyName" value="jailDuration" />
+  		<property name="typePropertyName" value="criDurationUmByJailUmId" />
+	</bean>
+	
+	<bean id="vsJailCreditDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Sentence: Jail Credit Duration Validator" />
+  		<property name="displayMessage" value="Sentence: Jail Credit Duration" />
+  		<property name="valuePropertyName" value="jailCreditDuration" />
+  		<property name="typePropertyName" value="criDurationUmByJailCreditUmId" />
+	</bean>
+	
+	<bean id="vsLicenseSuspendedDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Sentence: License Suspended Duration Validator" />
+  		<property name="displayMessage" value="Sentence: License Suspended Duration" />
+  		<property name="valuePropertyName" value="licenseSuspendedDuration" />
+  		<property name="typePropertyName" value="criDurationUmByLicenseSuspendedUmId" />
+	</bean>
+	
+	<bean id="vsPrisonCreditDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Sentence: Prison Credit Duration Validator" />
+  		<property name="displayMessage" value="Sentence: Prison Credit Duration" />
+  		<property name="valuePropertyName" value="prisonCreditDuration" />
+  		<property name="typePropertyName" value="criDurationUmByPrisonCreditUmId" />
+	</bean>
+	
+	<bean id="vsPrisonDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Sentence: Prison Duration Validator" />
+  		<property name="displayMessage" value="Sentence: Prison Duration" />
+  		<property name="valuePropertyName" value="prisonDuration" />
+  		<property name="typePropertyName" value="criDurationUmByPrisonUmId" />
+	</bean>
+	
+	<bean id="vsProbationDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Sentence: Probation Duration Validator" />
+  		<property name="displayMessage" value="Sentence: Probation Duration" />
+  		<property name="valuePropertyName" value="probationDuration" />
+  		<property name="typePropertyName" value="criDurationUmByProbationUmId" />
+	</bean>
+	
+		
+	<bean id="vaCommunityServiceDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Addition: Community Service Duration Validator" />
+  		<property name="displayMessage" value="Addition: Community Service Duration" />
+  		<property name="valuePropertyName" value="communityServiceDuration" />
+  		<property name="typePropertyName" value="criDurationUmByCommunityServiceUmId" />
+	</bean>
+	
+	<bean id="vaJailDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Addition: Jail Duration Validator" />
+  		<property name="displayMessage" value="Addition: Jail Duration" />
+  		<property name="valuePropertyName" value="jailDuration" />
+  		<property name="typePropertyName" value="criDurationUmByJailUmId" />
+	</bean>
+	
+	<bean id="vaJailCreditDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Addition: Jail Credit Duration Validator" />
+  		<property name="displayMessage" value="Addition: Jail Credit Duration" />
+  		<property name="valuePropertyName" value="jailCreditDuration" />
+  		<property name="typePropertyName" value="criDurationUmByJailCreditUmId" />
+	</bean>
+	
+	<bean id="vaLicenseSuspendedDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Addition: License Suspended Duration Validator" />
+  		<property name="displayMessage" value="Addition: License Suspended Duration" />
+  		<property name="valuePropertyName" value="licenseSuspendedDuration" />
+  		<property name="typePropertyName" value="criDurationUmByLicenseSuspendedUmId" />
+	</bean>
+	
+	<bean id="vaPrisonCreditDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Addition: Prison Credit Duration Validator" />
+  		<property name="displayMessage" value="Addition: Prison Credit Duration" />
+  		<property name="valuePropertyName" value="prisonCreditDuration" />
+  		<property name="typePropertyName" value="criDurationUmByPrisonCreditUmId" />
+	</bean>
+	
+	<bean id="vaPrisonDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Addition: Prison Duration Validator" />
+  		<property name="displayMessage" value="Addition: Prison Duration" />
+  		<property name="valuePropertyName" value="prisonDuration" />
+  		<property name="typePropertyName" value="criDurationUmByPrisonUmId" />
+	</bean>
+	
+	<bean id="vaProbationDuration"  class="com.abc.service.integrations.vendor.cs.validators.DurationValidator">
+  		<property name="name" value="Addition: Probation Duration Validator" />
+  		<property name="displayMessage" value="Addition: Probation Duration" />
+  		<property name="valuePropertyName" value="probationDuration" />
+  		<property name="typePropertyName" value="criDurationUmByProbationUmId" />
+	</bean>
+	
+	
+	<bean id="criminalIdentiferValidator"  class="com.abc.service.integrations.vendor.cs.validators.CriminalIdentiferValidator">
+  		<property name="name" value="identifiedByName-Ssn-Dob Validator" />
+  		<property name="displayMessage" value="Minimum of 2 of the 3 fields required (identifiedByName, identifiedBySsn identifiedDob)" />
+  		<property name="minCount" value="2" />
+  		<property name="propertyNames">
+			<set>
+				<value>identifiedByName</value>
+				<value>identifiedBySsn</value>
+				<value>identifiedByDob</value>
+			</set>
+  		</property>
+	</bean>
+		
+</beans>

@@ -27,6 +27,7 @@
  	<import resource="MOBILE.xml"/>
  	<import resource="UFCU.xml"/> 	
  	<import resource="Lifetouch.xml"/>
+ 	<import resource="UUHHR.xml"/>
 
 	<bean id="defVelocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
 	  <property name="velocityProperties">
@@ -165,7 +166,11 @@
                 <entry>       
                     <key><value>TECON - CSV</value></key> 
                     <ref bean="TECONBatchContext"/>  
-                </entry>                           
+                </entry>
+                 <entry>       
+                    <key><value>UUHHR - CSV</value></key> 
+                    <ref bean="uuhhrBatchContext"/>  
+                </entry>                                 
             </map>
         </property>
     </bean>

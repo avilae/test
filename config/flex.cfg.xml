@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- ==========================================================
+       FLEX MVC2 FRAMEWORK CONFIGURATIONS     Martin Z. 05/2008
+=========================================================== -->
+
+<flexconfiguration>
+  <authorizedRequestors>
+     <requestors>
+       <property name="client.key" value="ffd35bde-0123-4e94-8e3f-fcef9d00e4ff"/>
+     </requestors>
+  </authorizedRequestors>
+  <jndiResources>
+     <resources>
+       <property name="req.log.dump"  value="false"/>
+     </resources>
+  </jndiResources>
+  <actionMappings>
+    <mappings>
+       <property name="mirror"                   value="com.martin.flex.svr.impl.MirrorRequest"/> 
+       <property name="xmlser"                   value="com.martin.flex.svr.impl.XmlSerialization"/> 
+       <property name="searchcompany"            value="com.martin.flex.svr.impl.CompanySearch"/> 
+       <property name="getchildcompanies"        value="com.martin.flex.svr.impl.GetChildCompanies"/> 
+       <property name="getcompanyusers"          value="com.martin.flex.svr.impl.GetCompanyUsers"/> 
+       <property name="getroles"                 value="com.martin.flex.svr.impl.GetRoles"/> 
+       <property name="getcompanyalluserroles"   value="com.martin.flex.svr.impl.GetCompanyAllUserRoles"/> 
+       <property name="getcompanyallusernoroles" value="com.martin.flex.svr.impl.GetCompanyAllUsersWithNoRoles"/>
+       <property name="getcompanyalluserwithroles" value="com.martin.flex.svr.impl.GetCompanyAllUsersWithRoles"/>
+       <property name="checkuserrelationships"   value="com.martin.flex.svr.impl.CheckUserRelationshipsConflicts"/> 
+       <property name="getparentrelationships"   value="com.martin.flex.svr.impl.GetParentRelationships"/> 
+       <property name="getchildrelationships"    value="com.martin.flex.svr.impl.GetChildRelationships"/> 
+       <property name="submituserroles"          value="com.martin.flex.svr.impl.SubmitRoleUsers"/> 
+       <property name="submitrelationships"      value="com.martin.flex.svr.impl.SubmitRelationships"/> 
+
+       <property name="hbmmeta"                  value="com.martin.flex.svr.impl.HbmMetaDiscovery"/>        
+       <property name="dbexecpln"                value="com.martin.flex.svr.impl.DbExcecutionPlan"/>      
+       <property name="query"                    value="com.martin.flex.svr.impl.ReportQuery"/>  
+       <property name="pdf"                      value="com.martin.flex.svr.impl.PdfProxy"/> 
+
+       <property name="checksession"             value="com.martin.flex.svr.impl.CheckSession"/> 
+       <property name="searchclientusers"        value="com.martin.flex.svr.impl.SearchClientUser"/> 
+       <property name="getclientuserroles"       value="com.martin.flex.svr.impl.GetClientUserRoles"/> 
+       <property name="getclientuserreqs"        value="com.martin.flex.svr.impl.GetClientUserRequests"/> 
+       <property name="deactivateuser"           value="com.martin.flex.svr.impl.DeactivateUser"/> 
+       <property name="submitrequesttransfer"    value="com.martin.flex.svr.impl.SubmitRequestTransfer"/>
+       <property name="transfercsvexport"        value="com.martin.flex.svr.impl.TransferCsvExporter"/>
+       <property name="getrelschedules"          value="com.martin.flex.svr.impl.GetRelSchedules"/>
+       <property name="getscheduledetails"       value="com.martin.flex.svr.impl.GetScheduleDetails"/>         
+       <property name="gettransferedchildren"    value="com.martin.flex.svr.impl.GetChildRelationships"/>
+       <property name="submitnewrelschedule"     value="com.martin.flex.svr.impl.SubmitNewRelSchedule"/>
+       <property name="submiteditrelschedule"    value="com.martin.flex.svr.impl.SubmitEditRelSchedule"/>
+       <property name="submitreltransfer"        value="com.martin.flex.svr.impl.SubmitRelTransfer"/>
+       <property name="runschedulejobmgr"        value="com.martin.flex.svr.impl.RunScheduleJobMgrProcess"/>
+
+    </mappings>
+  </actionMappings>
+  <viewMappings>
+    <mappings>
+       <property name="def" value="/WEB-INF/pages/login.jsp"/>  <!-- default view -->
+    </mappings>
+  </viewMappings>  
+  <aliasXmlSerialisers>
+    <aliases>  
+      <property name="relationships" value="com.martin.flex.svr.impl.SubmitRelationships$Relationships"/> 
+      <property name="usersrole"     value="com.martin.flex.svr.impl.SubmitRoleUsers$UserRoles"/>
+
+      <property name="entity"        value="com.martin.flex.svr.impl.HbmMetaDiscovery$HbmMetaEntity"/> 
+      <property name="column"        value="com.martin.flex.svr.impl.HbmMetaDiscovery$HbmColumn"/> 
+    </aliases>
+  </aliasXmlSerialisers>   
+</flexconfiguration>

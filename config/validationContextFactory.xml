@@ -6111,17 +6111,33 @@
 		</property>
 	</bean>	
 	
-	<bean id="v_IntPostalCode" class="com.abc.service.odrproc.validation.ValidationDefinition">
-        <property name="propertyName" value="searchPackageRequest"/>
-        <property name="validator">
-            <bean class="com.abc.service.odrproc.validation.InternationalPostalCodeValidator">
-            </bean>
-        </property>
-        <property name="displayMessage" value="Applicant Postal Code"/>
-    </bean>
-    
-	<!-- VALI -->
-	<bean id="VALI_ValidationDefinitionsContext" class="com.abc.service.odrproc.validation.ValidationDefinitionsContext">
+	<!-- LITT -->
+	<bean id="LITT_ValidationDefinitionsContext" class="com.abc.service.odrproc.validation.ValidationDefinitionsContext">
+		<property name="validationDefinitions">
+			<list>
+				<ref bean="v_ExcessComponentsValidator"/>
+				<ref bean="v_MaxLimitComponentsValidator"/>
+				<ref bean="v_MissingComponentsValidatorExcludingFingerprinting"/>
+				
+				<ref bean="v_clientRefNumber"/>
+				<ref bean="v_packageId"/>
+				<ref bean="v_requestorEmail"/>
+				<ref bean="v_companyCode"/>
+				
+				<ref bean="v_sbjFirstName"/>
+				<ref bean="v_sbjLastName"/>
+				<ref bean="v_sbjEmail"/>
+
+				<!-- EDU -->
+				<ref bean="v_edu_school"/>
+                <ref bean="v_edu_city"/>
+				<ref bean="v_edu_us_state"/>
+
+			</list>
+		</property>
+	</bean>	
+	
+	<bean id="AREV_ValidationDefinitionsContext" class="com.abc.service.odrproc.validation.ValidationDefinitionsContext">
 		<property name="validationDefinitions">
 			<list>
 				<ref bean="v_ExcessComponentsValidator"/>
@@ -6130,60 +6146,88 @@
 				
 				<ref bean="v_clientRefNumber"/>
 				<ref bean="v_companyCode"/>
-				<ref bean="v_packageCode"/>
+				<ref bean="v_packageId"/>
 				<ref bean="v_requestorEmail"/>
 				
-				<!-- CANDIDATE -->
 				<ref bean="v_sbjFirstName"/>
 				<ref bean="v_sbjLastName"/>
 				<ref bean="v_sbjAddress1"/>
 				<ref bean="v_sbjCity"/>
-				<ref bean="v_US_sbjState"/>              
+				<ref bean="v_sbjState"/>
+				<ref bean="v_Int_sbjState"/>
 				<ref bean="v_sbjCountry"/>
 				<ref bean="v_sbjEmail"/>
-				<ref bean="v_sbjDob"/>
-				<!-- <ref bean="v_sbjSsn"/> -->
-				<ref bean="v_SSNOrGovernmentIDPresent_wMsg"/>
-				
-				<!-- EDUCATION -->
+
+				<!-- EDU -->
 				<ref bean="v_edu_school"/>
                 <ref bean="v_edu_city"/>
-                <ref bean="v_edu_us_state"/>
+				<ref bean="v_edu_us_state"/>
                 <ref bean="v_edu_country"/>
 				<ref bean="v_edu_graduated"/>
-                <ref bean="v_edu_degree"/>
-                
-				<!-- EMPLOYER -->
-                <ref bean="v_emp_employer"/>
+				<ref bean="v_edu_degree"/>
+				
+				<ref bean="v_emp_employer"/>
                 <ref bean="v_emp_empCity"/>
                 <ref bean="v_emp_us_state"/>
                 <ref bean="v_emp_country"/>
                 <ref bean="v_emp_empFrom"/>
                 <ref bean="v_emp_empTo"/>
                 
-				<!-- PROFESSIONAL -->
-				<ref bean="v_mvr_license_number"/>
-                <ref bean="v_mvr_license_state"/>
-                
-                <!-- DRIVER -->
-                <ref bean="v_plv_license_number"/>
-                <ref bean="v_plv_license_type"/>
-                <ref bean="v_plv_license_state"/>
-                
-                <!-- REFERENCES -->
-                <ref bean="v_ref1_name"/> 
-                <ref bean="v_ref1_phone1"/>
-                <ref bean="v_ref1_relationship"/>
-                
-                <!-- BILLING CODES -->
-				<ref bean="v_refNumber2"/>
-				<ref bean="v_refNumber3"/>
-				<ref bean="v_refNumber4"/>
-				<ref bean="v_refNumber5"/>
+                <ref bean="v_refNumber2"/>
+                <ref bean="v_refNumber3"/>
+                <ref bean="v_refNumber4"/>
+			</list>
+		</property>
+	</bean>
+		
+	<bean id="ECOP2_ValidationDefinitionsContext" class="com.abc.service.odrproc.validation.ValidationDefinitionsContext"> 
+		<property name="validationDefinitions">
+			<list>
+				<ref bean="v_ExcessComponentsValidator"/>
+				<ref bean="v_MaxLimitComponentsValidator"/>
+				<ref bean="v_MissingComponentsValidatorExcludingFingerprinting"/>
+				
+				<ref bean="v_clientRefNumber"/>
+				<ref bean="v_packageCode"/>
+				<ref bean="v_requestorEmail"/>
+				
+				<ref bean="v_sbjFirstName"/>
+				<ref bean="v_sbjLastName"/>
+				<ref bean="v_sbjAddress1"/>
+				<ref bean="v_sbjCity"/>
+				<ref bean="v_US_sbjState"/>
+				<ref bean="v_sbjCountry"/>
+				<ref bean="v_sbjEmail"/>
+				
+				<!-- EDU -->
+				<ref bean="v_edu_school"/>
+                <ref bean="v_edu_city"/>
+				<ref bean="v_edu_us_state"/>
+				<ref bean="v_edu_country"/>
+				<!--   <ref bean="v_edu_graduated"/> -->
+				
+				<!-- EMP -->
+				<ref bean="v_emp_employer"/>
+                <ref bean="v_emp_empCity"/>
+                <ref bean="v_emp_us_state"/>
+                <ref bean="v_emp_country"/>
+                <ref bean="v_emp_position"/>
+                <ref bean="v_emp_empFrom"/>
+                <ref bean="v_emp_empTo"/>
 
 			</list>
 		</property>
 	</bean>
+	
+	
+	<bean id="v_IntPostalCode" class="com.abc.service.odrproc.validation.ValidationDefinition">
+        <property name="propertyName" value="searchPackageRequest"/>
+        <property name="validator">
+            <bean class="com.abc.service.odrproc.validation.InternationalPostalCodeValidator">
+            </bean>
+        </property>
+        <property name="displayMessage" value="Applicant Postal Code"/>
+    </bean>
 
 	<!-- USANA -->
 	<bean id="USANA_ValidationDefinitionsContext" class="com.abc.service.odrproc.validation.ValidationDefinitionsContext">
@@ -6224,7 +6268,8 @@
 		</property>
 	</bean>
 		
-	<bean id="ECOP2_ValidationDefinitionsContext" class="com.abc.service.odrproc.validation.ValidationDefinitionsContext">
+	<!-- VALI -->
+	<bean id="VALI_ValidationDefinitionsContext" class="com.abc.service.odrproc.validation.ValidationDefinitionsContext">
 		<property name="validationDefinitions">
 			<list>
 				<ref bean="v_ExcessComponentsValidator"/>
@@ -6232,55 +6277,61 @@
 				<ref bean="v_MissingComponentsValidatorExcludingFingerprinting"/>
 				
 				<ref bean="v_clientRefNumber"/>
+				<ref bean="v_companyCode"/>
 				<ref bean="v_packageCode"/>
 				<ref bean="v_requestorEmail"/>
 				
+				<!-- CANDIDATE -->
 				<ref bean="v_sbjFirstName"/>
 				<ref bean="v_sbjLastName"/>
 				<ref bean="v_sbjAddress1"/>
 				<ref bean="v_sbjCity"/>
-				<ref bean="v_US_sbjState"/>
+				<ref bean="v_US_sbjState"/>              
 				<ref bean="v_sbjCountry"/>
 				<ref bean="v_sbjEmail"/>
+				<ref bean="v_sbjDob"/>
+				<ref bean="v_sbjSsn"/>
 				
-				<!-- EDU -->
+				<!-- EDUCATION -->
 				<ref bean="v_edu_school"/>
                 <ref bean="v_edu_city"/>
-				<ref bean="v_edu_us_state"/>
-				<ref bean="v_edu_country"/>
-				<!--   <ref bean="v_edu_graduated"/> -->
-				
-				<!-- EMP -->
-				<ref bean="v_emp_employer"/>
+                <ref bean="v_edu_us_state"/>
+                <ref bean="v_edu_country"/>
+				<ref bean="v_edu_graduated"/>
+                <ref bean="v_edu_degree"/>
+                
+				<!-- EMPLOYER -->
+                <ref bean="v_emp_employer"/>
                 <ref bean="v_emp_empCity"/>
                 <ref bean="v_emp_us_state"/>
                 <ref bean="v_emp_country"/>
-                <ref bean="v_emp_position"/>
                 <ref bean="v_emp_empFrom"/>
-                <!--   <ref bean="v_emp_empTo"/> -->
+                <ref bean="v_emp_empTo"/>
+                
+				<!-- PROFESSIONAL -->
+				<ref bean="v_mvr_license_number"/>
+                <ref bean="v_mvr_license_state"/>
+                
+                <!-- DRIVER -->
+                <ref bean="v_plv_license_number"/>
+                <ref bean="v_plv_license_type"/>
+                <ref bean="v_plv_license_state"/>
+                
+                <!-- REFERENCES -->
+                <ref bean="v_ref1_name"/> 
+                <ref bean="v_ref1_phone1"/>
+                <ref bean="v_ref1_relationship"/>
+                
+                <!-- BILLING CODES -->
+				<ref bean="v_refNumber2"/>
+				<ref bean="v_refNumber3"/>
+				<ref bean="v_refNumber4"/>
+				<ref bean="v_refNumber5"/>
 
 			</list>
 		</property>
 	</bean>
-
-	<!-- UUHHR -->
-    <bean id="UUHHR_ValidationDefinitionsContext"
-          class="com.abc.service.odrproc.validation.ValidationDefinitionsContext">
-        <property name="validationDefinitions">
-            <list>	
-				<ref bean="v_clientRefNumber"/>
-				<ref bean="v_packageId"/>
-								
-				<ref bean="v_requestorEmail"/>
-				<ref bean="v_companyCode"/>			
-				
-				<ref bean="v_sbjFirstName"/>
-				<ref bean="v_sbjLastName"/>			
-				<ref bean="v_sbjEmail"/>		
-            </list>
-        </property>
-    </bean>
-
+	
     <!--       FACTORY           -->
     <bean id="validationDefinitionFactory" class="com.abc.service.odrproc.validation.ValidationDefinitionFactory">
         <property name="validationDefinitionsContexts">
@@ -6798,25 +6849,29 @@
         			<ref bean="SBARO_ValidationDefinitionsContext" />
         		</entry>
     			<entry>
-        			<key><value>USANA</value></key>
-        			<ref bean="USANA_ValidationDefinitionsContext" />
-    			</entry>
-    			<entry>
         			<key><value>SNS</value></key>
         			<ref bean="SNS_ValidationDefinitionsContext" />
         		</entry>
+    			<entry>
+        			<key><value>LITT</value></key>
+        			<ref bean="LITT_ValidationDefinitionsContext" />
+        		</entry>
+        		<entry>
+        			<key><value>AREV</value></key>
+        			<ref bean="AREV_ValidationDefinitionsContext" />
+    			</entry>
 	    		<entry>
         			<key><value>ECOP2</value></key>
         			<ref bean="ECOP2_ValidationDefinitionsContext" />
     			</entry>
     			<entry>
+        			<key><value>USANA</value></key>
+        			<ref bean="USANA_ValidationDefinitionsContext" />
+    			</entry>
+    			<entry>
         			<key><value>VALI</value></key>
         			<ref bean="VALI_ValidationDefinitionsContext" />
         		</entry>
-        		<entry>
-        			<key><value>UUHHR</value></key>
-        			<ref bean="UUHHR_ValidationDefinitionsContext" />
-        		</entry>      
       		</map>
         </property>
     </bean>

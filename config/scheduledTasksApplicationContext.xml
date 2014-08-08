@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<bean id="adjProcessService" class="com.abc.service.scheduledTasks.bo.AdjProcessTasks"/>
+	
+	<bean id="candidateSurveyService" class="com.abc.service.scheduledTasks.bo.CandidateSurveyTask"/>
+	
+	<bean id="priceVerificationWeeklyTask" class="com.abc.service.scheduledTasks.bo.PriceVerificationNotificationWeeklyTask"/>
+	
+	<bean id="priceVerificationEomTask" class="com.abc.service.scheduledTasks.bo.PriceVerificationNotificationEomTask"/>
+	
+	<bean id="agingRptSrv" class="com.abc.service.scheduledTasks.bo.PackageAgingTasks"/>
+	
+	<bean id="emailCancellationTask" class="com.abc.service.scheduledTasks.bo.InvitationCancellationTask"/>
+	
+</beans>

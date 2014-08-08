@@ -1,0 +1,2871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- CONFIGURATION AREA -->
+
+	<bean id="escreenDeliveryService"
+		class="com.abc.service.odrproc.resolvers.EscreenDeliveryService">
+		<property name="abEscreenScheduleEndpoint" value="@ABEscreenScheduleEndpoint@" />
+		<property name="emailCustomTexts">
+			<map>
+				<entry key="TYCO">
+					<value>The link will be active for a period of 48 hours to schedule
+						your collection appointment.</value>
+				</entry>
+				<entry key="TYADT">
+					<value>The link will be active for a period of 48 hours to schedule
+						your collection appointment.</value>
+				</entry>
+				<entry key="ADT">
+					<value>The link will be active for a period of 48 hours to schedule
+						your collection appointment.</value>
+				</entry>
+				<entry key="TFS">
+					<value>The link will be active for a period of 48 hours to schedule
+						your collection appointment.</value>
+				</entry>
+				<entry key="PENTA">
+					<value>The link will be active for a period of 48 hours to schedule
+						your collection appointment.</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<!-- <bean id="Test_EScreenContext" class="com.abc.service.escreen.RequestContext"> 
+		<property name="compCode" value="NEWEL"/> <property name="packageContexts"> 
+		<map> <entry key="4028" > <bean class="com.abc.service.escreen.PackageContext"> 
+		<property name="packageCode" value="4028"/> <property name="recSchdlDeliveryType" 
+		value="IN_RESPONSE" /> <property name="scheduleType" value="CAN"/> <property 
+		name="esAccountNumber" value="600001"/> <property name="esSubAccountNumber" 
+		value="1"/> <property name="esServiceId" value="6"/> <property name="esDotMode" 
+		value="N"/> <property name="esTestPanel" value="W354"/> <property name="otherIdBeanProperty" 
+		value="search.refNumber3"/> </bean> </entry> </map> </property> </bean> -->
+	<bean id="SXPT_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="SXPT" />
+		<property name="scheduleWindow" value="72" />
+		<property name="packageContexts">
+			<map>
+				<entry key="4088">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4088" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600903" />
+						<property name="esSubAccountNumber" value="7" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<!-- <bean id="JDS_EScreenContext" class="com.abc.service.escreen.RequestContext"> 
+		<property name="compCode" value="JDS"/> <property name="packageContexts"> 
+		<map> <entry key="3922"> <bean class="com.abc.service.escreen.PackageContext"> 
+		<property name="packageCode" value="3922"/> <property name="recSchdlDeliveryType" 
+		value="CAN_EMAIL_INVITATION" /> <property name="scheduleType" value="CAN"/> 
+		<property name="esAccountNumber" value="600001"/> <property name="esSubAccountNumber" 
+		value="1"/> <property name="esServiceId" value="6"/> <property name="esDotMode" 
+		value="N"/> <property name="esTestPanel" value="W354"/> <property name="otherIdBeanProperty" 
+		value="search.refNumber3"/> </bean> </entry> </map> </property> </bean> -->
+
+	<bean id="NMIB_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="NMIB" />
+		<property name="scheduleWindow" value="72" />
+		<property name="packageContexts">
+			<map>
+				<entry key="3039">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3039" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600903" />
+						<property name="esSubAccountNumber" value="7" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="3041">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3041" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600903" />
+						<property name="esSubAccountNumber" value="7" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="4087">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4087" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600903" />
+						<property name="esSubAccountNumber" value="7" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
+	<!-- <bean id="TABE_EScreenContext" class="com.abc.service.escreen.RequestContext"> 
+		<property name="compCode" value="TABE"/> <property name="scheduleWindow" 
+		value="72"/> <property name="packageContexts"> <map> <entry key="3493"> <bean 
+		class="com.abc.service.escreen.PackageContext"> <property name="packageCode" 
+		value="3493"/> <property name="recSchdlDeliveryType" value="IN_RESPONSE" 
+		/> <property name="scheduleType" value="REC"/> <property name="esAccountNumber" 
+		value="600903"/> <property name="esSubAccountNumber" value="7"/> <property 
+		name="esServiceId" value="6"/> <property name="esDotMode" value="N"/> <property 
+		name="esTestPanel" value="W354"/> <property name="otherIdBeanProperty" value="search.refNumber3"/> 
+		</bean> </entry> </map> </property> </bean> -->
+
+
+	<bean id="DRPEP_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="DRPEP" />
+		<property name="scheduleWindow" value="72" />
+		<property name="packageContexts">
+			<map>
+				<entry key="4794">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4794" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4795">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4795" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4796">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4796" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4797">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4797" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="Y" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4798">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4798" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4821">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4821" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4822">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4822" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5358">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5358" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5470">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5470" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5965">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5965" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5966">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5966" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5967">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5967" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5581">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5581" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="202006" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="Y" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="TYCO_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="TYCO" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="5012">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5012" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5013">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5013" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5014">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5014" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5015">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5015" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5016">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5016" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5017">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5017" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5066">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5066" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5067">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5067" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="TYADT_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="TYADT" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="5135">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5135" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5136">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5136" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5137">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5137" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5138">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5138" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5139">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5139" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5140">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5140" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5141">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5141" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="5142">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5142" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620118" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="BLSH_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="BLSH" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="4421">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4421" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620103" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="4433">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4433" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620103" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="4419">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4419" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620103" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="4431">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4431" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620103" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="4792">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4792" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620103" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+				<entry key="4793">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4793" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620103" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+						<property name="otherIdBeanProperty" value="search.refNumber3" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="ADT_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="ADT" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="5820">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5820" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118357" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5821">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5821" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118357" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5822">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5822" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118357" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5823">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5823" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118357" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5824">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5824" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118357" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5825">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5825" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118357" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="TFS_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="TFS" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="5802">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5802" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118358" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5803">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5803" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118358" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5804">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5804" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118358" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5805">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5805" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118358" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5806">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5806" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118358" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5807">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5807" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118358" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="PENTA_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="PENTA" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="5838">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5838" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118359" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5839">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5839" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118359" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5840">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5840" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118359" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5841">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5841" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118359" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5842">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5842" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118359" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+				<entry key="5843">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5843" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118359" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W376" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="NEST_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="NEST" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="5896">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5896" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5897">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5897" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5898">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5898" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5899">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5899" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5900">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5900" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5901">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5901" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5902">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5902" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5903">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5903" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5904">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5904" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5905">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5905" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5908">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5908" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5909">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5909" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5910">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5910" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5919">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5919" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5920">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5920" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5921">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5921" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="5924">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5924" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6011">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6011" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6012">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6012" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6041">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6041" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6278">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6278" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6728">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6728" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6880">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6880" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118363" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="WISI_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="WISI" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="5188">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5188" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5190">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5190" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5639">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5639" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6166">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6166" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6167">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6167" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6168">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6168" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6169">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6169" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6170">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6170" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6171">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6171" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620119" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="ANDER_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="ANDER" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="1755">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="1755" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="109486" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="1756">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="1756" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="109486" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="1945">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="1945" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="109486" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="1947">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="1947" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="109486" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="1949">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="1949" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="109486" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="2073">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="2073" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="109486" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="3558">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3558" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="109486" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="4722">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4722" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="109486" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="MFH_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="MFH" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="3884">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3884" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="3885">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3885" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="3521">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3521" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="3886">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3886" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="3890">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3890" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="3891">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3891" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="3892">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3892" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="3893">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3893" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="3894">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="3894" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4053">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4053" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4102">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4102" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="4886">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4886" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="5519">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5519" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="600915" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="ARONS_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="ARONS" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6364">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6364" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6365">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6365" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+						<property name="esPhysicalId" value="2" />
+					</bean>
+				</entry>
+				<entry key="6366">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6366" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6367">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6367" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6368">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6368" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6370">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6370" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+						<property name="esPhysicalId" value="2" />
+					</bean>
+				</entry>
+				<entry key="6372">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6372" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6373">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6373" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6374">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6374" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="EZC5" />
+					</bean>
+				</entry>
+				<entry key="6488">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6488" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6371">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6371" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6489">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6489" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />
+						<property name="esAccountNumber" value="101391" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="PSTOR_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="PSTOR" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6397">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6397" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6398">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6398" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6399">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6399" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6400">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6400" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6401">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6401" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6402">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6402" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6403">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6403" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6404">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6404" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6405">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6405" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6406">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6406" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+				<entry key="6407">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6407" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119116" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="W354" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="VHA_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="VHA" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6049">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6049" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118504" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="6089">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6089" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118504" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+
+				<entry key="7259">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7259" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118504" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+	<!-- Starbucks eScreens STARE, STARVR, EVOFR, STARC -->
+	<bean id="STARE_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="STARE" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6678">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6678" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="6681">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6681" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="6689">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6689" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="STARNR_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="STARNR" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6679">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6679" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="6682">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6682" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="6690">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6690" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="EVOFR_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="EVOFR" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6680">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6680" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="6683">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6683" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="6691">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6691" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118505" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="ULSE_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="ULSE" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6324">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6324" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118508" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="6327">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6327" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118508" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="AMAZT_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="AMAZT" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="5359">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="5359" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118362" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+		<property name="exception">
+			<list>
+				<value>NC</value>
+				<value>IL</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MAEE_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="MAEE" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6783">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6783" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118509" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+		<bean id="CAIN_I3ScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="CAIN" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6976">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6976" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						
+						
+						<!-- UAT enviroment -->
+						<property name="esAccountNumber" value="505744" />				
+						
+						<!-- production Values
+						<property name="i3AccountNumber" value="516866" /> 
+						<property name="i3LocationCode" value="9989040001" />-->
+					</bean>
+				</entry>
+				
+				<entry key="6978">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6978" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						
+						<!-- UAT enviroment -->
+						<property name="esAccountNumber" value="505744" />				
+						
+						<!-- production Values
+						<property name="i3AccountNumber" value="516866" />
+						<property name="i3LocationCode" value="9989040001" />-->
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="EXPG_I3ScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="EXPG" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="7074">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7074" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />						
+						
+						
+						<property name="esAccountNumber" value="517643" />	
+							
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="VALI_I3ScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="VALI" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="7626">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7626" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+
+				<entry key="7627">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7627" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7628">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7628" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7629">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7629" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7630">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7630" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7788">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7788" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7789">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7789" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+
+				<entry key="7790">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7790" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7791">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7791" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7792">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7792" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7793">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7793" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7794">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7794" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7795">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7795" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+
+				<entry key="7796">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7796" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7797">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7797" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7798">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7798" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7799">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7799" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7800">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7800" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7801">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7801" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+
+				<entry key="7802">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7802" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7803">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7803" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7804">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7804" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+				
+				<entry key="7805">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7805" />
+						<property name="recSchdlDeliveryType" value="IN_RESPONSE" />
+						<property name="scheduleType" value="REC" />						
+						
+						
+						<property name="esAccountNumber" value="521221" />	
+							
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="TWTEL_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="TWTEL" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="4461">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4461" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620104" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="4462">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4462" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620104" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="4463">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4463" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620104" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="4465">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4465" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620104" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+				<entry key="4644">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="4644" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="620104" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="6" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="ISYS_EscreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="ISYS" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6527">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6527" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119326" />
+	                    <property name="esDotMode" value="N" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>	
+
+				<entry key="6528">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6528" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119326" />
+	                    <property name="esDotMode" value="N" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>	
+
+				<entry key="6529">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6529" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119327" />
+	                    <property name="esDotMode" value="N" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>	
+
+				<entry key="6530">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6530" />
+						<property name="recSchdlDeliveryType" value="CAN_EMAIL_INVITATION" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="119327" />
+	                    <property name="esDotMode" value="N" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>		
+			</map>
+		</property>
+	</bean>
+
+	<bean id="TECON_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="TECON" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="7668">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7668" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="121769" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+ 
+				<entry key="7669">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7669" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="121769" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+
+				<entry key="7670">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7670" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="121769" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+
+				<entry key="7671">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7671" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="121769" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+
+				<entry key="7672">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7672" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="121769" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1200" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="UNION_EScreenContext" class="com.abc.service.escreen.RequestContext">
+    	<property name="compCode" value="UNION" />
+        <property name="scheduleWindow" value="72" />
+        <property name="packageContexts">
+        <map>
+			<entry key="7701">
+            	<bean class="com.abc.service.escreen.PackageContext">
+                	<property name="packageCode" value="7701" />
+                    <property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+                    <property name="scheduleType" value="CAN" />
+                    <property name="esAccountNumber" value="121768" />
+                    <property name="esSubAccountNumber" value="0" />
+                    <property name="esServiceId" value="6" />
+                    <property name="esDotMode" value="N" />
+                    <property name="esTestPanel" value="AB_1200" />
+                 </bean>
+            </entry>
+            <entry key="7702">
+            	<bean class="com.abc.service.escreen.PackageContext">
+            		<property name="packageCode" value="7702" />
+		            <property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+		            <property name="scheduleType" value="CAN" />
+		            <property name="esAccountNumber" value="121768" />
+		            <property name="esSubAccountNumber" value="0" />
+		            <property name="esServiceId" value="6" />
+		            <property name="esDotMode" value="N" />
+					<property name="esTestPanel" value="AB_1200" />
+            	</bean>
+			</entry>
+            <entry key="7768">
+        	    <bean class="com.abc.service.escreen.PackageContext">
+		            <property name="packageCode" value="7768" />
+		            <property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+		            <property name="scheduleType" value="CAN" />
+		            <property name="esAccountNumber" value="121768" />
+		            <property name="esSubAccountNumber" value="0" />
+		            <property name="esServiceId" value="6" />
+		            <property name="esDotMode" value="N" />
+		            <property name="esTestPanel" value="AB_1200" />
+           		</bean>
+            </entry>
+		</map>
+	</property>
+    </bean>
+    
+	<bean id="ATSE_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="ATSE" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="6670">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6670" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118506" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1205" />
+					</bean>
+				</entry>
+				<entry key="6674">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6674" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />	
+						<property name="esAccountNumber" value="118506" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1205" />
+					</bean>
+				</entry>
+				<entry key="6672">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6672" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118506" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1205" />
+					</bean>
+				</entry>
+				<entry key="6673">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6673" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118506" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1205" />
+					</bean>
+				</entry>
+				<entry key="6820">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="6820" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="118506" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1205" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="ECOP2_EScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="ECOP2" />
+		<property name="scheduleWindow" value="24" />
+		<property name="packageContexts">
+			<map>
+				<entry key="7290">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7290" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="121772" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1220" />
+					</bean>
+				</entry>
+				
+				<entry key="7382">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7382" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+						<property name="esAccountNumber" value="121772" />
+						<property name="esSubAccountNumber" value="1" />
+						<property name="esServiceId" value="3" />
+						<property name="esDotMode" value="N" />
+						<property name="esTestPanel" value="AB_1220" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
+	<bean id="USANA_I3ScreenContext" class="com.abc.service.escreen.RequestContext">
+		<property name="compCode" value="USANA" />
+		<property name="scheduleWindow" value="48" />
+		<property name="packageContexts">
+			<map>
+				<entry key="7155">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7155" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+												
+						<!-- UAT enviroment -->
+						<property name="esAccountNumber" value="517917" />				
+<!-- 						<property name="i3LocationCode" value="131228" /> -->
+					</bean>
+				</entry>
+				
+				<entry key="7356">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7356" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+												
+						<!-- UAT enviroment -->
+						<property name="esAccountNumber" value="517917" />				
+<!-- 						<property name="i3LocationCode" value="131228" /> -->
+					</bean>
+				</entry>
+
+				<entry key="7357">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7357" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+												
+						<!-- UAT enviroment -->
+						<property name="esAccountNumber" value="517917" />				
+<!-- 						<property name="i3LocationCode" value="131228" /> -->
+					</bean>
+				</entry>
+
+				<entry key="7358">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7358" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+												
+						<!-- UAT enviroment -->
+						<property name="esAccountNumber" value="517917" />				
+<!-- 						<property name="i3LocationCode" value="131228" /> -->
+					</bean>
+				</entry>
+				
+				<entry key="7359">
+					<bean class="com.abc.service.escreen.PackageContext">
+						<property name="packageCode" value="7359" />
+						<property name="recSchdlDeliveryType" value="CAN_FORM_CONFIRM_POPUP" />
+						<property name="scheduleType" value="CAN" />
+												
+						<!-- UAT enviroment -->
+						<property name="esAccountNumber" value="517917" />				
+<!-- 						<property name="i3LocationCode" value="131228" /> -->
+					</bean>
+				</entry>				
+			</map>
+		</property>
+	</bean>
+
+	<bean id="contexts" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<!-- <entry key="NEWEL" value-ref="Test_EScreenContext"/> <entry key="JDS" 
+					value-ref="JDS_EScreenContext"/> -->
+				<entry key="DRPEP" value-ref="DRPEP_EScreenContext" />
+				<entry key="SXPT" value-ref="SXPT_EScreenContext" />
+				<!-- <entry key="TABE" value-ref="TABE_EScreenContext"/> -->
+				<entry key="NMIB" value-ref="NMIB_EScreenContext" />
+				<entry key="TYCO" value-ref="TYCO_EScreenContext" />
+				<entry key="TYADT" value-ref="TYADT_EScreenContext" />
+				<entry key="BLSH" value-ref="BLSH_EScreenContext" />
+				<entry key="ADT" value-ref="ADT_EScreenContext" />
+				<entry key="TFS" value-ref="TFS_EScreenContext" />
+				<entry key="PENTA" value-ref="PENTA_EScreenContext" />
+				<entry key="NEST" value-ref="NEST_EScreenContext" />
+				<entry key="WISI" value-ref="WISI_EScreenContext" />
+				<entry key="ANDER" value-ref="ANDER_EScreenContext" />
+				<entry key="MFH" value-ref="MFH_EScreenContext" />
+				<entry key="ARONS" value-ref="ARONS_EScreenContext" />
+				<entry key="PSTOR" value-ref="PSTOR_EScreenContext" />
+				<entry key="VHA" value-ref="VHA_EScreenContext" />
+				<entry key="STARE" value-ref="STARE_EScreenContext" />
+				<entry key="STARNR" value-ref="STARNR_EScreenContext" />
+				<entry key="EVOFR" value-ref="EVOFR_EScreenContext" />
+				<entry key="ULSE" value-ref="ULSE_EScreenContext" />
+				<entry key="AMAZT" value-ref="AMAZT_EScreenContext" />
+				<entry key="MAEE" value-ref="MAEE_EScreenContext" />
+<!-- 				<entry key="CAIN" value-ref="CAIN_I3ScreenContext" />				 -->
+<!-- 			<entry key="EXPG" value-ref="EXPG_I3ScreenContext" /> -->
+				<entry key="TWTEL" value-ref="TWTEL_EScreenContext" />
+				<entry key="ISYS" value-ref="ISYS_EscreenContext" />
+				<entry key="UNION" value-ref="UNION_EScreenContext" />
+				<entry key="ATSE" value-ref="ATSE_EScreenContext" />
+				<entry key="TECON" value-ref="TECON_EScreenContext" />
+				<entry key="ECOP2" value-ref="ECOP2_EScreenContext" />
+<!-- 			<entry key="USANA" value-ref="USANA_I3ScreenContext" /> -->
+<!-- 				<entry key="VALI" value-ref="VALI_I3ScreenContext" />  -->
+			</map>
+		</property>
+	</bean>
+
+	<bean id="contextFactory" class="com.abc.service.escreen.EscreenContextFactory">
+		<property name="map" ref="contexts" />
+	</bean>
+</beans>

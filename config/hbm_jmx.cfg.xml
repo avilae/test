@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+<comment>
+        ABC HBM Main ORM Service Properties  
+        ( reference only, adjust accordingly in context used )
+</comment>
+
+	<entry key="hbm.mbean.jndi">java:/HbmMainJmx</entry>
+	<entry key="hbm.config.file">hibernate.cfg.xml</entry>
+    <entry key="hbm.repl.config.file"></entry> <!--  empty if replication DB not used -->
+
+</properties>

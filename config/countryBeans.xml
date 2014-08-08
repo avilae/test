@@ -1,0 +1,1562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="COUNTRY_AF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AF"/>
+		<property name="name" value="Afghanistan"/>
+	</bean>
+	
+	<bean id="COUNTRY_AX2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AX2"/>
+		<property name="name" value="Akrotiri"/>
+	</bean>
+	
+	<bean id="COUNTRY_AL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AL"/>
+		<property name="name" value="Albania"/>
+	</bean>
+	
+	<bean id="COUNTRY_DZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DZ"/>
+		<property name="name" value="Algeria"/>
+	</bean>
+	
+	<bean id="COUNTRY_AS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AS"/>
+		<property name="name" value="American Samoa"/>
+	</bean>
+	
+	<bean id="COUNTRY_AD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AD"/>
+		<property name="name" value="Andorra"/>
+	</bean>
+	
+	<bean id="COUNTRY_AO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AO"/>
+		<property name="name" value="Angola"/>
+	</bean>
+	
+	<bean id="COUNTRY_AI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AI"/>
+		<property name="name" value="Anguilla"/>
+	</bean>
+	
+	<bean id="COUNTRY_AQ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AQ"/>
+		<property name="name" value="Antarctica"/>
+	</bean>
+	
+	<bean id="COUNTRY_AG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AG"/>
+		<property name="name" value="Antigua and Barbuda"/>
+	</bean>
+	
+	<bean id="COUNTRY_AR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AR"/>
+		<property name="name" value="Argentina"/>
+	</bean>
+	
+	<bean id="COUNTRY_AM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AM"/>
+		<property name="name" value="Armenia"/>
+	</bean>
+	
+	<bean id="COUNTRY_AW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AW"/>
+		<property name="name" value="Aruba"/>
+	</bean>
+	
+	<bean id="COUNTRY_AT2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AT2"/>
+		<property name="name" value="Ashmore and Cartier Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_AU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AU"/>
+		<property name="name" value="Australia"/>
+	</bean>
+	
+	<bean id="COUNTRY_AT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AT"/>
+		<property name="name" value="Austria"/>
+	</bean>
+	
+	<bean id="COUNTRY_AZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AZ"/>
+		<property name="name" value="Azerbaijan"/>
+	</bean>
+	
+	<bean id="COUNTRY_BS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BS"/>
+		<property name="name" value="Bahamas, The"/>
+	</bean>
+	
+	<bean id="COUNTRY_BH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BH"/>
+		<property name="name" value="Bahrain"/>
+	</bean>
+	
+	<bean id="COUNTRY_BD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BD"/>
+		<property name="name" value="Bangladesh"/>
+	</bean>
+	
+	<bean id="COUNTRY_BB" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BB"/>
+		<property name="name" value="Barbados"/>
+	</bean>
+	
+	<bean id="COUNTRY_BS2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BS2"/>
+		<property name="name" value="Bassas da India"/>
+	</bean>
+	
+	<bean id="COUNTRY_BY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BY"/>
+		<property name="name" value="Belarus"/>
+	</bean>
+	
+	<bean id="COUNTRY_BE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BE"/>
+		<property name="name" value="Belgium"/>
+	</bean>
+	
+	<bean id="COUNTRY_BZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BZ"/>
+		<property name="name" value="Belize"/>
+	</bean>
+	
+	<bean id="COUNTRY_BJ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BJ"/>
+		<property name="name" value="Benin"/>
+	</bean>
+	
+	<bean id="COUNTRY_BM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BM"/>
+		<property name="name" value="Bermuda"/>
+	</bean>
+	
+	<bean id="COUNTRY_BT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BT"/>
+		<property name="name" value="Bhutan"/>
+	</bean>
+	
+	<bean id="COUNTRY_BO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BO"/>
+		<property name="name" value="Bolivia"/>
+	</bean>
+	
+	<bean id="COUNTRY_BA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BA"/>
+		<property name="name" value="Bosnia and Herzegovina"/>
+	</bean>
+	
+	<bean id="COUNTRY_BW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BW"/>
+		<property name="name" value="Botswana"/>
+	</bean>
+	
+	<bean id="COUNTRY_BV" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BV"/>
+		<property name="name" value="Bouvet Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_BR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BR"/>
+		<property name="name" value="Brazil"/>
+	</bean>
+	
+	<bean id="COUNTRY_IO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IO"/>
+		<property name="name" value="British Indian Ocean Territory"/>
+	</bean>
+	
+	<bean id="COUNTRY_BVG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BVG"/>
+		<property name="name" value="British Virgin Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_BN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BN"/>
+		<property name="name" value="Brunei"/>
+	</bean>
+	
+	<bean id="COUNTRY_BG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BG"/>
+		<property name="name" value="Bulgaria"/>
+	</bean>
+	
+	<bean id="COUNTRY_BF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BF"/>
+		<property name="name" value="Burkina Faso"/>
+	</bean>
+	
+	<bean id="COUNTRY_MM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MM"/>
+		<property name="name" value="Burma"/>
+	</bean>
+	
+	<bean id="COUNTRY_BI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BI"/>
+		<property name="name" value="Burundi"/>
+	</bean>
+	
+	<bean id="COUNTRY_KH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KH"/>
+		<property name="name" value="Cambodia"/>
+	</bean>
+	
+	<bean id="COUNTRY_CM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CM"/>
+		<property name="name" value="Cameroon"/>
+	</bean>
+	
+	<bean id="COUNTRY_CA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CA"/>
+		<property name="name" value="Canada"/>
+	</bean>
+	
+	<bean id="COUNTRY_CV" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CV"/>
+		<property name="name" value="Cape Verde"/>
+	</bean>
+	
+	<bean id="COUNTRY_KY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KY"/>
+		<property name="name" value="Cayman Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_CF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CF"/>
+		<property name="name" value="Central African Republic"/>
+	</bean>
+	
+	<bean id="COUNTRY_TD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TD"/>
+		<property name="name" value="Chad"/>
+	</bean>
+	
+	<bean id="COUNTRY_CL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CL"/>
+		<property name="name" value="Chile"/>
+	</bean>
+	
+	<bean id="COUNTRY_CN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CN"/>
+		<property name="name" value="China"/>
+	</bean>
+	
+	<bean id="COUNTRY_CX" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CX"/>
+		<property name="name" value="Christmas Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_IP2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IP2"/>
+		<property name="name" value="Clipperton Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_CC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CC"/>
+		<property name="name" value="Cocos (Keeling) Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_CO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CO"/>
+		<property name="name" value="Colombia"/>
+	</bean>
+	
+	<bean id="COUNTRY_KM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KM"/>
+		<property name="name" value="Comoros"/>
+	</bean>
+	
+	<bean id="COUNTRY_CD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CD"/>
+		<property name="name" value="Congo, Democratic Republic of the"/>
+	</bean>
+	
+	<bean id="COUNTRY_CG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CG"/>
+		<property name="name" value="Congo, Republic of the"/>
+	</bean>
+	
+	<bean id="COUNTRY_CK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CK"/>
+		<property name="name" value="Cook Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_CR2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CR2"/>
+		<property name="name" value="Coral Sea Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_CR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CR"/>
+		<property name="name" value="Costa Rica"/>
+	</bean>
+	
+	<bean id="COUNTRY_CI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CI"/>
+		<property name="name" value="Cote d\'Ivoire"/>
+	</bean>
+	
+	<bean id="COUNTRY_HR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="HR"/>
+		<property name="name" value="Croatia"/>
+	</bean>
+	
+	<bean id="COUNTRY_CU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CU"/>
+		<property name="name" value="Cuba"/>
+	</bean>
+	
+	<bean id="COUNTRY_CY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CY"/>
+		<property name="name" value="Cyprus"/>
+	</bean>
+	
+	<bean id="COUNTRY_CZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CZ"/>
+		<property name="name" value="Czech Republic"/>
+	</bean>
+	
+	<bean id="COUNTRY_DK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DK"/>
+		<property name="name" value="Denmark"/>
+	</bean>
+	
+	<bean id="COUNTRY_AX3" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AX3"/>
+		<property name="name" value="Dhekelia"/>
+	</bean>
+	
+	<bean id="COUNTRY_DJ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DJ"/>
+		<property name="name" value="Djibouti"/>
+	</bean>
+	
+	<bean id="COUNTRY_DM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DM"/>
+		<property name="name" value="Dominica"/>
+	</bean>
+	
+	<bean id="COUNTRY_DO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DO"/>
+		<property name="name" value="Dominican Republic"/>
+	</bean>
+	
+	<bean id="COUNTRY_EC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="EC"/>
+		<property name="name" value="Ecuador"/>
+	</bean>
+	
+	<bean id="COUNTRY_EG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="EG"/>
+		<property name="name" value="Egypt"/>
+	</bean>
+	
+	<bean id="COUNTRY_SV" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SV"/>
+		<property name="name" value="El Salvador"/>
+	</bean>
+	
+	<bean id="COUNTRY_GQ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GQ"/>
+		<property name="name" value="Equatorial Guinea"/>
+	</bean>
+	
+	<bean id="COUNTRY_ER" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ER"/>
+		<property name="name" value="Eritrea"/>
+	</bean>
+	
+	<bean id="COUNTRY_EE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="EE"/>
+		<property name="name" value="Estonia"/>
+	</bean>
+	
+	<bean id="COUNTRY_ET" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ET"/>
+		<property name="name" value="Ethiopia"/>
+	</bean>
+	
+	<bean id="COUNTRY_EU2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="EU2"/>
+		<property name="name" value="Europa Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_FK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="FK"/>
+		<property name="name" value="Falkland Islands (Islas Malvinas)"/>
+	</bean>
+	
+	<bean id="COUNTRY_FO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="FO"/>
+		<property name="name" value="Faroe Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_FJ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="FJ"/>
+		<property name="name" value="Fiji"/>
+	</bean>
+	
+	<bean id="COUNTRY_FI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="FI"/>
+		<property name="name" value="Finland"/>
+	</bean>
+	
+	<bean id="COUNTRY_FR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="FR"/>
+		<property name="name" value="France"/>
+	</bean>
+	
+	<bean id="COUNTRY_GF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GF"/>
+		<property name="name" value="French Guiana"/>
+	</bean>
+	
+	<bean id="COUNTRY_PF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PF"/>
+		<property name="name" value="French Polynesia"/>
+	</bean>
+	
+	<bean id="COUNTRY_TF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TF"/>
+		<property name="name" value="French Southern and Antarctic Lands"/>
+	</bean>
+	
+	<bean id="COUNTRY_GA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GA"/>
+		<property name="name" value="Gabon"/>
+	</bean>
+	
+	<bean id="COUNTRY_GM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GM"/>
+		<property name="name" value="Gambia, The"/>
+	</bean>
+	
+	<bean id="COUNTRY_GZ2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GZ2"/>
+		<property name="name" value="Gaza Strip"/>
+	</bean>
+	
+	<bean id="COUNTRY_GE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GE"/>
+		<property name="name" value="Georgia"/>
+	</bean>
+	
+	<bean id="COUNTRY_DE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="DE"/>
+		<property name="name" value="Germany"/>
+	</bean>
+	
+	<bean id="COUNTRY_GH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GH"/>
+		<property name="name" value="Ghana"/>
+	</bean>
+	
+	<bean id="COUNTRY_GI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GI"/>
+		<property name="name" value="Gibraltar"/>
+	</bean>
+	
+	<bean id="COUNTRY_GO2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GO2"/>
+		<property name="name" value="Glorioso Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_GR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GR"/>
+		<property name="name" value="Greece"/>
+	</bean>
+	
+	<bean id="COUNTRY_GL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GL"/>
+		<property name="name" value="Greenland"/>
+	</bean>
+	
+	<bean id="COUNTRY_GD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GD"/>
+		<property name="name" value="Grenada"/>
+	</bean>
+	
+	<bean id="COUNTRY_GP" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GP"/>
+		<property name="name" value="Guadeloupe"/>
+	</bean>
+	
+	<bean id="COUNTRY_GU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GU"/>
+		<property name="name" value="Guam"/>
+	</bean>
+	
+	<bean id="COUNTRY_GT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GT"/>
+		<property name="name" value="Guatemala"/>
+	</bean>
+	
+	<bean id="COUNTRY_GG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GG"/>
+		<property name="name" value="Guernsey"/>
+	</bean>
+	
+	<bean id="COUNTRY_GN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GN"/>
+		<property name="name" value="Guinea"/>
+	</bean>
+	
+	<bean id="COUNTRY_GW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GW"/>
+		<property name="name" value="Guinea-Bissau"/>
+	</bean>
+	
+	<bean id="COUNTRY_GY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GY"/>
+		<property name="name" value="Guyana"/>
+	</bean>
+	
+	<bean id="COUNTRY_HT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="HT"/>
+		<property name="name" value="Haiti"/>
+	</bean>
+	
+	<bean id="COUNTRY_HM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="HM"/>
+		<property name="name" value="Heard Island and McDonald Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_VA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VA"/>
+		<property name="name" value="Holy See (Vatican City)"/>
+	</bean>
+	
+	<bean id="COUNTRY_HN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="HN"/>
+		<property name="name" value="Honduras"/>
+	</bean>
+	
+	<bean id="COUNTRY_HK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="HK"/>
+		<property name="name" value="Hong Kong"/>
+	</bean>
+	
+	<bean id="COUNTRY_HU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="HU"/>
+		<property name="name" value="Hungary"/>
+	</bean>
+	
+	<bean id="COUNTRY_IS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IS"/>
+		<property name="name" value="Iceland"/>
+	</bean>
+	
+	<bean id="COUNTRY_IN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IN"/>
+		<property name="name" value="India"/>
+	</bean>
+	
+	<bean id="COUNTRY_ID" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ID"/>
+		<property name="name" value="Indonesia"/>
+	</bean>
+	
+	<bean id="COUNTRY_IR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IR"/>
+		<property name="name" value="Iran"/>
+	</bean>
+	
+	<bean id="COUNTRY_IQ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IQ"/>
+		<property name="name" value="Iraq"/>
+	</bean>
+	
+	<bean id="COUNTRY_IE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IE"/>
+		<property name="name" value="Ireland"/>
+	</bean>
+	
+	<bean id="COUNTRY_IM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IM"/>
+		<property name="name" value="Isle of Man"/>
+	</bean>
+	
+	<bean id="COUNTRY_IL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IL"/>
+		<property name="name" value="Israel"/>
+	</bean>
+	
+	<bean id="COUNTRY_IT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="IT"/>
+		<property name="name" value="Italy"/>
+	</bean>
+	
+	<bean id="COUNTRY_JM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="JM"/>
+		<property name="name" value="Jamaica"/>
+	</bean>
+	
+	<bean id="COUNTRY_JM2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="JM2"/>
+		<property name="name" value="Jan Mayen"/>
+	</bean>
+	
+	<bean id="COUNTRY_JP" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="JP"/>
+		<property name="name" value="Japan"/>
+	</bean>
+	
+	<bean id="COUNTRY_JE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="JE"/>
+		<property name="name" value="Jersey"/>
+	</bean>
+	
+	<bean id="COUNTRY_JO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="JO"/>
+		<property name="name" value="Jordan"/>
+	</bean>
+	
+	<bean id="COUNTRY_JU2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="JU2"/>
+		<property name="name" value="Juan de Nova Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_KZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KZ"/>
+		<property name="name" value="Kazakhstan"/>
+	</bean>
+	
+	<bean id="COUNTRY_KE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KE"/>
+		<property name="name" value="Kenya"/>
+	</bean>
+	
+	<bean id="COUNTRY_KI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KI"/>
+		<property name="name" value="Kiribati"/>
+	</bean>
+	
+	<bean id="COUNTRY_KR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KR"/>
+		<property name="name" value="Korea, North"/>
+	</bean>
+	
+	<bean id="COUNTRY_KP" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KP"/>
+		<property name="name" value="Korea, South"/>
+	</bean>
+	
+	<bean id="COUNTRY_KW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KW"/>
+		<property name="name" value="Kuwait"/>
+	</bean>
+	
+	<bean id="COUNTRY_KG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KG"/>
+		<property name="name" value="Kyrgyzstan"/>
+	</bean>
+	
+	<bean id="COUNTRY_LA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LA"/>
+		<property name="name" value="Laos"/>
+	</bean>
+	
+	<bean id="COUNTRY_LV" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LV"/>
+		<property name="name" value="Latvia"/>
+	</bean>
+	
+	<bean id="COUNTRY_LB" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LB"/>
+		<property name="name" value="Lebanon"/>
+	</bean>
+	
+	<bean id="COUNTRY_LS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LS"/>
+		<property name="name" value="Lesotho"/>
+	</bean>
+	
+	<bean id="COUNTRY_LR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LR"/>
+		<property name="name" value="Liberia"/>
+	</bean>
+	
+	<bean id="COUNTRY_LY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LY"/>
+		<property name="name" value="Libya"/>
+	</bean>
+	
+	<bean id="COUNTRY_LI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LI"/>
+		<property name="name" value="Liechtenstein"/>
+	</bean>
+	
+	<bean id="COUNTRY_LT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LT"/>
+		<property name="name" value="Lithuania"/>
+	</bean>
+	
+	<bean id="COUNTRY_LU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LU"/>
+		<property name="name" value="Luxembourg"/>
+	</bean>
+	
+	<bean id="COUNTRY_MO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MO"/>
+		<property name="name" value="Macau"/>
+	</bean>
+	
+	<bean id="COUNTRY_MK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MK"/>
+		<property name="name" value="Macedonia"/>
+	</bean>
+	
+	<bean id="COUNTRY_MG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MG"/>
+		<property name="name" value="Madagascar"/>
+	</bean>
+	
+	<bean id="COUNTRY_MW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MW"/>
+		<property name="name" value="Malawi"/>
+	</bean>
+	
+	<bean id="COUNTRY_MY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MY"/>
+		<property name="name" value="Malaysia"/>
+	</bean>
+	
+	<bean id="COUNTRY_MV" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MV"/>
+		<property name="name" value="Maldives"/>
+	</bean>
+	
+	<bean id="COUNTRY_ML" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ML"/>
+		<property name="name" value="Mali"/>
+	</bean>
+	
+	<bean id="COUNTRY_MT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MT"/>
+		<property name="name" value="Malta"/>
+	</bean>
+	
+	<bean id="COUNTRY_MH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MH"/>
+		<property name="name" value="Marshall Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_MQ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MQ"/>
+		<property name="name" value="Martinique"/>
+	</bean>
+	
+	<bean id="COUNTRY_MR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MR"/>
+		<property name="name" value="Mauritania"/>
+	</bean>
+	
+	<bean id="COUNTRY_MU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MU"/>
+		<property name="name" value="Mauritius"/>
+	</bean>
+	
+	<bean id="COUNTRY_YT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="YT"/>
+		<property name="name" value="Mayotte"/>
+	</bean>
+	
+	<bean id="COUNTRY_MX" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MX"/>
+		<property name="name" value="Mexico"/>
+	</bean>
+	
+	<bean id="COUNTRY_FM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="FM"/>
+		<property name="name" value="Micronesia, Federated States of"/>
+	</bean>
+	
+	<bean id="COUNTRY_MD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MD"/>
+		<property name="name" value="Moldova"/>
+	</bean>
+	
+	<bean id="COUNTRY_MC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MC"/>
+		<property name="name" value="Monaco"/>
+	</bean>
+	
+	<bean id="COUNTRY_MN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MN"/>
+		<property name="name" value="Mongolia"/>
+	</bean>
+	
+	<bean id="COUNTRY_MS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MS"/>
+		<property name="name" value="Montserrat"/>
+	</bean>
+	
+	<bean id="COUNTRY_MA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MA"/>
+		<property name="name" value="Morocco"/>
+	</bean>
+	
+	<bean id="COUNTRY_MZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MZ"/>
+		<property name="name" value="Mozambique"/>
+	</bean>
+	
+	<bean id="COUNTRY_NA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NA"/>
+		<property name="name" value="Namibia"/>
+	</bean>
+	
+	<bean id="COUNTRY_NR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NR"/>
+		<property name="name" value="Nauru"/>
+	</bean>
+	
+	<bean id="COUNTRY_BQ2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="BQ2"/>
+		<property name="name" value="Navassa Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_NP" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NP"/>
+		<property name="name" value="Nepal"/>
+	</bean>
+	
+	<bean id="COUNTRY_NL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NL"/>
+		<property name="name" value="Netherlands"/>
+	</bean>
+	
+	<bean id="COUNTRY_AN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AN"/>
+		<property name="name" value="Netherlands Antilles"/>
+	</bean>
+	
+	<bean id="COUNTRY_NC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NC"/>
+		<property name="name" value="New Caledonia"/>
+	</bean>
+	
+	<bean id="COUNTRY_NZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NZ"/>
+		<property name="name" value="New Zealand"/>
+	</bean>
+	
+	<bean id="COUNTRY_NI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NI"/>
+		<property name="name" value="Nicaragua"/>
+	</bean>
+	
+	<bean id="COUNTRY_NE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NE"/>
+		<property name="name" value="Niger"/>
+	</bean>
+	
+	<bean id="COUNTRY_NG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NG"/>
+		<property name="name" value="Nigeria"/>
+	</bean>
+	
+	<bean id="COUNTRY_NU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NU"/>
+		<property name="name" value="Niue"/>
+	</bean>
+	
+	<bean id="COUNTRY_NF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NF"/>
+		<property name="name" value="Norfolk Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_MP" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="MP"/>
+		<property name="name" value="Northern Mariana Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_NO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="NO"/>
+		<property name="name" value="Norway"/>
+	</bean>
+	
+	<bean id="COUNTRY_OM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="OM"/>
+		<property name="name" value="Oman"/>
+	</bean>
+	
+	<bean id="COUNTRY_PK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PK"/>
+		<property name="name" value="Pakistan"/>
+	</bean>
+	
+	<bean id="COUNTRY_PW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PW"/>
+		<property name="name" value="Palau"/>
+	</bean>
+	
+	<bean id="COUNTRY_PA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PA"/>
+		<property name="name" value="Panama"/>
+	</bean>
+	
+	<bean id="COUNTRY_PG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PG"/>
+		<property name="name" value="Papua New Guinea"/>
+	</bean>
+	
+	<bean id="COUNTRY_PF2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PF2"/>
+		<property name="name" value="Paracel Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_PY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PY"/>
+		<property name="name" value="Paraguay"/>
+	</bean>
+	
+	<bean id="COUNTRY_PE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PE"/>
+		<property name="name" value="Peru"/>
+	</bean>
+	
+	<bean id="COUNTRY_PH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PH"/>
+		<property name="name" value="Philippines"/>
+	</bean>
+	
+	<bean id="COUNTRY_PN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PN"/>
+		<property name="name" value="Pitcairn Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_PL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PL"/>
+		<property name="name" value="Poland"/>
+	</bean>
+	
+	<bean id="COUNTRY_PT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PT"/>
+		<property name="name" value="Portugal"/>
+	</bean>
+	
+	<bean id="COUNTRY_PR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PR"/>
+		<property name="name" value="Puerto Rico"/>
+	</bean>
+	
+	<bean id="COUNTRY_QA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="QA"/>
+		<property name="name" value="Qatar"/>
+	</bean>
+	
+	<bean id="COUNTRY_RE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="RE"/>
+		<property name="name" value="Reunion"/>
+	</bean>
+	
+	<bean id="COUNTRY_RO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="RO"/>
+		<property name="name" value="Romania"/>
+	</bean>
+	
+	<bean id="COUNTRY_RU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="RU"/>
+		<property name="name" value="Russia"/>
+	</bean>
+	
+	<bean id="COUNTRY_RW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="RW"/>
+		<property name="name" value="Rwanda"/>
+	</bean>
+	
+	<bean id="COUNTRY_SH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SH"/>
+		<property name="name" value="Saint Helena"/>
+	</bean>
+	
+	<bean id="COUNTRY_KN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="KN"/>
+		<property name="name" value="Saint Kitts and Nevis"/>
+	</bean>
+	
+	<bean id="COUNTRY_LC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LC"/>
+		<property name="name" value="Saint Lucia"/>
+	</bean>
+	
+	<bean id="COUNTRY_PM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PM"/>
+		<property name="name" value="Saint Pierre and Miquelon"/>
+	</bean>
+	
+	<bean id="COUNTRY_VC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VC"/>
+		<property name="name" value="Saint Vincent and the Grenadines"/>
+	</bean>
+	
+	<bean id="COUNTRY_WS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="WS"/>
+		<property name="name" value="Samoa"/>
+	</bean>
+	
+	<bean id="COUNTRY_SM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SM"/>
+		<property name="name" value="San Marino"/>
+	</bean>
+	
+	<bean id="COUNTRY_ST" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ST"/>
+		<property name="name" value="Sao Tome and Principe"/>
+	</bean>
+	
+	<bean id="COUNTRY_SA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SA"/>
+		<property name="name" value="Saudi Arabia"/>
+	</bean>
+	
+	<bean id="COUNTRY_SN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SN"/>
+		<property name="name" value="Senegal"/>
+	</bean>
+	
+	<bean id="COUNTRY_YU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="YU"/>
+		<property name="name" value="Serbia and Montenegro"/>
+	</bean>
+	
+	<bean id="COUNTRY_SC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SC"/>
+		<property name="name" value="Seychelles"/>
+	</bean>
+	
+	<bean id="COUNTRY_SL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SL"/>
+		<property name="name" value="Sierra Leone"/>
+	</bean>
+	
+	<bean id="COUNTRY_SG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SG"/>
+		<property name="name" value="Singapore"/>
+	</bean>
+	
+	<bean id="COUNTRY_SK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SK"/>
+		<property name="name" value="Slovakia"/>
+	</bean>
+	
+	<bean id="COUNTRY_SI" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SI"/>
+		<property name="name" value="Slovenia"/>
+	</bean>
+	
+	<bean id="COUNTRY_SB" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SB"/>
+		<property name="name" value="Solomon Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_SO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SO"/>
+		<property name="name" value="Somalia"/>
+	</bean>
+	
+	<bean id="COUNTRY_ZA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ZA"/>
+		<property name="name" value="South Africa"/>
+	</bean>
+	
+	<bean id="COUNTRY_GS" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="GS"/>
+		<property name="name" value="South Georgia and the South Sandwich Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_ES" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ES"/>
+		<property name="name" value="Spain"/>
+	</bean>
+	
+	<bean id="COUNTRY_PG2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="PG2"/>
+		<property name="name" value="Spratly Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_LK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="LK"/>
+		<property name="name" value="Sri Lanka"/>
+	</bean>
+	
+	<bean id="COUNTRY_SD" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SD"/>
+		<property name="name" value="Sudan"/>
+	</bean>
+	
+	<bean id="COUNTRY_SR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SR"/>
+		<property name="name" value="Suriname"/>
+	</bean>
+	
+	<bean id="COUNTRY_SJ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SJ"/>
+		<property name="name" value="Svalbard"/>
+	</bean>
+	
+	<bean id="COUNTRY_SZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SZ"/>
+		<property name="name" value="Swaziland"/>
+	</bean>
+	
+	<bean id="COUNTRY_SE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SE"/>
+		<property name="name" value="Sweden"/>
+	</bean>
+	
+	<bean id="COUNTRY_CH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="CH"/>
+		<property name="name" value="Switzerland"/>
+	</bean>
+	
+	<bean id="COUNTRY_SY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="SY"/>
+		<property name="name" value="Syria"/>
+	</bean>
+	
+	<bean id="COUNTRY_TW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TW"/>
+		<property name="name" value="Taiwan"/>
+	</bean>
+	
+	<bean id="COUNTRY_TJ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TJ"/>
+		<property name="name" value="Tajikistan"/>
+	</bean>
+	
+	<bean id="COUNTRY_TZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TZ"/>
+		<property name="name" value="Tanzania"/>
+	</bean>
+	
+	<bean id="COUNTRY_TH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TH"/>
+		<property name="name" value="Thailand"/>
+	</bean>
+	
+	<bean id="COUNTRY_TL" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TL"/>
+		<property name="name" value="Timor-Leste"/>
+	</bean>
+	
+	<bean id="COUNTRY_TG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TG"/>
+		<property name="name" value="Togo"/>
+	</bean>
+	
+	<bean id="COUNTRY_TK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TK"/>
+		<property name="name" value="Tokelau"/>
+	</bean>
+	
+	<bean id="COUNTRY_TO" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TO"/>
+		<property name="name" value="Tonga"/>
+	</bean>
+	
+	<bean id="COUNTRY_TT" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TT"/>
+		<property name="name" value="Trinidad and Tobago"/>
+	</bean>
+	
+	<bean id="COUNTRY_TE2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TE2"/>
+		<property name="name" value="Tromelin Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_TN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TN"/>
+		<property name="name" value="Tunisia"/>
+	</bean>
+	
+	<bean id="COUNTRY_TR" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TR"/>
+		<property name="name" value="Turkey"/>
+	</bean>
+	
+	<bean id="COUNTRY_TM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TM"/>
+		<property name="name" value="Turkmenistan"/>
+	</bean>
+	
+	<bean id="COUNTRY_TC" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TC"/>
+		<property name="name" value="Turks and Caicos Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_TV" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="TV"/>
+		<property name="name" value="Tuvalu"/>
+	</bean>
+	
+	<bean id="COUNTRY_UG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="UG"/>
+		<property name="name" value="Uganda"/>
+	</bean>
+	
+	<bean id="COUNTRY_UA" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="UA"/>
+		<property name="name" value="Ukraine"/>
+	</bean>
+	
+	<bean id="COUNTRY_AE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="AE"/>
+		<property name="name" value="United Arab Emirates"/>
+	</bean>
+	
+	<bean id="COUNTRY_UK" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="UK"/>
+		<property name="name" value="United Kingdom"/>
+	</bean>
+	
+	<bean id="COUNTRY_US" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="US"/>
+		<property name="name" value="United States"/>
+	</bean>
+	
+	<bean id="COUNTRY_UY" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="UY"/>
+		<property name="name" value="Uruguay"/>
+	</bean>
+	
+	<bean id="COUNTRY_UZ" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="UZ"/>
+		<property name="name" value="Uzbekistan"/>
+	</bean>
+	
+	<bean id="COUNTRY_VU" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VU"/>
+		<property name="name" value="Vanuatu"/>
+	</bean>
+	
+	<bean id="COUNTRY_VE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VE"/>
+		<property name="name" value="Venezuela"/>
+	</bean>
+	
+	<bean id="COUNTRY_VN" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VN"/>
+		<property name="name" value="Vietnam"/>
+	</bean>
+	
+	<bean id="COUNTRY_VG" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="VG"/>
+		<property name="name" value="Virgin Islands"/>
+	</bean>
+	
+	<bean id="COUNTRY_WQ2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="WQ2"/>
+		<property name="name" value="Wake Island"/>
+	</bean>
+	
+	<bean id="COUNTRY_WF" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="WF"/>
+		<property name="name" value="Wallis and Futuna"/>
+	</bean>
+	
+	<bean id="COUNTRY_WE2" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="WE2"/>
+		<property name="name" value="West Bank"/>
+	</bean>
+	
+	<bean id="COUNTRY_EH" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="EH"/>
+		<property name="name" value="Western Sahara"/>
+	</bean>
+	
+	<bean id="COUNTRY_YE" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="YE"/>
+		<property name="name" value="Yemen"/>
+	</bean>
+	
+	<bean id="COUNTRY_ZM" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ZM"/>
+		<property name="name" value="Zambia"/>
+	</bean>
+	
+	<bean id="COUNTRY_ZW" class="com.abc.service.vo.NamePropertiesVO">
+		<property name="code" value="ZW"/>
+		<property name="name" value="Zimbabwe"/>
+	</bean>
+
+	<bean id="genericCountryList" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="COUNTRYLIST">
+					<bean class="java.util.ArrayList">
+						<constructor-arg>
+							<list>
+								<ref bean="COUNTRY_AF"/>
+								<ref bean="COUNTRY_AX2"/>
+								<ref bean="COUNTRY_AL"/>
+								<ref bean="COUNTRY_DZ"/>
+								<ref bean="COUNTRY_AS"/>
+								<ref bean="COUNTRY_AD"/>
+								<ref bean="COUNTRY_AO"/>
+								<ref bean="COUNTRY_AI"/>
+								<ref bean="COUNTRY_AQ"/>
+								<ref bean="COUNTRY_AG"/>
+								<ref bean="COUNTRY_AR"/>
+								<ref bean="COUNTRY_AM"/>
+								<ref bean="COUNTRY_AW"/>
+								<ref bean="COUNTRY_AT2"/>
+								<ref bean="COUNTRY_AU"/>
+								<ref bean="COUNTRY_AT"/>
+								<ref bean="COUNTRY_AZ"/>
+								<ref bean="COUNTRY_BS"/>
+								<ref bean="COUNTRY_BH"/>
+								<ref bean="COUNTRY_BD"/>
+								<ref bean="COUNTRY_BB"/>
+								<ref bean="COUNTRY_BS2"/>
+								<ref bean="COUNTRY_BY"/>
+								<ref bean="COUNTRY_BE"/>
+								<ref bean="COUNTRY_BZ"/>
+								<ref bean="COUNTRY_BJ"/>
+								<ref bean="COUNTRY_BM"/>
+								<ref bean="COUNTRY_BT"/>
+								<ref bean="COUNTRY_BO"/>
+								<ref bean="COUNTRY_BA"/>
+								<ref bean="COUNTRY_BW"/>
+								<ref bean="COUNTRY_BV"/>
+								<ref bean="COUNTRY_BR"/>
+								<ref bean="COUNTRY_IO"/>
+								<ref bean="COUNTRY_BVG"/>
+								<ref bean="COUNTRY_BN"/>
+								<ref bean="COUNTRY_BG"/>
+								<ref bean="COUNTRY_BF"/>
+								<ref bean="COUNTRY_MM"/>
+								<ref bean="COUNTRY_BI"/>
+								<ref bean="COUNTRY_KH"/>
+								<ref bean="COUNTRY_CM"/>
+								<ref bean="COUNTRY_CA"/>
+								<ref bean="COUNTRY_CV"/>
+								<ref bean="COUNTRY_KY"/>
+								<ref bean="COUNTRY_CF"/>
+								<ref bean="COUNTRY_TD"/>
+								<ref bean="COUNTRY_CL"/>
+								<ref bean="COUNTRY_CN"/>
+								<ref bean="COUNTRY_CX"/>
+								<ref bean="COUNTRY_IP2"/>
+								<ref bean="COUNTRY_CC"/>
+								<ref bean="COUNTRY_CO"/>
+								<ref bean="COUNTRY_KM"/>
+								<ref bean="COUNTRY_CD"/>
+								<ref bean="COUNTRY_CG"/>
+								<ref bean="COUNTRY_CK"/>
+								<ref bean="COUNTRY_CR2"/>
+								<ref bean="COUNTRY_CR"/>
+								<ref bean="COUNTRY_CI"/>
+								<ref bean="COUNTRY_HR"/>
+								<ref bean="COUNTRY_CU"/>
+								<ref bean="COUNTRY_CY"/>
+								<ref bean="COUNTRY_CZ"/>
+								<ref bean="COUNTRY_DK"/>
+								<ref bean="COUNTRY_AX3"/>
+								<ref bean="COUNTRY_DJ"/>
+								<ref bean="COUNTRY_DM"/>
+								<ref bean="COUNTRY_DO"/>
+								<ref bean="COUNTRY_EC"/>
+								<ref bean="COUNTRY_EG"/>
+								<ref bean="COUNTRY_SV"/>
+								<ref bean="COUNTRY_GQ"/>
+								<ref bean="COUNTRY_ER"/>
+								<ref bean="COUNTRY_EE"/>
+								<ref bean="COUNTRY_ET"/>
+								<ref bean="COUNTRY_EU2"/>
+								<ref bean="COUNTRY_FK"/>
+								<ref bean="COUNTRY_FO"/>
+								<ref bean="COUNTRY_FJ"/>
+								<ref bean="COUNTRY_FI"/>
+								<ref bean="COUNTRY_FR"/>
+								<ref bean="COUNTRY_GF"/>
+								<ref bean="COUNTRY_PF"/>
+								<ref bean="COUNTRY_TF"/>
+								<ref bean="COUNTRY_GA"/>
+								<ref bean="COUNTRY_GM"/>
+								<ref bean="COUNTRY_GZ2"/>
+								<ref bean="COUNTRY_GE"/>
+								<ref bean="COUNTRY_DE"/>
+								<ref bean="COUNTRY_GH"/>
+								<ref bean="COUNTRY_GI"/>
+								<ref bean="COUNTRY_GO2"/>
+								<ref bean="COUNTRY_GR"/>
+								<ref bean="COUNTRY_GL"/>
+								<ref bean="COUNTRY_GD"/>
+								<ref bean="COUNTRY_GP"/>
+								<ref bean="COUNTRY_GU"/>
+								<ref bean="COUNTRY_GT"/>
+								<ref bean="COUNTRY_GG"/>
+								<ref bean="COUNTRY_GN"/>
+								<ref bean="COUNTRY_GW"/>
+								<ref bean="COUNTRY_GY"/>
+								<ref bean="COUNTRY_HT"/>
+								<ref bean="COUNTRY_HM"/>
+								<ref bean="COUNTRY_VA"/>
+								<ref bean="COUNTRY_HN"/>
+								<ref bean="COUNTRY_HK"/>
+								<ref bean="COUNTRY_HU"/>
+								<ref bean="COUNTRY_IS"/>
+								<ref bean="COUNTRY_IN"/>
+								<ref bean="COUNTRY_ID"/>
+								<ref bean="COUNTRY_IR"/>
+								<ref bean="COUNTRY_IQ"/>
+								<ref bean="COUNTRY_IE"/>
+								<ref bean="COUNTRY_IM"/>
+								<ref bean="COUNTRY_IL"/>
+								<ref bean="COUNTRY_IT"/>
+								<ref bean="COUNTRY_JM"/>
+								<ref bean="COUNTRY_JM2"/>
+								<ref bean="COUNTRY_JP"/>
+								<ref bean="COUNTRY_JE"/>
+								<ref bean="COUNTRY_JO"/>
+								<ref bean="COUNTRY_JU2"/>
+								<ref bean="COUNTRY_KZ"/>
+								<ref bean="COUNTRY_KE"/>
+								<ref bean="COUNTRY_KI"/>
+								<ref bean="COUNTRY_KR"/>
+								<ref bean="COUNTRY_KP"/>
+								<ref bean="COUNTRY_KW"/>
+								<ref bean="COUNTRY_KG"/>
+								<ref bean="COUNTRY_LA"/>
+								<ref bean="COUNTRY_LV"/>
+								<ref bean="COUNTRY_LB"/>
+								<ref bean="COUNTRY_LS"/>
+								<ref bean="COUNTRY_LR"/>
+								<ref bean="COUNTRY_LY"/>
+								<ref bean="COUNTRY_LI"/>
+								<ref bean="COUNTRY_LT"/>
+								<ref bean="COUNTRY_LU"/>
+								<ref bean="COUNTRY_MO"/>
+								<ref bean="COUNTRY_MK"/>
+								<ref bean="COUNTRY_MG"/>
+								<ref bean="COUNTRY_MW"/>
+								<ref bean="COUNTRY_MY"/>
+								<ref bean="COUNTRY_MV"/>
+								<ref bean="COUNTRY_ML"/>
+								<ref bean="COUNTRY_MT"/>
+								<ref bean="COUNTRY_MH"/>
+								<ref bean="COUNTRY_MQ"/>
+								<ref bean="COUNTRY_MR"/>
+								<ref bean="COUNTRY_MU"/>
+								<ref bean="COUNTRY_YT"/>
+								<ref bean="COUNTRY_MX"/>
+								<ref bean="COUNTRY_FM"/>
+								<ref bean="COUNTRY_MD"/>
+								<ref bean="COUNTRY_MC"/>
+								<ref bean="COUNTRY_MN"/>
+								<ref bean="COUNTRY_MS"/>
+								<ref bean="COUNTRY_MA"/>
+								<ref bean="COUNTRY_MZ"/>
+								<ref bean="COUNTRY_NA"/>
+								<ref bean="COUNTRY_NR"/>
+								<ref bean="COUNTRY_BQ2"/>
+								<ref bean="COUNTRY_NP"/>
+								<ref bean="COUNTRY_NL"/>
+								<ref bean="COUNTRY_AN"/>
+								<ref bean="COUNTRY_NC"/>
+								<ref bean="COUNTRY_NZ"/>
+								<ref bean="COUNTRY_NI"/>
+								<ref bean="COUNTRY_NE"/>
+								<ref bean="COUNTRY_NG"/>
+								<ref bean="COUNTRY_NU"/>
+								<ref bean="COUNTRY_NF"/>
+								<ref bean="COUNTRY_MP"/>
+								<ref bean="COUNTRY_NO"/>
+								<ref bean="COUNTRY_OM"/>
+								<ref bean="COUNTRY_PK"/>
+								<ref bean="COUNTRY_PW"/>
+								<ref bean="COUNTRY_PA"/>
+								<ref bean="COUNTRY_PG"/>
+								<ref bean="COUNTRY_PF2"/>
+								<ref bean="COUNTRY_PY"/>
+								<ref bean="COUNTRY_PE"/>
+								<ref bean="COUNTRY_PH"/>
+								<ref bean="COUNTRY_PN"/>
+								<ref bean="COUNTRY_PL"/>
+								<ref bean="COUNTRY_PT"/>
+								<ref bean="COUNTRY_PR"/>
+								<ref bean="COUNTRY_QA"/>
+								<ref bean="COUNTRY_RE"/>
+								<ref bean="COUNTRY_RO"/>
+								<ref bean="COUNTRY_RU"/>
+								<ref bean="COUNTRY_RW"/>
+								<ref bean="COUNTRY_SH"/>
+								<ref bean="COUNTRY_KN"/>
+								<ref bean="COUNTRY_LC"/>
+								<ref bean="COUNTRY_PM"/>
+								<ref bean="COUNTRY_VC"/>
+								<ref bean="COUNTRY_WS"/>
+								<ref bean="COUNTRY_SM"/>
+								<ref bean="COUNTRY_ST"/>
+								<ref bean="COUNTRY_SA"/>
+								<ref bean="COUNTRY_SN"/>
+								<ref bean="COUNTRY_YU"/>
+								<ref bean="COUNTRY_SC"/>
+								<ref bean="COUNTRY_SL"/>
+								<ref bean="COUNTRY_SG"/>
+								<ref bean="COUNTRY_SK"/>
+								<ref bean="COUNTRY_SI"/>
+								<ref bean="COUNTRY_SB"/>
+								<ref bean="COUNTRY_SO"/>
+								<ref bean="COUNTRY_ZA"/>
+								<ref bean="COUNTRY_GS"/>
+								<ref bean="COUNTRY_ES"/>
+								<ref bean="COUNTRY_PG2"/>
+								<ref bean="COUNTRY_LK"/>
+								<ref bean="COUNTRY_SD"/>
+								<ref bean="COUNTRY_SR"/>
+								<ref bean="COUNTRY_SJ"/>
+								<ref bean="COUNTRY_SZ"/>
+								<ref bean="COUNTRY_SE"/>
+								<ref bean="COUNTRY_CH"/>
+								<ref bean="COUNTRY_SY"/>
+								<ref bean="COUNTRY_TW"/>
+								<ref bean="COUNTRY_TJ"/>
+								<ref bean="COUNTRY_TZ"/>
+								<ref bean="COUNTRY_TH"/>
+								<ref bean="COUNTRY_TL"/>
+								<ref bean="COUNTRY_TG"/>
+								<ref bean="COUNTRY_TK"/>
+								<ref bean="COUNTRY_TO"/>
+								<ref bean="COUNTRY_TT"/>
+								<ref bean="COUNTRY_TE2"/>
+								<ref bean="COUNTRY_TN"/>
+								<ref bean="COUNTRY_TR"/>
+								<ref bean="COUNTRY_TM"/>
+								<ref bean="COUNTRY_TC"/>
+								<ref bean="COUNTRY_TV"/>
+								<ref bean="COUNTRY_UG"/>
+								<ref bean="COUNTRY_UA"/>
+								<ref bean="COUNTRY_AE"/>
+								<ref bean="COUNTRY_UK"/>
+								<ref bean="COUNTRY_US"/>
+								<ref bean="COUNTRY_UY"/>
+								<ref bean="COUNTRY_UZ"/>
+								<ref bean="COUNTRY_VU"/>
+								<ref bean="COUNTRY_VE"/>
+								<ref bean="COUNTRY_VN"/>
+								<ref bean="COUNTRY_VG"/>
+								<ref bean="COUNTRY_WQ2"/>
+								<ref bean="COUNTRY_WF"/>
+								<ref bean="COUNTRY_WE2"/>
+								<ref bean="COUNTRY_EH"/>
+								<ref bean="COUNTRY_YE"/>
+								<ref bean="COUNTRY_ZM"/>
+								<ref bean="COUNTRY_ZW"/>
+							</list>
+						</constructor-arg>
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>

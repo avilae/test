@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	
+	<!-- OMEGA VENDOR INTEGRATION -->
+			
+  	<bean singleton="false" id="omegaDuplicateResultCheckInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.DuplicateResultCheckInterceptor"/>
+	
+  	<bean singleton="false" id="omegaFinderInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.OmegaFinderInterceptor"/>
+	
+  	<bean singleton="false" id="omegaResultStatusInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.OmegaResultStatusInterceptor"/>
+	
+  	<bean singleton="false" id="omegaRequestStatusInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.OmegaRequestStatusInterceptor"/>
+	
+  	<bean singleton="false" id="omegaNegativeResultInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.NegativeResultInterceptor"/>
+	
+  	<bean singleton="false" id="omegaNonNegativeResultInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.NonNegativeResultInterceptor"/>
+	
+  	<bean singleton="false" id="omegaCommitInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.CommitInterceptor"/>
+  	
+  	<bean singleton="false" id="omegaNotificationInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.NotificationInterceptor"/>
+	
+  	<bean singleton="false" id="omegaResponseInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.omega.interceptors.ResponseInterceptor"/>
+	
+	<bean id="omegaRequestProcessor"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target">
+			<bean class="com.abc.service.integrations.vendor.fw.omega.OmegaRequestProcessor"/>
+		</property>
+		<property name="proxyTargetClass"><value>true</value></property>
+		<property name="interceptorNames">
+		<list>
+			<!-- Interceptors -->
+			<value>omegaDuplicateResultCheckInterceptor</value>
+			<value>omegaFinderInterceptor</value>
+			<value>omegaResultStatusInterceptor</value>
+			<value>omegaRequestStatusInterceptor</value>
+			<value>omegaNegativeResultInterceptor</value>
+			<value>omegaNonNegativeResultInterceptor</value>
+			<value>omegaCommitInterceptor</value>
+			<value>omegaNotificationInterceptor</value>
+			<value>omegaResponseInterceptor</value>
+		</list>
+		</property>
+	</bean>
+  	
+  	<bean id="omegaResultProcessContext" class="com.abc.service.integrations.vendor.fw.VendorResultProcessContext" >
+  		<property name="contextName" value="OMEGA"/>
+  		<property name="requestProcessor" ref="omegaRequestProcessor"/>
+  	</bean>
+  	
+  	
+  	<!--       ESCREEN           -->
+  	<bean singleton="false" id="eScreenDuplicateResultCheckInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.DuplicateResultCheckInterceptor"/>
+	
+  	<bean singleton="false" id="eScreenFinderInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.EscreenFinderInterceptor"/>
+	
+  	<bean singleton="false" id="eScreenResultStatusInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.EscreenResultStatusInterceptor"/>     
+  		  		  		
+  	<bean singleton="false" id="eScreenRequestStatusInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.EscreenRequestStatusInterceptor"/>
+	
+  	<bean singleton="false" id="eScreenNegativeResultInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.NegativeResultInterceptor"/>
+	
+  	<bean singleton="false" id="eScreenNonNegativeResultInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.NonNegativeResultInterceptor"/>
+	
+  	<bean singleton="false" id="eScreenCommitInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.CommitInterceptor"/>
+  	
+  	<bean singleton="false" id="eScreenNotificationInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.NotificationInterceptor"/>
+	
+  	<bean singleton="false" id="eScreenResponseInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.escreen.interceptors.ResponseInterceptor"/>
+	
+  	<bean id="eScreenResultProcessContext" class="com.abc.service.integrations.vendor.fw.VendorResultProcessContext" >
+  		<property name="contextName" value="ESCREEN"/>
+  		<property name="requestProcessor" ref="eScreenRequestProcessor"/>
+  	</bean>
+  	
+  	<bean id="eScreenNegativeDiluteInterceptor" 
+  		  class="com.abc.service.integrations.vendor.fw.escreen.interceptors.NegativeDiluteResultInterceptor"
+  		  singleton="false" >
+  		  	<!-- special handing client list -->
+	  		<property name="clientCodes" >
+		        <list>
+		           <!-- <value>eScreen client codes</value>  -->		  			      
+		        </list>
+	  		</property>	  			
+	  		<property name="desiredResultStatus" value="Dilute"/>
+  	</bean>
+  		 
+  	<bean id="eScreenRequestProcessor"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target">
+			<bean class="com.abc.service.integrations.vendor.fw.escreen.EscreenRequestProcessor"/>
+		</property>
+		<property name="proxyTargetClass"><value>true</value></property>
+		<property name="interceptorNames">
+		<list>
+			<!-- Interceptors -->
+			<value>eScreenDuplicateResultCheckInterceptor</value>
+			<value>eScreenFinderInterceptor</value>			
+			<value>eScreenResultStatusInterceptor</value>
+			<value>eScreenRequestStatusInterceptor</value>	
+			<value>eScreenNegativeDiluteInterceptor</value>		
+			<value>eScreenNegativeResultInterceptor</value>
+			<value>eScreenNonNegativeResultInterceptor</value>
+			<value>eScreenCommitInterceptor</value>
+			<value>eScreenNotificationInterceptor</value>
+			<value>eScreenResponseInterceptor</value>
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="i3screenResultProcessContext" class="com.abc.service.integrations.vendor.fw.VendorResultProcessContext" >
+  		<property name="contextName" value="I3"/>
+  		<property name="requestProcessor" ref="i3screenRequestProcessor"/>
+  	</bean>
+  	
+  	<bean id="i3screenRequestProcessor"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target">
+			<bean class="com.abc.service.integrations.vendor.fw.i3screen.I3screenRequestProcessor"/>
+		</property>
+		<property name="proxyTargetClass"><value>true</value></property>
+		<property name="interceptorNames">
+		<list>
+			<!-- Interceptors -->
+			<!-- Duplicate check, based on provider reference number (ex. 2012082210005) and vendor code (I3) -->
+			<value>i3screenDuplicateResultCheckInterceptor</value>
+			<!-- Try to find a subject match -->
+			<value>i3screenFinderInterceptor</value>			
+			<!-- Determine the i3Screen DT Result Status: Positive, Negative, Negative-Dilute, Non-Negative, etc. -->
+			<value>i3screenResultStatusInterceptor</value>
+			<!-- Determine if the DT results have pending (P) search match in the DB -->
+			<value>i3screenRequestStatusInterceptor</value>	
+			<!-- If special client, don't put negative dilute results in the basket. By default, negative dilute goes to the basket -->
+			<value>i3screenNegativeDiluteInterceptor</value>		
+			<!-- If negative results and match found, complete the Drug "D%" and MRON Components -->
+			<value>i3screenNegativeResultInterceptor</value>
+			<!-- Identify is we have non-negative results -->
+			<value>i3screenNonNegativeResultInterceptor</value>
+			<!-- Commit -->
+			<value>i3screenCommitInterceptor</value>
+			<!-- Send email -->
+			<value>i3screenNotificationInterceptor</value>
+			<!-- Prepare response -->
+			<value>i3screenResponseInterceptor</value>
+		</list>
+		</property>
+	</bean>
+	
+	<!--       I3SCREEN           -->
+  	<bean singleton="false" id="i3screenDuplicateResultCheckInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.DuplicateResultCheckInterceptor"/>
+	
+  	<bean id="i3screenFinderInterceptor" 
+  		  class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.I3screenFinderInterceptor"
+  		  singleton="false" >
+		<property name="researcherId" value="71445"/>
+		<property name="addlResearcherIds" >
+			<list>
+		     	<value>71448</value>		  			      
+		        <value>71450</value>		  			      
+		        <value>71451</value>
+		        <value>71617</value>
+		     </list>
+		</property>	  			
+		<property name="mapLabNames2ResearcherIds" >
+		    <map>
+    			<entry key="LABCORP" value="71445" />
+    			<entry key="QUEST" value="71448" />
+    			<entry key="MEDTOX" value="71450" />
+    			<entry key="ATN" value="71451" />
+    			<entry key="CONCENTRA" value="71617" />
+    		</map>    	
+		</property>	  			
+  	</bean>
+	
+  	<bean singleton="false" id="i3screenResultStatusInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.I3screenResultStatusInterceptor"/>     
+  		  		  		
+  	<bean singleton="false" id="i3screenRequestStatusInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.I3screenRequestStatusInterceptor"/>
+	
+  	<bean singleton="false" id="i3screenNegativeResultInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.NegativeResultInterceptor"/>
+	
+  	<bean singleton="false" id="i3screenNonNegativeResultInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.NonNegativeResultInterceptor"/>
+	
+  	<bean singleton="false" id="i3screenCommitInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.CommitInterceptor"/>
+  	
+  	<bean singleton="false" id="i3screenNotificationInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.NotificationInterceptor"/>
+	
+  	<bean singleton="false" id="i3screenResponseInterceptor" 
+  		class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.ResponseInterceptor"/>
+	  	
+  	<bean id="i3screenNegativeDiluteInterceptor" 
+  		  class="com.abc.service.integrations.vendor.fw.i3screen.interceptors.NegativeDiluteResultInterceptor"
+  		  singleton="false" >
+  		  	<!-- special handing client list -->
+	  		<property name="clientCodes" >
+		        <list>
+		           <!-- <value>eScreen client codes</value>  -->		  			      
+		        </list>
+	  		</property>	  			
+	  		<property name="desiredResultStatus" value="Dilute"/>
+  	</bean>
+  	
+	<!--       FACTORY           -->
+	<bean id="vendorResultContextFactory" 
+		class="com.abc.service.integrations.vendor.fw.VendorResultContextFactory">
+		<property name="contexts" >
+		<map>
+			<entry>
+				<key><value>OMEGA</value></key>
+       			<ref bean="omegaResultProcessContext" />
+			</entry>
+			<entry>
+				<key><value>ESCREEN</value></key>
+       			<ref bean="eScreenResultProcessContext" />
+			</entry>
+			<entry>
+				<key><value>I3</value></key>
+       			<ref bean="i3screenResultProcessContext" />
+			</entry>
+		</map>
+		</property>
+	</bean>
+	
+	<bean id="transformationResolver" 
+    	  class="com.abc.ws.integrations.vendor.results.TransformationResolver">
+        <property name="transformationMap">
+        	<map>
+				<entry>
+					<key><value>OMEGA</value></key>
+       				<value>omega/omega_result_report.xsl</value>
+				</entry>
+				<entry>
+					<key><value>ESCREEN</value></key>
+       				<value>escreen/escreen_result_report.xsl</value>
+				</entry>
+				<entry>
+					<key><value>I3</value></key>
+       				<value>i3screen/i3screen_result_report.xsl</value>
+				</entry>
+			</map>
+        </property>
+    </bean>
+	
+</beans>

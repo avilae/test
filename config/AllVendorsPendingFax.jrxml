@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="VendorPendingFax"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="VendorID" isForPrompting="true" class="java.lang.Integer"/>
+	<queryString><![CDATA[SELECT * FROM v_PendingSearchesWEta WHERE InternalResearcher is null and FaxResearcher is not null ORDER BY vendorid, request_print_datetime]]></queryString>
+
+	<field name="search_id" class="java.lang.Integer"/>
+	<field name="request_print_datetime" class="java.sql.Timestamp"/>
+	<field name="vendorId" class="java.lang.Integer"/>
+	<field name="requestorId" class="java.lang.Integer"/>
+	<field name="search_status" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="search_type_code" class="java.lang.String"/>
+	<field name="CountyName" class="java.lang.String"/>
+	<field name="state_code" class="java.lang.String"/>
+	<field name="sbj_last_name" class="java.lang.String"/>
+	<field name="sbj_first_name" class="java.lang.String"/>
+	<field name="sbj_middle" class="java.lang.String"/>
+	<field name="sbj_mothers_maiden_name" class="java.lang.String"/>
+	<field name="AKA1" class="java.lang.String"/>
+	<field name="AKA2" class="java.lang.String"/>
+	<field name="AKA3" class="java.lang.String"/>
+	<field name="FormatDOB" class="java.sql.Timestamp"/>
+	<field name="sbj_ssn" class="java.lang.String"/>
+	<field name="VendorName" class="java.lang.String"/>
+	<field name="vendorPhone" class="java.lang.String"/>
+	<field name="vendorCompId" class="java.lang.Integer"/>
+	<field name="vendorCompCode" class="java.lang.String"/>
+	<field name="vendorCompName" class="java.lang.String"/>
+	<field name="clientCompId" class="java.lang.Integer"/>
+	<field name="clientCompCode" class="java.lang.String"/>
+	<field name="clientCompName" class="java.lang.String"/>
+	<field name="search_type_category" class="java.lang.String"/>
+	<field name="order_datetime" class="java.sql.Timestamp"/>
+	<field name="etaId" class="java.lang.Integer"/>
+	<field name="isPastDue" class="java.lang.Integer"/>
+	<field name="InternalResearcher" class="java.lang.Integer"/>
+	<field name="FaxResearcher" class="java.lang.Integer"/>
+	<field name="client_note" class="java.lang.String"/>
+	<field name="status_note" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="searchId" class="java.lang.Integer"/>
+	<field name="followUpDate" class="java.sql.Timestamp"/>
+	<field name="followUpTime" class="java.lang.String"/>
+	<field name="followUpNote" class="java.lang.String"/>
+	<field name="followUpTypeId" class="java.lang.Integer"/>
+	<field name="createdUser" class="java.lang.Integer"/>
+	<field name="createdDate" class="java.sql.Timestamp"/>
+	<field name="user_fax" class="java.lang.String"/>
+
+	<variable name="PendingCount" class="java.lang.Integer" resetType="Group" resetGroup="Vendor" calculation="Nothing">
+		<variableExpression><![CDATA[$V{PendingCount}==null ? new Integer(0) : new Integer( $V{PendingCount}.intValue() + 1 )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(0)]]></initialValueExpression>
+	</variable>
+	<variable name="PastDueCount" class="java.lang.Integer" resetType="Group" resetGroup="Vendor" calculation="Nothing">
+		<variableExpression><![CDATA[($F{isPastDue}!=null && $F{isPastDue}.intValue()==1) ? $V{PastDueCount}==null ? new Integer(0) : new Integer( $V{PastDueCount}.intValue() + 1 ) : $V{PastDueCount}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(0)]]></initialValueExpression>
+	</variable>
+
+		<group  name="Vendor" isStartNewPage="true" isResetPageNumber="true" >
+			<groupExpression><![CDATA[$F{vendorId}]]></groupExpression>
+			<groupHeader>
+			<band height="98"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="6"
+						width="198"
+						height="14"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Vendor: "+$F{VendorName}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="199"
+						y="6"
+						width="174"
+						height="13"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Phone Number: " + $F{vendorPhone}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="376"
+						y="6"
+						width="156"
+						height="13"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font fontName="Verdana" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Fax Number: " + $F{user_fax}]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="67"
+						width="535"
+						height="0"
+						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="97"
+						width="535"
+						height="0"
+						key="line-5"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="0"
+						y="71"
+						width="51"
+						height="17"
+						key="staticText-4"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Search ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="61"
+						y="71"
+						width="60"
+						height="25"
+						key="staticText-5"
+						isPrintWhenDetailOverflows="true"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Request Print Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="123"
+						y="71"
+						width="66"
+						height="17"
+						key="staticText-6"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Candidate Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="306"
+						y="71"
+						width="25"
+						height="25"
+						key="staticText-7"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[SSN DOB]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="373"
+						y="72"
+						width="68"
+						height="24"
+						key="staticText-8"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[County/ST Search Type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="471"
+						y="71"
+						width="36"
+						height="17"
+						key="staticText-9"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Status]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="6"
+						y="28"
+						width="523"
+						height="22"
+						key="staticText-11"/>
+					<box></box>
+					<textElement>
+						<font fontName="Arial" size="8"/>
+					</textElement>
+				<text><![CDATA[These requests are PAST DUE or PENDING. PAST DUE is calculated by 48 hours after the Request Print Date. For the PAST DUE requests, please call or fax us with the status. All other requests, please verify that you have received these requests.]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="24"
+						width="535"
+						height="0"
+						key="line-8"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="356"
+						y="50"
+						width="173"
+						height="13"
+						forecolor="#FFFFFF"
+						key="textField-2"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font fontName="Verdana" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["fax_number " + $F{user_fax}]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="67"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="5"
+						y="7"
+						width="77"
+						height="18"
+						key="staticText-1"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<text><![CDATA[SUMMARY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="21"
+						y="19"
+						width="263"
+						height="12"
+						key="staticText-2"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<text><![CDATA[Total Number of searches in a Pending status:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="21"
+						y="32"
+						width="263"
+						height="12"
+						key="staticText-3"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<text><![CDATA[Total Number of printed searches that are Past Due:]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="49"
+						width="535"
+						height="0"
+						key="line-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="292"
+						y="19"
+						width="87"
+						height="12"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$V{PendingCount}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="292"
+						y="32"
+						width="88"
+						height="14"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$V{PastDueCount}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="4"
+						y="52"
+						width="32"
+						height="14"
+						forecolor="#CCCCCC"
+						key="staticText-21"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="8"/>
+					</textElement>
+				<text><![CDATA[@#]]></text>
+				</staticText>
+			</band>
+			</groupFooter>
+		</group>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="50"  isSplitAllowed="true" >
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="48"
+						width="535"
+						height="0"
+						key="line-3"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="166"
+						y="-1"
+						width="203"
+						height="19"
+						key="staticText-18"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+				<text><![CDATA[Accurate Background Inc.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="2"
+						y="33"
+						width="532"
+						height="13"
+						key="staticText-19"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<text><![CDATA[7515 Irvine Center Dr. | Irvine, CA 92618 | Ph. 800.784.3911 | Fx 949.609.0166]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="191"
+						y="13"
+						width="151"
+						height="15"
+						key="staticText-20"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+				<text><![CDATA[Status Report]]></text>
+				</staticText>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="116"  isSplitAllowed="true" >
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="114"
+						width="535"
+						height="0"
+						key="line-4"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="3"
+						width="60"
+						height="31"
+						key="textField"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{search_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="123"
+						y="4"
+						width="183"
+						height="59"
+						key="textField"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sbj_last_name} + " " + $F{sbj_first_name} + " " + $F{sbj_middle}
++($F{AKA1}!=null ? "\n" + $F{AKA1} : "")
++($F{AKA2}!=null ? "\n" + $F{AKA2} : "")
++($F{AKA3}!=null ? "\n" + $F{AKA3} : "")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="372"
+						y="3"
+						width="94"
+						height="37"
+						key="textField"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{CountyName}!=null ? $F{CountyName} : "None") + ", " + $F{state_code} + "\n" + $F{search_type_code}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="471"
+						y="2"
+						width="63"
+						height="38"
+						key="textField"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{status}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="306"
+						y="3"
+						width="60"
+						height="37"
+						key="textField"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sbj_ssn} + "\n" + (($F{FormatDOB}!=null) ? (new SimpleDateFormat("MM/dd/yyyy")).format($F{FormatDOB}) : "")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="61"
+						y="3"
+						width="60"
+						height="13"
+						key="textField"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{request_print_datetime}!=null) ? (new SimpleDateFormat("MM/dd/yyyy")).format($F{request_print_datetime}) : ""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="1"
+						y="69"
+						width="530"
+						height="14"
+						key="textField"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Client Note: " + ($F{sbj_mothers_maiden_name}!=null && $F{sbj_mothers_maiden_name}.trim().length() > 0 && $F{search_type_code}.equals("ST") && $F{state_code}.equals("PR") ? "Mother's Maiden Name: "+$F{sbj_mothers_maiden_name}+" (For Spanish Countries only, mother's maiden name) " : "") + ($F{client_note}!=null ? ""+(new String($F{client_note})) : "")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="1"
+						y="83"
+						width="533"
+						height="15"
+						key="textField"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Internal Status Note: " + ($F{status_note}!=null ? ""+(new String($F{status_note})) : "")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="1"
+						y="98"
+						width="50"
+						height="14"
+						key="staticText-12"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[ETA Info:]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement
+						mode="Transparent"
+						x="4"
+						y="52"
+						width="11"
+						height="11"
+						key="rectangle-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="17"
+						y="52"
+						width="16"
+						height="12"
+						key="staticText-14"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[NR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="54"
+						y="53"
+						width="16"
+						height="12"
+						key="staticText-15"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[YR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="389"
+						y="53"
+						width="61"
+						height="11"
+						key="staticText-16"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Cases Found]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="482"
+						y="53"
+						width="50"
+						height="12"
+						key="staticText-17"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[How Many?]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement
+						mode="Transparent"
+						x="376"
+						y="53"
+						width="11"
+						height="11"
+						key="rectangle-2"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<line direction="TopDown">
+					<reportElement
+						mode="Transparent"
+						x="464"
+						y="62"
+						width="16"
+						height="0"
+						key="line-6"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						mode="Transparent"
+						x="39"
+						y="62"
+						width="16"
+						height="0"
+						key="line-7"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="61"
+						y="16"
+						width="60"
+						height="18"
+						key="textField-1"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{request_print_datetime}!=null) ? (new SimpleDateFormat("hh:mm a")).format($F{request_print_datetime}) : ""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="440"
+						y="98"
+						width="94"
+						height="14"
+						key="textField"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font fontName="Verdana" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{isPastDue}!=null && $F{isPastDue}.intValue()==1) ? "* PAST DUE *" : ""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="52"
+						y="98"
+						width="373"
+						height="14"
+						key="textField"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box></box>
+					<textElement>
+						<font fontName="Verdana" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{followUpNote}!=null) ? $F{followUpNote} : ""]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

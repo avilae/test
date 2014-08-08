@@ -57,43 +57,11 @@
 				<entry>
 					<key><value>BATCHRESPONSE_SXMR</value></key>
 					<value>jrxml/BatchResultReportSxmr.jrxml</value>
-				</entry>			
-				<entry>
-					<key><value>BATCHRESPONSE_MOBILE</value></key>
-					<value>jrxml/BatchResultReportMOBILE.jrxml</value>
-				</entry>
-				<entry>
-					<key><value>BATCHRESPONSE_AmazonUK</value></key>
-					<value>jrxml/BatchResultReportAmazonUK.jrxml</value>
 				</entry>	
-				<entry>
-					<key><value>BATCHRESPONSE_NRPC</value></key>
-					<value>jrxml/BatchResultReportNRPCACK.jrxml</value>
-				</entry>	
-				<entry>
-					<key><value>BATCHRESPONSE_NRPCACK</value></key>
-					<value>jrxml/BatchResultReportNRPCACK.jrxml</value>
-				</entry>		
 				<entry>
 					<key><value>BATCHRESPONSE_TREM</value></key>
-					<value>jrxml/BatchResultReportTREM.jrxml</value>	
-				</entry>				
-				<entry>
-					<key><value>BATCHRESPONSE_UFCU</value></key>
-					<value>jrxml/BatchResultReportAmazonUK.jrxml</value>
-				</entry>
-				<entry>
-					<key><value>BATCHRESPONSE_Lifetouch</value></key>
-					<value>jrxml/BatchResultReportLifetouch.jrxml</value>
-				</entry>
-				<entry>
-					<key><value>BATCHRESPONSE_TECON</value></key>
-					<value>jrxml/BatchResultReportTECON.jrxml</value>					
-				</entry>
-				<entry>
-					<key><value>BATCHRESPONSE_UUHHR</value></key>
-					<value>jrxml/BatchResultReportUUHHR.jrxml</value>
-				</entry>
+					<value>jrxml/BatchResultReportTREM.jrxml</value>
+				</entry>						
 			</map>
 		</property>
 	</bean>

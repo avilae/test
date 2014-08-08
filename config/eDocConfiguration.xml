@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+
+notificationConfiguration values:
+A = ALL
+R = Requestor only 
+C = Candidate only
+
+Global one can't be included if company has a package that they don't want EDOC setup for.
+
+GLOBAL SETTING SAMPLE 
+<bean class="com.abc.service.doccollection.DefaultEDocRule">
+    <property name="notificationConfiguration" value="A"/>	
+	<property name="beanName" value="com.abc.bo.hbm.Search"/>
+	<property name="propName" value="subStatus"/>
+	<property name="expectedResult" value="unable to verify"/>
+</bean>	 
+ -->
+ 
+ <!--  global setting for all packages where notification goes to rec and can -->
+ <bean id="DEFAULT_GLOBAL_ALL" class="com.abc.service.doccollection.DefaultEDocRule">
+ 	<property name="notificationConfiguration" value="A"/>				
+	<property name="beanName" value="com.abc.bo.hbm.Search"/>
+	<property name="propName" value="subStatus"/>
+	<property name="expectedResult" value="unable to verify"/>
+ </bean>
+  <!--  global setting for all packages where notification goes to CANDIDATE only -->
+ <bean id="DEFAULT_GLOBAL_CAN" class="com.abc.service.doccollection.DefaultEDocRule">
+ 	<property name="notificationConfiguration" value="C"/>				
+	<property name="beanName" value="com.abc.bo.hbm.Search"/>
+	<property name="propName" value="subStatus"/>
+	<property name="expectedResult" value="unable to verify"/>
+ </bean>
+ 
+	<bean id="ABTECH" class="com.abc.service.doccollection.EDocConfig">			
+		<property name="eDocRules">
+			<list>	 			
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="notificationConfiguration" value="A"/>
+					<property name="packageCode" value="1973"/>
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>				
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="notificationConfiguration" value="R"/>
+					<property name="packageCode" value="1979"/>
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>					
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>				
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="notificationConfiguration" value="C"/>
+					<property name="packageCode" value="2757"/>
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>
+				<!-- will fail for this package -->
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="notificationConfiguration" value="R"/>
+					<property name="packageCode" value="2021"/>								
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="STARE" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_CAN"/>	
+		</list>
+		</property>
+	</bean>
+	<bean id="STARNR" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->			
+			<ref bean="DEFAULT_GLOBAL_CAN"/>
+		</list>
+		</property>
+	</bean>
+	<bean id="STARP" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_CAN"/>
+		</list>
+		</property>
+	</bean>
+	<bean id="EVOFR" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_CAN"/>
+		</list>
+		</property>
+	</bean>	
+	<bean id="SEABE" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_CAN"/>	
+		</list>
+		</property>
+	</bean>	
+	<bean id="STARC" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_CAN"/>	
+		</list>
+		</property>
+	</bean>	
+	<bean id="STLB" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_CAN"/>	
+		</list>
+		</property>
+	</bean>		
+	<bean id="ADT" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules" >
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_ALL"/>			
+		</list>
+		</property>
+	</bean>		
+	<bean id="NEST" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_CAN"/>
+		</list>
+		</property>
+	</bean>	
+	<bean id="PENTA" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_ALL"/>
+		</list>
+		</property>
+	</bean>	
+	
+	<bean id="ROCKT" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_ALL"/>
+		</list>
+		</property>
+	</bean>	
+	<bean id="TFS" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_ALL"/>
+		</list>
+		</property>
+	</bean>
+	<bean id="TYADT" class="com.abc.service.doccollection.EDocConfig">
+		<property name="eDocRules">
+		<list>	 			
+			<!-- applies to all packages -->
+			<ref bean="DEFAULT_GLOBAL_ALL"/>
+		</list>
+		</property>
+	</bean>
+	<bean id="URI" class="com.abc.service.doccollection.EDocConfig">			
+		<property name="eDocRules">
+			<list>	 			
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5285"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5286"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5459"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5719"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5720"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5865"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5955"/>
+				    <property name="notificationConfiguration" value="A"/>
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+			</list>
+		</property>
+	</bean>
+	<bean id="COBA" class="com.abc.service.doccollection.EDocConfig">			
+		<property name="eDocRules">
+			<list>
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5480"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5570"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5571"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="5572"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+				<bean class="com.abc.service.doccollection.DefaultEDocRule">
+				    <property name="packageCode" value="6028"/>
+				    <property name="notificationConfiguration" value="A"/>					
+					<property name="beanName" value="com.abc.bo.hbm.Search"/>
+					<property name="propName" value="subStatus"/>
+					<property name="expectedResult" value="unable to verify"/>
+				</bean>	
+			</list>
+		</property>
+	</bean>
+	<!-- FACTORY  -->
+	<bean id="eDocConfigFactory" class="com.abc.service.doccollection.EDocConfigFactory">
+		<property name="contextMap">
+			 <map>
+			 	<entry key="ABTECH" value-ref="ABTECH"/>
+			 	<entry key="STARE"  value-ref="STARE"/>
+			 	<entry key="STARNR" value-ref="STARNR"/>
+			 	<entry key="STARP"  value-ref="STARP"/>
+			 	<entry key="EVOFR"  value-ref="EVOFR"/>
+			 	<entry key="SEABE"  value-ref="SEABE"/>
+			 	<entry key="NEST" 	value-ref="NEST"/>
+			 	<entry key="ROCKT"  value-ref="ROCKT"/>
+			 	<entry key="TFS"  	value-ref="TFS"/>
+			 	<entry key="TYADT"  value-ref="TYADT"/>
+			 	
+			 	<entry key="ADT"  	value-ref="ADT"/>			 	
+			 	<entry key="PENTA"  value-ref="PENTA"/>
+			 	<entry key="STARC"  value-ref="STARC"/>	
+			 	<entry key="STLB"  	value-ref="STLB"/>				 				 				 
+			 	<entry key="URI"  	value-ref="URI"/>
+			 	<entry key="COBA"  	value-ref="COBA"/>			 	
+			 </map>
+		</property>
+	</bean>
+
+</beans>

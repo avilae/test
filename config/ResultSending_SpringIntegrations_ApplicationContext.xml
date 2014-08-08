@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:int-redis="http://www.springframework.org/schema/integration/redis"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:int-jdbc="http://www.springframework.org/schema/integration/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration/redis http://www.springframework.org/schema/integration/redis/spring-integration-redis.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+	<!--*********-->
+	<!-- Loggers -->
+	<!--*********-->
+	<int:logging-channel-adapter id="logger" channel="auditChannel" />
+
+	<!--************-->
+	<!-- Properties -->
+	<!--************-->
+ 	<!-- <context:property-placeholder location="jdbc.properties"/> -->
+
+	<!--**********-->
+	<!-- Adapters -->
+	<!--**********-->
+
+	<!-- Directory Input Polling Adapters -->
+	<int-file:inbound-channel-adapter
+		auto-create-directory="true"
+		directory="C:/FilterLog/SpringIntegrations/input/data"
+		prevent-duplicates="false" filename-pattern="start.trigger"
+		channel="sp2split" id="DIR_POLL">
+		<int:poller id="AB_Message_Poller"  max-messages-per-poll="1"  cron="0 */15 * * * *" />
+	</int-file:inbound-channel-adapter>
+	
+	<!-- Directory Output Adapters -->
+	<int-file:outbound-channel-adapter
+		auto-create-directory="true"
+		filename-generator="nameGenerator"
+		mode="APPEND"
+		directory="\\LF-ABVM-FSDEV01/DEV/MyDocuments/TEST/AMAZT_HRIS/batch_results"
+		delete-source-files="true" channel="results2file">
+	</int-file:outbound-channel-adapter>
+	<int-file:outbound-channel-adapter
+		auto-create-directory="true"
+		filename-generator="nameGenerator"
+		directory="C:/FilterLog/SpringIntegrations/output/deadend"
+		channel="deadend2file" delete-source-files="true">
+	</int-file:outbound-channel-adapter>
+
+	<bean id="nameGenerator" class="com.abc.springIntegrations.Amazon.PeopleSoft.FileNameGenerator">
+		<property name="baseDirectory" value="\\LF-ABVM-FSDEV01/DEV/MyDocuments/TEST/AMAZT_HRIS/batch_results" />
+	</bean>
+
+
+	<!--**********-->
+	<!-- Channels -->
+	<!--**********-->
+	<int:channel id="auditChannel" />
+	<int:channel id="sp2split" />
+	<int:channel id="split2parse" />
+	<int:channel id="results2output" />
+	<int:channel id="parse2route">
+		<int:interceptors>
+			<int:wire-tap channel="auditChannel" />
+		</int:interceptors>
+	</int:channel>
+	<int:channel id="results2deadend" />
+	<int:channel id="results2file" />
+	<int:channel id="deadend2file" />
+	<int:channel id="route2aggregate" />
+
+	<!--**************-->
+	<!-- Transformers -->
+	<!--**************-->
+		
+	<!-- Split the ResultSet > 1 to multiple message -->
+	<int:splitter id="MESSAGE_RECEIVER_SPLITTER" 
+		input-channel="sp2split" 
+		output-channel="split2parse">
+		<bean id="messageReceiverSplitter" class="com.abc.springIntegrations.Amazon.PeopleSoft.MessageReceiverSplitter" />
+	</int:splitter>	
+	
+	<int:transformer id="PARSE" 
+		method="transform" 
+		input-channel="split2parse"
+		output-channel="parse2route">
+		<bean id="PollingTransformer" class="com.abc.springIntegrations.Amazon.PeopleSoft.PollingTransformer" />
+	</int:transformer>
+
+	<bean id="resultsAggregatorBean" class="com.abc.springIntegrations.Amazon.PeopleSoft.ResultsAggregator" />
+	<int:aggregator id="RESULTS_AGGREGATOR"
+		input-channel="route2aggregate"
+		output-channel="results2output"
+		ref="resultsAggregatorBean"
+		method="aggregateResults"
+		correlation-strategy="resultsAggregatorBean"
+		correlation-strategy-method="correlatingStrategyFor"
+		expire-groups-upon-completion="true"
+		message-store="messageStore"
+		release-strategy-expression="size() == 50000"
+		send-partial-result-on-expiry="true">
+	</int:aggregator>
+
+	<int:transformer id="SERIALIZE" 
+    	method="transform"
+        input-channel="results2output" 
+        output-channel="results2file">
+        <bean id="OutputTransformerPeopleSoft" class="com.abc.springIntegrations.Amazon.PeopleSoft.OutputTransformerPeopleSoft" />
+    </int:transformer>	
+
+    <int:transformer method="transform"
+        input-channel="results2deadend" 
+        output-channel="deadend2file">
+        <bean id="OutputTransformerDE" class="com.abc.springIntegrations.Amazon.PeopleSoft.OutputTransformerPeopleSoft" />
+    </int:transformer>	
+	
+
+	<!--******************************-->
+    <!-- Message Store and schedulers -->
+    <!--******************************-->
+	
+	
+	<!-- SimpleMessageStore - in memory -->
+	<bean id="messageStore" class="org.springframework.integration.store.SimpleMessageStore"/>
+	
+	<!-- Redis NoSQL SB MessageStore - persistent - requires Redis server -->
+	<!--
+	<bean id="messageStore" class="org.springframework.integration.redis.store.RedisMessageStore">
+	    <constructor-arg ref="redisConnectionFactory"/>
+	</bean>	
+	<bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" p:hostName="localhost" p:port="6379" />
+	-->
+
+	<!-- JDBC Message Store using MS-SQL Server -->
+	<!-- 
+ 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+ 		<property name="driverClass" value="net.sourceforge.jtds.jdbc.Driver"/>
+	    <property name="jdbcUrl" value="jdbc:jtds:sqlserver://ABLFVM3F5818:1433;/ABCNEW_DEV;"/>
+	    <property name="user" value="jboss_ATMapp"/>
+	    <property name="password" value="Btx9k.wxTuz"/>
+ 	</bean>
+	<int-jdbc:message-store id="messageStore" data-source="dataSource" table-prefix="INT_"/>
+ 	-->	
+	
+	<bean id="reaper" class="org.springframework.integration.store.MessageGroupStoreReaper">
+		<property name="messageGroupStore" ref="messageStore"/>
+		<property name="timeout" value="0"/>
+	</bean>
+	
+	<task:scheduler id="scheduler" pool-size="10"/>	
+
+	<task:scheduled-tasks scheduler="scheduler" >
+		<task:scheduled ref="reaper" method="run" cron="45 */15 * * * *"/>
+	</task:scheduled-tasks>
+
+	<bean id="writeEmptyFile" class="com.abc.springIntegrations.Amazon.PeopleSoft.WriteEmptyFile">
+       	<property name="headerNames" value="PersonID,SSN,BGC_StatusResult,BGC_StatusResult_Date,DOB,JobID"/>
+		<property name="outputDir" value="\\LF-ABVM-FSDEV01/DEV/MyDocuments/TEST/AMAZT_HRIS/batch_results" />
+	</bean>
+	<!-- 	
+	<task:scheduled-tasks scheduler="scheduler" >
+		<task:scheduled ref="writeEmptyFile" method="run" cron="0 */15 * * * *"/>
+	</task:scheduled-tasks>
+ 	-->
+
+	<!--*********-->
+    <!-- Routers -->
+	<!--*********-->
+    <int:router 
+    	id="FILTER"
+        method="routeToChannel" 
+        input-channel="parse2route"
+        default-output-channel="route2aggregate" >
+        <bean id="customRouter" class="com.abc.springIntegrations.Amazon.PeopleSoft.MessageRouter"/>
+    </int:router>
+
+
+
+
+</beans>

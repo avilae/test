@@ -1465,11 +1465,15 @@
         		<ref bean="HYBRID_DuplicateSearchDefinition" />
       		</entry>
 			<entry>
-        		<key><value>USANA</value></key>
+        		<key><value>SNS</value></key>
         		<ref bean="HYBRID_DuplicateSearchDefinition" />
       		</entry>
 			<entry>
-        		<key><value>SNS</value></key>
+        		<key><value>LITT</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+      		<entry>
+        		<key><value>AREV</value></key>
         		<ref bean="HYBRID_DuplicateSearchDefinition" />
       		</entry>
 			<entry>
@@ -1477,13 +1481,13 @@
         		<ref bean="HYBRID_DuplicateSearchDefinition" />
       		</entry>
 			<entry>
+        		<key><value>USANA</value></key>
+        		<ref bean="HYBRID_DuplicateSearchDefinition" />
+      		</entry>
+			<entry>
         		<key><value>VALI</value></key>
         		<ref bean="VALI_DuplicateSearchDefinition" />
       		</entry>
-      		<entry>
-				<key><value>UUHHR</value></key>
-				<ref bean="HYBRID_DuplicateSearchDefinition" />
-			</entry>
 		</map>
 		</property>
 	</bean>
