@@ -99,7 +99,7 @@ public class BackgroundReportEndpoint extends AbstractXomPayloadEndpoint {
 
 		Element respElement = null;
 		nu.xom.Document respDoc = builder.build( response.xmlText(), element.getNamespaceURI() );
-		log.debug( "resp doc:\n" + respDoc.toXML() );
+		log.debug( "resp doc TO MASTER:\n" + respDoc.toXML() );
 		writeRespLogFile(logTimestamp, false, refId, respDoc.toXML());
 		if( responseXSLTFileName!=null ){
 			nu.xom.Document transformedRespDoc = transform(responseXSLTFileName, respDoc);
