@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- Define Fields -->
+	<bean id="uuhhr_header" class="com.abc.integration.batch.datablock.DataBlock">
+		<property name="type" value="HEADER" />
+		<property name="dataField">
+			<list>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_clientRefNumber" />
+					<property name="fieldName" value="ClientReferenceNumber" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_refNumber2" />
+					<property name="fieldName" value="BillingCode1" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_refNumber3" />
+					<property name="fieldName" value="BillingCode2" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_refNumber4" />
+					<property name="fieldName" value="BillingCode3" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_refNumber5" />				
+					<property name="fieldName" value="BillingCode4" />		
+					</bean>		
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_packageCode" />
+					<property name="fieldName" value="PackageCode" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_companyCode" />
+					<property name="fieldName" value="CompanyCode" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_requestorEmail" />
+					<property name="fieldName" value="RequestorEmail" />
+				</bean>	
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_requestorId" />
+					<property name="fieldName" value="RequestorUserID" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="PACKAGE_printSBJFlag" />
+					<property name="fieldName" value="SubjectNotification" />
+				</bean>
+							
+			</list>			
+		</property>
+	</bean>
+
+	<bean id="uuhhr_subject" class="com.abc.integration.batch.datablock.DataBlock">
+		<property name="type" value="SUBJECT" />
+		<property name="dataField">
+			<list>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_FIRSTNAME" />
+					<property name="fieldName" value="FirstName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_LASTNAME" />
+					<property name="fieldName" value="LastName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_MIDDLE" />
+					<property name="fieldName" value="Middle" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_AKA1_LASTNAME" />
+					<property name="fieldName" value="AKA1LastName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_AKA1_FISRTNAME" />
+					<property name="fieldName" value="AKA1FirstName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_AKA2_LASTNAME" />
+					<property name="fieldName" value="AKA2LastName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_AKA2_FISRTNAME" />
+					<property name="fieldName" value="AKA2FirstName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_AKA3_LASTNAME" />
+					<property name="fieldName" value="AKA3LastName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_AKA3_FISRTNAME" />
+					<property name="fieldName" value="AKA3FirstName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_DOB" />
+					<property name="fieldName" value="DOB" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_SSN" />
+					<property name="fieldName" value="SSN" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_ADDRESS1" />
+					<property name="fieldName" value="SubjectAddress1" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_ADDRESS2" />
+					<property name="fieldName" value="SubjectAddress2" />
+				</bean>	
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_CITY" />
+					<property name="fieldName" value="SubjectCity" />
+				</bean>			
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_STATE" />
+					<property name="fieldName" value="SubjectState" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_ZIP" />
+					<property name="fieldName" value="SubjectZip" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_PHONE" />
+					<property name="fieldName" value="SubjectPhone" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_EMAIL" />
+					<property name="fieldName" value="SubjectEmail" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_CONV_QUESTION" />
+					<property name="fieldName" value="ConvictionQuestion" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_CONV_DESC" />
+					<property name="fieldName" value="ConvictionDetail" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_MOTHERS_MAIDEN_NAME" />
+					<property name="fieldName" value="Mother'sMaidenName" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="SBJCT_POS_STATE" />
+					<property name="fieldName" value="PositionLocationState" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="SBJCT_POS_COUNTY"/>
+    				<property name="fieldName" value="PositionCounty"/>
+				</bean>
+				
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="uuhhr_mvr" class="com.abc.integration.batch.datablock.DataBlock">
+		<property name="type" value="MVR" />
+		<property name="dataField">
+			<list>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="MVR_LICENSE_STATE" />
+					<property name="fieldName" value="DriversLicenseState" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="MVR_LICENSE_NUMBER" />
+					<property name="fieldName" value="DriversLicenseNumber" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- EMP -->
+	<bean id="uuhhr_emp" class="com.abc.integration.batch.datablock.DataBlock">
+		<property name="type" value="EMP" />
+		<property name="dataField">
+			<list>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_OPT_OUT" />
+					<property name="fieldName" value="EmploymentHistory" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_EMPLOYER" />
+					<property name="fieldName" value="Employer" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EMP_ADDRESS"/>
+    				<property name="fieldName" value="EmployerAddress"/>
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_CITY" />
+					<property name="fieldName" value="EmployerCity" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_STATE" />
+					<property name="fieldName" value="EmployerState" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_ZIP" />
+					<property name="fieldName" value="EmployerZip" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_COUNTRY" />
+					<property name="fieldName" value="EmployerCountry" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EMP_PROVINCE"/>
+    				<property name="fieldName" value="EmployerProvince"/>
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_PHONE" />
+					<property name="fieldName" value="EmployerPhone" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_FROM" />
+					<property name="fieldName" value="Employedfrom" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_TO" />
+					<property name="fieldName" value="Employedto" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_OK_TO_CALL" />
+					<property name="fieldName" value="OKtoCall" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_POSITION" />
+					<property name="fieldName" value="Position" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_SALARY" />
+					<property name="fieldName" value="Salary" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_SUPERVISOR" />
+					<property name="fieldName" value="Supervisor" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EMP_REASON_FOR_LEAVING" />
+					<property name="fieldName" value="ReasonForLeaving" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- EDU -->
+	<bean id="uuhhr_edu" class="com.abc.integration.batch.datablock.DataBlock">
+		<property name="type" value="EDU" />
+		<property name="dataField">
+			<list>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EDU_SCHOOL" />
+					<property name="fieldName" value="School" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EDU_ADDRESS" />
+					<property name="fieldName" value="SchoolAddress" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EDU_CITY" />
+					<property name="fieldName" value="SchoolCity" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EDU_STATE" />
+					<property name="fieldName" value="SchoolState" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EDU_ZIP" />
+					<property name="fieldName" value="SchoolZip" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+					<property name="fieldType" value="EDU_COUNTRY" />
+					<property name="fieldName" value="SchoolCountry" />
+				</bean>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EDU_PROVINCE"/>
+    				<property name="fieldName" value="SchoolProvince"/>
+				</bean>           		
+
+				<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EDU_START_DATE"/>
+    				<property name="fieldName" value="SchoolStartDate"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EDU_END_DATE"/>
+    				<property name="fieldName" value="SchoolEnddate"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EDU_STUDENT_ID"/>
+    				<property name="fieldName" value="StudentID"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EDU_GRADUATED"/>
+    				<property name="fieldName" value="Graduated"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EDU_GRADUATED_DATE"/>
+    				<property name="fieldName" value="GraduationDate"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EDU_DEGREE"/>
+    				<property name="fieldName" value="Degree"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="EDU_MAJOR"/>
+    				<property name="fieldName" value="Major"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- REF -->
+	<bean id="uuhhr_ref" class="com.abc.integration.batch.datablock.DataBlock">
+		<property name="type" value="REF" />
+		<property name="dataField">
+			<list>
+				<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="REF_NAME"/>
+    				<property name="fieldName" value="ReferenceContactName"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="REF_RELATIONSHIP"/>
+    				<property name="fieldName" value="ReferenceContactRelationship"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="REF_ADDRESS"/>
+    				<property name="fieldName" value="ReferenceContactAddress"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="REF_PHONE1"/>
+    				<property name="fieldName" value="ReferenceContactPhone1"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="REF_PHONE2"/>
+    				<property name="fieldName" value="ReferenceContactPhone2"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="REF_PHONE3"/>
+    				<property name="fieldName" value="ReferenceContactPhone3"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="REF_EMAIL"/>
+    				<property name="fieldName" value="ReferenceContactEmail"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- PLV -->
+	<bean id="uuhhr_plv" class="com.abc.integration.batch.datablock.DataBlock">
+		<property name="type" value="PLV"/>
+		<property name="dataField">
+        	<list>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="PLV_LICENSE_TYPE"/>
+    				<property name="fieldName" value="ProfessionalLicenseType"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="PLV_LICENSE_NUMBER"/>
+    				<property name="fieldName" value="ProfessionalLicenseNumber"/>
+				</bean>
+           		<bean class="com.abc.integration.batch.datablock.DataField">
+    				<property name="fieldType" value="PLV_LICENSE_STATE"/>
+    				<property name="fieldName" value="ProfessionalLicenseState"/>
+				</bean>
+           		
+			</list>
+		</property>
+    </bean>
+
+	<!-- Define Data Blocks -->
+	<bean id="uuhhr_sequence" class="com.abc.integration.batch.datablock.DataBlockSequence">
+		<property name="relaxedDataBlockSequence" value="true" />
+		<property name="dataBlockSequence">
+			<list>
+				<ref bean="uuhhr_header" />
+				<ref bean="uuhhr_subject" />
+				<ref bean="uuhhr_mvr" />
+				<ref bean="uuhhr_emp" />
+				<ref bean="uuhhr_edu" />
+				<ref bean="uuhhr_ref" />				
+				<ref bean="uuhhr_plv" />
+				
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- Batch Context -->
+ 	<bean id="uuhhrBatchContext" class="com.abc.integration.batch.BatchContext">
+    	<property name="contextName" value="UUHHR - CSV"/>
+    	<property name="readerType" value="CSV"/>
+        <property name="skipRow">
+        	<list>
+				<value>1</value>
+			</list>
+		</property>
+		<property name="dataBlockSequence">
+			<ref bean="uuhhr_sequence" />
+		</property>		
+		<property name="createResponseBatchFile" value="true" />
+		<property name="batchResultContextName" value="UUHHR" />
+		<property name="responseContext">
+			<bean class="com.abc.integration.batch.response.ResponseContext">
+					<property name="processor">
+					<bean class="com.abc.integration.batch.response.ResponseContextUUHHR" />
+				</property>
+				<property name="processorConfig">
+					<bean class="com.abc.integration.batch.response.ProcessorConfig">
+						<property name="reportUrl"
+							value="@NP_DOMAIN@/JSP/ViewReport" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+        <property name="mapperType" value="SMART"/>
+        <property name="checkDeuplicatesInBatch" value="true"/>
+        <property name="orderProcessorServiceName" value="DEFAULT"/>
+    </bean>
+
+</beans>
