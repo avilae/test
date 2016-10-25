@@ -1,3 +1,0 @@
-in:  
-  sql:
-    query: SELECT Pub_Flt_Schd.schd_nme, …
