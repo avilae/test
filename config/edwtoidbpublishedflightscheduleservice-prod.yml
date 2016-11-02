@@ -1,3 +1,3 @@
 in:  
   sql:
-    query: SELECT Pub_Flt_Schd.schd_nme, …
+    query: SELECT Pub_Flt_Schd.schd_nme FROM PROD_TABLE
