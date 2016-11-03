@@ -1,2 +1,2 @@
 generic:
-  sql: SELECT * FROM {in.sql.schema} WHERE ..
+  sql: SELECT * FROM '{in.sql.schema}' WHERE ..
