@@ -1,3 +1,4 @@
 in:  
   sql:
     query: SELECT Pub_Flt_Schd.schd_nme FROM PRODUCTION_TABLE
+    schema: fli_prod
